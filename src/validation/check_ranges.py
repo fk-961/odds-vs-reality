@@ -3,12 +3,14 @@ Verify that numeric values fall within reasonable ranges.
 """
 
 import pandas as pd
+from sqlalchemy.engine import Engine
+
 from src.mappings import (
     non_bookies_cols,
     bookies_cols,
 )
 
-def check_ranges(engine):
+def check_ranges(engine : Engine) -> dict:
 
     non_bookies_numeric_cols = list(
         set(non_bookies_cols.values()) -

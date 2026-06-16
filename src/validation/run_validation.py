@@ -16,6 +16,8 @@ from src.db.engine import engine
 from src.validation.check_schema import check_schema
 from src.validation.check_missing_values import check_missing_values
 from src.validation.check_ranges import check_ranges
+from src.validation.check_duplicates import check_duplicates
+from src.validation.check_team_counts import check_team_counts
 
 
 def run_pipeline_test(engine):
@@ -24,24 +26,32 @@ def run_pipeline_test(engine):
     
     schema_results = check_schema(engine)
     results.append(schema_results)
-    print("- Ran Schema check.")
+    print(f"- Ran Schema check -> status = {schema_results["status"]}.")
     
     missing_values_results = check_missing_values(engine)
     results.append(missing_values_results)
-    print("- Ran Missing Values check.")
+    print(f"- Ran Missing Values check -> status = {missing_values_results["status"]}.")
     
     ranges_result = check_ranges(engine)
     results.append(ranges_result)
-    print("- Ran Value Ranges check.")
+    print(f"- Ran Value Ranges check -> status = {ranges_result["status"]}.")
+    
+    duplicates_result = check_duplicates(engine)
+    results.append(duplicates_result)
+    print(f"- Ran Duplicates check -> status = {duplicates_result["status"]}.")
+    
+    team_counts_result = check_team_counts(engine)
+    results.append(team_counts_result)
+    print(f"- Ran Team Counts check -> status = {team_counts_result["status"]}.")
     
     return results
     
-def get_results(report : list) -> dict:
+def get_report(results : list) -> dict:
     # overral status of pipeline
     status = "PASS"
     warning_counts = 0
     
-    for r in report:
+    for r in results:
         if r["status"] == "FAIL":
             status = "FAIL"
         elif r["status"] == "WARNING" and r["status"] != 'FAIL':
@@ -52,7 +62,7 @@ def get_results(report : list) -> dict:
         "timestamp" : datetime.now().isoformat(),
         "overall_status" : status,
         "warnings" : warning_counts,
-        "report" : report
+        "report" : results
     }
 
 def ensure_path(path: Path):
@@ -79,7 +89,7 @@ if __name__ == "__main__":
     print("="*30)
     
     results = run_pipeline_test(engine)
-    report = get_results(results)
+    report = get_report(results)
     print(f"Completed available checks with {report['warnings']} warnings.")
     print(f"Status: {report['overall_status']}")
     

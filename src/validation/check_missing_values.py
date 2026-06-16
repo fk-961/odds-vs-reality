@@ -3,11 +3,12 @@ Checks NULL values in our database's matches table.
 """
 
 import pandas as pd
+from sqlalchemy.engine import Engine
+
 from src.mappings import col_mapping, non_bookies_cols
 
 
-
-def check_missing_values(engine):
+def check_missing_values(engine : Engine) -> dict:
     cols = list(col_mapping.values())
     select_check = [
         f"SUM(CASE WHEN {col} IS NULL THEN 1 ELSE 0 END) AS {col}_null_count"

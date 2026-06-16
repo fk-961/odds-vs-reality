@@ -4,9 +4,11 @@ our predefined schema.
 """
 
 import pandas as pd
+from sqlalchemy.engine import Engine
+
 from src.mappings import col_mapping
 
-def check_schema(engine):
+def check_schema(engine : Engine) -> dict:
     query = """
     SELECT column_name
     FROM information_schema.columns
