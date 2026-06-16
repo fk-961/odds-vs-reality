@@ -10,7 +10,7 @@ raw_l1_cols = {}
 for file in RAW_LIGUE1_DIR.glob("*.csv"):
     raw_l1_cols[file.stem] = pd.read_csv(file).columns
     
-cols_sets = [set(cols) for cols in raw_l1_cols]
+cols_sets = [set(cols) for cols in raw_l1_cols.values()]
 common_cols = set.intersection(*cols_sets)
 
 non_bookies_cols = {
@@ -44,7 +44,7 @@ bookies = {
     "Avg" : "market_average",
     "Max" : "market_maximum",
     "B365" : "bet365",
-    "BW" : "bet&win",
+    "BW" : "betwin",
     "PS" : "pinnacle"
 }
 

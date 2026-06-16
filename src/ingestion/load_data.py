@@ -46,7 +46,7 @@ def create_df(
     return pd.concat(data, ignore_index=True)
 
 def create_raw_matches(
-    if_exists : str = "append"
+    if_exists : str = "replace"
 ) -> None:
     """Load our data into the database
 

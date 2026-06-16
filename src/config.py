@@ -7,6 +7,9 @@ load_dotenv()
 # Useful directories path
 ROOT_DIR = Path(__file__).resolve().parents[1]
 RAW_LIGUE1_DIR = ROOT_DIR/"data"/"raw"/"ligue1"
+LOGS_DIR = ROOT_DIR/"logs"
+VALIDATION_SNAPSHOT = LOGS_DIR/"validation"/"snapshot.json"
+VALIDATION_LOGS = LOGS_DIR/"validation"/"logs.jsonl"
 
 # DB credentials
 DB_USER = os.getenv("DB_USER")

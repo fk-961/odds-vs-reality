@@ -6,7 +6,7 @@ from sqlalchemy import text
 from src.db.engine import engine
 
 def create_tables():
-    with open("src/db/schema.sql", "r") as f:
+    with open("src/ingestion/schema.sql", "r") as f:
         schema_sql = f.read()
 
     with engine.begin() as conn:
