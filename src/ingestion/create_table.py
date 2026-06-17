@@ -3,16 +3,13 @@ Creates the raw matches table using the schema defined.
 """
 
 from sqlalchemy import text
-from src.db.engine import engine
 
-def create_tables():
-    with open("src/ingestion/schema.sql", "r") as f:
+from src.db.engine import engine
+from src.config import DB_SCHEMA
+
+def create_tables() -> None:
+    with open(DB_SCHEMA, "r") as f:
         schema_sql = f.read()
 
     with engine.begin() as conn:
         conn.execute(text(schema_sql))
-
-    print("Tables created successfully")
-
-if __name__ == "__main__":
-    create_tables()

@@ -5,7 +5,7 @@ Loads the data retrieved into our database.
 import pandas as pd
 from pathlib import Path
 
-from src.config import RAW_LIGUE1_DIR
+from src.config import ROOT_DIR, RAW_LIGUE1_DIR
 from src.db.engine import engine
 from src.mappings import col_mapping
 
@@ -24,6 +24,7 @@ def create_df(
     
     data = []
 
+    print(f"Looking for data in {RAW_LIGUE1_DIR.relative_to(ROOT_DIR.parent)}")
     for file in source_path.glob("*.csv"):
         print(f"Found {file.stem} CSV")
 
