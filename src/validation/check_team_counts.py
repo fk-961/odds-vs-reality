@@ -15,17 +15,7 @@ import pandas as pd
 import numpy as np
 from sqlalchemy.engine import Engine
 
-def get_teams(
-    league : str,
-    season : str,
-    engine : Engine
-) -> pd.DataFrame:
-    query = f"""
-    SELECT "home_team", "away_team"
-    FROM matches
-    WHERE "league_division" = '{league}' AND "season" = '{season}'
-    """
-    return pd.read_sql(query, engine)
+from src.validation.utils import get_nb_teams
 
 def check_team_counts(engine : Engine) -> dict:
     query = """
@@ -51,13 +41,10 @@ def check_team_counts(engine : Engine) -> dict:
             status = "WARNING"
             
         # get the number of distinct teams from table and compare
-        teams_df = get_teams(
+        unique_teams = get_nb_teams(
             season['league_division'],
             season['season'],
             engine
-        )
-        unique_teams = len(
-            set(teams_df['home_team']) | set(teams_df['away_team'])
         )
         if int(round(n)) != unique_teams:
             status = "WARNING"

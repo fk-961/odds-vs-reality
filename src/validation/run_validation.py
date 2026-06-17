@@ -18,6 +18,7 @@ from src.validation.check_missing_values import check_missing_values
 from src.validation.check_ranges import check_ranges
 from src.validation.check_duplicates import check_duplicates
 from src.validation.check_team_counts import check_team_counts
+from src.validation.check_matches_count import check_matches_count
 
 
 def run_pipeline_test(engine):
@@ -43,6 +44,10 @@ def run_pipeline_test(engine):
     team_counts_result = check_team_counts(engine)
     results.append(team_counts_result)
     print(f"- Ran Team Counts check -> status = {team_counts_result["status"]}.")
+    
+    matches_count_result = check_matches_count(engine)
+    results.append(matches_count_result)
+    print(f"- Ran Matches Counts check -> status = {matches_count_result["status"]}.")
     
     return results
     
