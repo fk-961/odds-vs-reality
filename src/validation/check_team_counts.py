@@ -31,7 +31,7 @@ def check_team_counts(engine : Engine) -> dict:
     df = pd.read_sql(query, engine)
     
     status = "PASS"
-    results = {}
+    results = []
     seasons_total = df.to_dict(orient = "records")
     # n(n-1) = k, k nb of rows and n nb of teams
     for season in seasons_total:
@@ -48,14 +48,13 @@ def check_team_counts(engine : Engine) -> dict:
         )
         if int(round(n)) != unique_teams:
             status = "WARNING"
-        results[(
-            season['league_division'],
-            season['season']
-        )] = {
+        results.append({
+            "league_division" : season['league_division'],
+            "season" : season['season'],
             "row_count" : k,
             "calculated_n" : n,
             "unique_teams_count" : unique_teams
-        }
+        })
         
     return {
         "check" : "team_counts",

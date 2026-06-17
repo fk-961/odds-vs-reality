@@ -59,7 +59,7 @@ def get_report(results : list) -> dict:
     for r in results:
         if r["status"] == "FAIL":
             status = "FAIL"
-        elif r["status"] == "WARNING" and r["status"] != 'FAIL':
+        elif r["status"] == "WARNING" and status != 'FAIL':
             status = "WARNING"
             warning_counts += 1
             
