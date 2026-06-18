@@ -1,5 +1,6 @@
 """
-Common functions used accroos multiple scripts.
+Common functions used accroos multiple validation pipeline
+scripts.
 """
 
 import pandas as pd

@@ -2,16 +2,16 @@
 Loads the data retrieved into our database.
 """
 
+from typing import Tuple
 import pandas as pd
 from pathlib import Path
+from sqlalchemy.engine import Engine
 
-from src.config import ROOT_DIR, RAW_LIGUE1_DIR
-from src.db.engine import engine
 from src.mappings import col_mapping
 
-def create_df(
+def prepare_data(
     source_path : Path
-) -> pd.DataFrame:
+) -> Tuple[list, pd.DataFrame, dict]:
     """Creates a dataframe of all the data that we have in our
     raw data folder.
 
@@ -23,10 +23,12 @@ def create_df(
     """
     
     data = []
+    results = []
+    nb_files = 0
+    total_rows = 0
 
-    print(f"Looking for data in {RAW_LIGUE1_DIR.relative_to(ROOT_DIR.parent)}")
     for file in source_path.glob("*.csv"):
-        print(f"Found {file.stem} CSV")
+        print(f"- Found {file.stem} CSV")
 
         df = pd.read_csv(file)
         
@@ -39,26 +41,53 @@ def create_df(
         df["match_date"] = pd.to_datetime(df["match_date"], dayfirst=True).dt.date
 
         data.append(df)
+        results.append({
+            "file" : file.stem,
+            "rows" : int(df.shape[0]),
+            "columns" : int(df.shape[1]),
+            "status" : "PASS"
+        })
+        
+        nb_files += 1
+        total_rows += int(df.shape[0])
     
     if not data:
         print("No files found.")
-        return pd.DataFrame()
+        return (
+            [{"status" : "FAIL"}],
+            pd.DataFrame(),
+            {
+                "files_processed" : 0,
+                "rows_loaded" : 0
+            }
+        )
+    
+    return (
+        results,
+        pd.concat(data, ignore_index=True),
+        {
+            "files_processed" : nb_files,
+            "rows_loaded" : total_rows
+        }
+    )
 
-    return pd.concat(data, ignore_index=True)
-
-def create_raw_matches(
+def load_data(
+    engine : Engine,
+    source_path : Path,
     if_exists : str = "append"
-) -> None:
+) -> list:
     """Load our data into the database
 
     """
-    data = create_df(RAW_LIGUE1_DIR)
+    results, data, metadata = prepare_data(source_path)
+    if data.empty:
+        return results, metadata
+    
     data.to_sql(
         "matches",
         engine,
         if_exists = if_exists,
         index = False
     )
+    return results, metadata
     
-if __name__ == "__main__":
-    create_raw_matches()

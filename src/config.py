@@ -5,11 +5,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Useful directories path
+
+# Root
 ROOT_DIR = Path(__file__).resolve().parents[1]
+
+# Data
 RAW_LIGUE1_DIR = ROOT_DIR/"data"/"raw"/"ligue1"
+
+# Logs
 LOGS_DIR = ROOT_DIR/"logs"
+INGESTION_SNAPSHOT = LOGS_DIR/"ingestion"/"snapshot.json"
+INGESTION_LOGS = LOGS_DIR/"ingestion"/"logs.jsonl"
 VALIDATION_SNAPSHOT = LOGS_DIR/"validation"/"snapshot.json"
 VALIDATION_LOGS = LOGS_DIR/"validation"/"logs.jsonl"
+
 
 # DB credentials
 DB_USER = os.getenv("DB_USER")
