@@ -20,6 +20,7 @@ from src.validation.check_ranges import check_ranges
 from src.validation.check_duplicates import check_duplicates
 from src.validation.check_team_counts import check_team_counts
 from src.validation.check_matches_count import check_matches_count
+from src.validation.check_match_results import check_match_results
 from src.utils import (
     get_report,
     add_snapshot,
@@ -33,27 +34,31 @@ def run_validation_checks(engine):
     
     schema_results = check_schema(engine)
     results.append(schema_results)
-    print(f"- Ran Schema check -> status = {schema_results['status']}.")
+    print(f"- Ran Schema check -> status : {schema_results['status']}.")
     
     missing_values_results = check_missing_values(engine)
     results.append(missing_values_results)
-    print(f"- Ran Missing Values check -> status = {missing_values_results['status']}.")
+    print(f"- Ran Missing Values check -> status : {missing_values_results['status']}.")
     
     ranges_result = check_ranges(engine)
     results.append(ranges_result)
-    print(f"- Ran Value Ranges check -> status = {ranges_result['status']}.")
+    print(f"- Ran Value Ranges check -> status : {ranges_result['status']}.")
     
     duplicates_result = check_duplicates(engine)
     results.append(duplicates_result)
-    print(f"- Ran Duplicates check -> status = {duplicates_result['status']}.")
+    print(f"- Ran Duplicates check -> status : {duplicates_result['status']}.")
     
     team_counts_result = check_team_counts(engine)
     results.append(team_counts_result)
-    print(f"- Ran Team Counts check -> status = {team_counts_result['status']}.")
+    print(f"- Ran Team Counts check -> status : {team_counts_result['status']}.")
     
     matches_count_result = check_matches_count(engine)
     results.append(matches_count_result)
-    print(f"- Ran Matches Counts check -> status = {matches_count_result['status']}.")
+    print(f"- Ran Matches Counts check -> status : {matches_count_result['status']}.")
+    
+    matches_results = check_match_results(engine)
+    results.append(matches_results)
+    print(f"= Ran Matches Results check -> status : {matches_results['status']}.")
     
     return results
         
