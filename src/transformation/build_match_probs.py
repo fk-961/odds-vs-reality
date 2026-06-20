@@ -39,7 +39,12 @@ def build_match_probs(df : pd.DataFrame) -> pd.DataFrame:
             print(f"Skipping {bookmaker}, reason : missing columns")
             continue
         
-        cols = ['id'] + required_cols
+        cols = ['id'] + required_cols + [
+            'home_team',
+            'away_team',
+            'league_division',
+            'season'
+        ]
         bookmaker_odds_df = df[cols].rename(
             columns = {
                 'id' : "match_id",
@@ -96,6 +101,10 @@ def build_match_probs(df : pd.DataFrame) -> pd.DataFrame:
     
     return final[[
         'match_id',
+        'league_division',
+        'season',
+        'home_team',
+        'away_team',
         'bookmaker',
         'home_odds',
         'away_odds',

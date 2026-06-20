@@ -6,9 +6,10 @@ from datetime import datetime
 from time import perf_counter
 
 from src.db.engine import engine
-from src.transformation.load_matches_table import load_matches_table
+from src.transformation.load_table import load_table
 from src.transformation.build_standings import build_standings
 from src.transformation.build_match_probs import build_match_probs
+from src.transformation.build_expected_points import build_expected_points
 from src.transformation.create_transformed_table import create_transformed_table
 
 if __name__ == "__main__":
@@ -20,7 +21,7 @@ if __name__ == "__main__":
     start_time = datetime.now().isoformat()
     
     # Load raw data
-    raw_matches_df = load_matches_table(engine)
+    raw_matches_df = load_table("matches", engine)
     
     # Create standings table
     standings_df = build_standings(raw_matches_df)
@@ -31,6 +32,11 @@ if __name__ == "__main__":
     match_probs_df = build_match_probs(raw_matches_df)
     create_transformed_table(match_probs_df, "match_probs", engine)
     print("Created match_probs table")
+    
+    # Create expected_points table
+    expected_point_df = build_expected_points(match_probs_df)
+    create_transformed_table(expected_point_df, "expected_points", engine)
+    print("Created expected_points table")
     
     end = perf_counter()
     duration = round(end - start, 5)
