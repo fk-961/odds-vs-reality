@@ -10,6 +10,7 @@ from src.transformation.load_table import load_table
 from src.transformation.build_standings import build_standings
 from src.transformation.build_match_probs import build_match_probs
 from src.transformation.build_expected_points import build_expected_points
+from src.transformation.build_expected_standings import build_expected_standings
 from src.transformation.create_transformed_table import create_transformed_table
 
 if __name__ == "__main__":
@@ -37,6 +38,11 @@ if __name__ == "__main__":
     expected_point_df = build_expected_points(match_probs_df)
     create_transformed_table(expected_point_df, "expected_points", engine)
     print("Created expected_points table")
+    
+    # Create expected_standings table
+    expected_standings_df = build_expected_standings(expected_point_df)
+    create_transformed_table(expected_standings_df, "expected_standings", engine)
+    print("Created expected_standings table")
     
     end = perf_counter()
     duration = round(end - start, 5)
