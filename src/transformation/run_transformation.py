@@ -6,7 +6,7 @@ from datetime import datetime
 from time import perf_counter
 
 from src.db.engine import engine
-from src.transformation.load_table import load_table
+from src.utils import load_table
 from src.transformation.build_standings import build_standings
 from src.transformation.build_match_probs import build_match_probs
 from src.transformation.build_expected_points import build_expected_points
