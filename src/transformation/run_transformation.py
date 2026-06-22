@@ -8,6 +8,7 @@ from time import perf_counter
 from src.db.engine import engine
 from src.utils import load_table
 from src.transformation.build_standings import build_standings
+from src.transformation.build_teams import build_teams
 from src.transformation.build_match_probs import build_match_probs
 from src.transformation.build_expected_points import build_expected_points
 from src.transformation.build_expected_standings import build_expected_standings
@@ -28,6 +29,11 @@ if __name__ == "__main__":
     standings_df = build_standings(raw_matches_df)
     create_transformed_table(standings_df, "standings", engine)
     print("Created standings table")
+    
+    # Create teams table
+    teams_df = build_teams(standings_df)
+    create_transformed_table(teams_df, "teams", engine)
+    print("Created teams table")
     
     # Create match_probs table
     match_probs_df = build_match_probs(raw_matches_df)
