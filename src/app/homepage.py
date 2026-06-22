@@ -46,7 +46,7 @@ standings = load_table("standings", engine)
 teams = load_table("teams", engine)
 
 seasons = sorted(standings["season"].unique())
-teams = teams['team']
+teams = teams['team'].sort_values()
 
 # --------------------------------------------------
 # Page title
