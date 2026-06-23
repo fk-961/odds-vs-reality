@@ -117,7 +117,7 @@ def display_odds(df : pd.DataFrame) -> None:
                 df['bookmaker'] == selected_bookmaker,
                 'closing_overround'
             ].iloc[0]
-            st.write(f"Overround {round(overround, 2)}%")
+            st.write(f"Overround {round(overround*100, 2)}%")
             if on:
                 st.dataframe(closing_norm_probs)
             else:

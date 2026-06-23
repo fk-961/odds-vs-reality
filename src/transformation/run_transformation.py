@@ -6,13 +6,12 @@ from datetime import datetime
 from time import perf_counter
 
 from src.db.engine import engine
-from src.utils import load_table
+from src.utils import load_table, create_table
 from src.transformation.build_standings import build_standings
 from src.transformation.build_teams import build_teams
 from src.transformation.build_match_probs import build_match_probs
 from src.transformation.build_expected_points import build_expected_points
 from src.transformation.build_expected_standings import build_expected_standings
-from src.transformation.create_transformed_table import create_transformed_table
 
 if __name__ == "__main__":
     print("="*30)
@@ -27,27 +26,27 @@ if __name__ == "__main__":
     
     # Create standings table
     standings_df = build_standings(raw_matches_df)
-    create_transformed_table(standings_df, "standings", engine)
+    create_table(standings_df, "standings", engine)
     print("Created standings table")
     
     # Create teams table
     teams_df = build_teams(standings_df)
-    create_transformed_table(teams_df, "teams", engine)
+    create_table(teams_df, "teams", engine)
     print("Created teams table")
     
     # Create match_probs table
     match_probs_df = build_match_probs(raw_matches_df)
-    create_transformed_table(match_probs_df, "match_probs", engine)
+    create_table(match_probs_df, "match_probs", engine)
     print("Created match_probs table")
     
     # Create expected_points table
     expected_point_df = build_expected_points(match_probs_df)
-    create_transformed_table(expected_point_df, "expected_points", engine)
+    create_table(expected_point_df, "expected_points", engine)
     print("Created expected_points table")
     
     # Create expected_standings table
     expected_standings_df = build_expected_standings(expected_point_df)
-    create_transformed_table(expected_standings_df, "expected_standings", engine)
+    create_table(expected_standings_df, "expected_standings", engine)
     print("Created expected_standings table")
     
     end = perf_counter()

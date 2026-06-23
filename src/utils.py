@@ -14,6 +14,19 @@ def load_table(table_name : str, engine : Engine) -> pd.DataFrame:
     """
     return pd.read_sql(query, engine)
 
+def create_table(
+    df : pd.DataFrame,
+    table_name : str,
+    engine : Engine,
+    if_exists : str = "replace"
+) -> None:
+    df.to_sql(
+        table_name,
+        engine,
+        if_exists = if_exists,
+        index = False
+    )
+
 def get_report(results : list, **metadata) -> dict:
     """Takes the results list after a single execution of a pipeline 
     to generate the dictionary report to JSON. It checks for warnings
