@@ -24,7 +24,7 @@ def build_match_metrics(df : pd.DataFrame) -> pd.DataFrame:
             'closing_away_norm_prob',
             'closing_draw_norm_prob',
             'opening_overround',
-            'closing_overround'
+            'closing_overround',
             'outcome'
         ]
     ].copy()

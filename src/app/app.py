@@ -3,9 +3,9 @@ import streamlit as st
 pg = st.navigation(
     {
         "Home" : [st.Page('homepage.py', title = "HomePage", icon = ":material/home:")],
-        "Odds" : [
-            st.Page("odds/match_odds.py", title = "Match Odds"),
-            st.Page("odds/bookmaker_odds.py", title = "Bookmaker Odds")
+        "Market Analysis" : [
+            st.Page("odds/match_explorer.py", title = "Match Explorer"),
+            st.Page("odds/bookmaker_rankings.py", title = "Bookmaker Rankings")
         ]
     }
 )
