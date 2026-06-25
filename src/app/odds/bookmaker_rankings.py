@@ -3,6 +3,7 @@ Get bookmaker odds distribution and statistics.
 """
 
 import streamlit as st
+import altair as alt
 import pandas as pd
 
 from src.utils import load_table
@@ -20,10 +21,16 @@ bookmakers_map = {
 
 bookmakers = bookmaker_metrics_df["bookmaker"].unique().tolist()
 
-selected_bookmaker = st.selectbox(
-    "Select a bookmaker",
-    options=bookmakers,
-    format_func=lambda option: bookmakers_map.get(option, option)
+st.header('Bookmaker metrics overview')
+
+selected_bookmaker = st.segmented_control(
+    label = '',
+    default = "bet365",
+    required = True,
+    width = "stretch",
+    options = bookmakers,
+    selection_mode = 'single',
+    format_func = lambda option : bookmakers_map[option]
 )
 
 seasons = sorted(
@@ -119,7 +126,9 @@ def display_metric_card(
 with st.container():
     on = st.toggle("Switch to closing metrics")
     
-    left, middle, right = st.columns(3)
+    left_metrics, right_closing_vs_opening = st.columns(2)
+    
+    left, middle, right = left_metrics.columns(3)
     
     if on:
         display_metric_card(
@@ -165,3 +174,44 @@ with st.container():
             metric_col="opening_overround",
             delta_color="inverse"
         )
+        
+    bookmaker_overround = bookmaker_metrics_df.loc[
+    bookmaker_metrics_df['bookmaker'] == selected_bookmaker,
+        ['season', 'closing_vs_opening_overround']
+    ].copy()
+
+    bookmaker_overround['season'] = bookmaker_overround['season'].astype(str)
+
+    chart = (
+        alt.Chart(bookmaker_overround)
+        .mark_line(point=True)
+        .encode(
+            x=alt.X(
+                'season:O',
+                title="Season",
+                sort=sorted(bookmaker_overround['season'].unique()),
+                axis=alt.Axis(labelAngle=0)
+            ),
+            y=alt.Y(
+                'closing_vs_opening_overround:Q',
+                title="Overround difference",
+            )
+        )
+    )
+    
+    zero_line = alt.Chart(pd.DataFrame({'y': [0]})).mark_rule(
+        color='red',
+        strokeDash=[4, 4]
+    ).encode(
+        y='y:Q'
+    )
+
+    chart = chart + zero_line
+    
+    right_closing_vs_opening.subheader("(Closing - Opening) Overround")
+    right_closing_vs_opening.altair_chart(chart)
+        
+        
+st.divider()
+
+st.header("Bookmaker rankings")

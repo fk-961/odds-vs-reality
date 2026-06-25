@@ -1,6 +1,5 @@
 """
-Common functions used accroos multiple validation pipeline
-scripts.
+Returns the number of distinct teams in matches table.
 """
 
 import pandas as pd

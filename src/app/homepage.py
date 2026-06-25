@@ -4,8 +4,6 @@ from src.db.engine import engine
 from src.utils import load_table
 from src.analytics.team_history import get_team_stats
 
-st.set_page_config(layout="wide")
-
 
 # --------------------------------------------------
 # Styling

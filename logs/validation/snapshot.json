@@ -1,19 +1,79 @@
 {
-    "overall_status": "WARNING",
+    "pipeline": "ingestion",
+    "layer": "validation",
+    "timestamp": "2026-06-25T22:21:39.330417",
+    "status": "WARNING",
     "warnings": 3,
-    "timestamp": "2026-06-18T04:48:33.385203",
-    "duration_seconds": 0.15836,
-    "report": [
+    "fails": 0,
+    "duration_seconds": 0.15295,
+    "checks": [
         {
-            "check": "schema_validation",
-            "status": "PASS",
-            "missing_columns": [],
-            "extra_columns": []
+            "name": "Match Count",
+            "status": "WARNING",
+            "duration": 0.09759,
+            "timestamp": "2026-06-25T22:21:39.330506",
+            "result": [
+                {
+                    "league_division": "L1",
+                    "season": "24/25",
+                    "expected_matches_per_team": 34,
+                    "issues": []
+                },
+                {
+                    "league_division": "L1",
+                    "season": "21/22",
+                    "expected_matches_per_team": 38,
+                    "issues": []
+                },
+                {
+                    "league_division": "L1",
+                    "season": "23/24",
+                    "expected_matches_per_team": 34,
+                    "issues": []
+                },
+                {
+                    "league_division": "L1",
+                    "season": "25/26",
+                    "expected_matches_per_team": 34,
+                    "issues": [
+                        {
+                            "league_division": "L1",
+                            "season": "25/26",
+                            "team": "Toulouse",
+                            "matches_played": 33
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "25/26",
+                            "team": "Nantes",
+                            "matches_played": 33
+                        }
+                    ]
+                },
+                {
+                    "league_division": "L1",
+                    "season": "22/23",
+                    "expected_matches_per_team": 38,
+                    "issues": []
+                }
+            ]
         },
         {
-            "check": "missing_values",
+            "name": "Match Results",
+            "status": "PASS",
+            "duration": 0.00369,
+            "timestamp": "2026-06-25T22:21:39.428367",
+            "result": {
+                "inconsistent_match_counts": 0,
+                "inconsistent_matches_records": []
+            }
+        },
+        {
+            "name": "Missing Values",
             "status": "WARNING",
-            "null_counts": {
+            "duration": 0.0064,
+            "timestamp": "2026-06-25T22:21:39.432357",
+            "result": {
                 "league_division": {
                     "nulls": 0,
                     "null_percentage": 0.0
@@ -106,11 +166,7 @@
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
-                "market_maximum_closing_draw_odds": {
-                    "nulls": 0,
-                    "null_percentage": 0.0
-                },
-                "bet365_closing_draw_odds": {
+                "market_average_closing_away_odds": {
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
@@ -118,55 +174,23 @@
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
-                "betwin_home_odds": {
+                "market_maximum_draw_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "betwin_away_odds": {
                     "nulls": 127,
                     "null_percentage": 7.57
-                },
-                "market_maximum_closing_home_odds": {
-                    "nulls": 0,
-                    "null_percentage": 0.0
-                },
-                "pinnacle_closing_home_odds": {
-                    "nulls": 152,
-                    "null_percentage": 9.06
-                },
-                "market_average_closing_draw_odds": {
-                    "nulls": 0,
-                    "null_percentage": 0.0
                 },
                 "market_average_home_odds": {
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
-                "betwin_closing_home_odds": {
-                    "nulls": 126,
-                    "null_percentage": 7.51
-                },
-                "market_maximum_away_odds": {
+                "market_average_away_odds": {
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
-                "betwin_draw_odds": {
-                    "nulls": 127,
-                    "null_percentage": 7.57
-                },
-                "pinnacle_draw_odds": {
-                    "nulls": 152,
-                    "null_percentage": 9.06
-                },
-                "market_average_closing_away_odds": {
-                    "nulls": 0,
-                    "null_percentage": 0.0
-                },
-                "bet365_home_odds": {
-                    "nulls": 0,
-                    "null_percentage": 0.0
-                },
-                "market_average_closing_home_odds": {
-                    "nulls": 0,
-                    "null_percentage": 0.0
-                },
-                "bet365_closing_home_odds": {
+                "market_maximum_closing_home_odds": {
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
@@ -174,19 +198,35 @@
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
+                "bet365_away_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "pinnacle_closing_draw_odds": {
+                    "nulls": 152,
+                    "null_percentage": 9.06
+                },
+                "market_maximum_closing_draw_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "betwin_draw_odds": {
+                    "nulls": 127,
+                    "null_percentage": 7.57
+                },
+                "bet365_draw_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
                 "betwin_closing_draw_odds": {
                     "nulls": 126,
                     "null_percentage": 7.51
                 },
-                "pinnacle_closing_away_odds": {
-                    "nulls": 152,
-                    "null_percentage": 9.06
+                "betwin_closing_away_odds": {
+                    "nulls": 126,
+                    "null_percentage": 7.51
                 },
-                "market_maximum_home_odds": {
-                    "nulls": 0,
-                    "null_percentage": 0.0
-                },
-                "market_maximum_draw_odds": {
+                "market_average_closing_home_odds": {
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
@@ -194,104 +234,76 @@
                     "nulls": 152,
                     "null_percentage": 9.06
                 },
-                "bet365_draw_odds": {
-                    "nulls": 0,
-                    "null_percentage": 0.0
+                "pinnacle_closing_away_odds": {
+                    "nulls": 152,
+                    "null_percentage": 9.06
                 },
                 "pinnacle_away_odds": {
                     "nulls": 152,
                     "null_percentage": 9.06
                 },
-                "betwin_away_odds": {
+                "bet365_closing_home_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "bet365_home_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "betwin_home_odds": {
                     "nulls": 127,
                     "null_percentage": 7.57
                 },
-                "market_average_away_odds": {
+                "pinnacle_closing_home_odds": {
+                    "nulls": 152,
+                    "null_percentage": 9.06
+                },
+                "market_maximum_away_odds": {
                     "nulls": 0,
                     "null_percentage": 0.0
-                },
-                "bet365_away_odds": {
-                    "nulls": 0,
-                    "null_percentage": 0.0
-                },
-                "betwin_closing_away_odds": {
-                    "nulls": 126,
-                    "null_percentage": 7.51
                 },
                 "market_average_draw_odds": {
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
-                "pinnacle_closing_draw_odds": {
+                "market_average_closing_draw_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "market_maximum_home_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "pinnacle_draw_odds": {
                     "nulls": 152,
                     "null_percentage": 9.06
+                },
+                "betwin_closing_home_odds": {
+                    "nulls": 126,
+                    "null_percentage": 7.51
+                },
+                "bet365_closing_draw_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
                 }
             }
         },
         {
-            "check": "value_ranges",
+            "name": "Schema",
             "status": "PASS",
-            "non_bookie_violations": {
-                "home_yellow_cards_negative_values": 0,
-                "home_corners_negative_values": 0,
-                "away_fouls_negative_values": 0,
-                "home_red_cards_negative_values": 0,
-                "home_fouls_negative_values": 0,
-                "home_shots_on_target_negative_values": 0,
-                "away_shots_negative_values": 0,
-                "full_time_home_goals_negative_values": 0,
-                "away_shots_on_target_negative_values": 0,
-                "half_time_home_goals_negative_values": 0,
-                "away_red_cards_negative_values": 0,
-                "home_shots_negative_values": 0,
-                "half_time_away_goals_negative_values": 0,
-                "away_yellow_cards_negative_values": 0,
-                "away_corners_negative_values": 0,
-                "full_time_away_goals_negative_values": 0
-            },
-            "odds_violations": {
-                "market_maximum_closing_draw_odds_weird_values": 0,
-                "bet365_closing_draw_odds_weird_values": 0,
-                "bet365_closing_away_odds_weird_values": 0,
-                "betwin_home_odds_weird_values": 0,
-                "market_maximum_closing_home_odds_weird_values": 0,
-                "pinnacle_closing_home_odds_weird_values": 0,
-                "market_average_closing_draw_odds_weird_values": 0,
-                "market_average_home_odds_weird_values": 0,
-                "betwin_closing_home_odds_weird_values": 0,
-                "market_maximum_away_odds_weird_values": 0,
-                "betwin_draw_odds_weird_values": 0,
-                "pinnacle_draw_odds_weird_values": 0,
-                "market_average_closing_away_odds_weird_values": 0,
-                "bet365_home_odds_weird_values": 0,
-                "market_average_closing_home_odds_weird_values": 0,
-                "bet365_closing_home_odds_weird_values": 0,
-                "market_maximum_closing_away_odds_weird_values": 0,
-                "betwin_closing_draw_odds_weird_values": 0,
-                "pinnacle_closing_away_odds_weird_values": 0,
-                "market_maximum_home_odds_weird_values": 0,
-                "market_maximum_draw_odds_weird_values": 0,
-                "pinnacle_home_odds_weird_values": 0,
-                "bet365_draw_odds_weird_values": 0,
-                "pinnacle_away_odds_weird_values": 0,
-                "betwin_away_odds_weird_values": 0,
-                "market_average_away_odds_weird_values": 0,
-                "bet365_away_odds_weird_values": 0,
-                "betwin_closing_away_odds_weird_values": 0,
-                "market_average_draw_odds_weird_values": 0,
-                "pinnacle_closing_draw_odds_weird_values": 0
+            "duration": 0.01479,
+            "timestamp": "2026-06-25T22:21:39.439051",
+            "result": {
+                "missing_columns": [],
+                "extra_columns": []
             }
         },
         {
-            "check": "duplicates",
-            "status": "PASS",
-            "duplicates_found": 0,
-            "result": []
-        },
-        {
-            "check": "team_counts",
+            "name": "Team Counts",
             "status": "WARNING",
-            "results": [
+            "duration": 0.02033,
+            "timestamp": "2026-06-25T22:21:39.454103",
+            "result": [
                 {
                     "league_division": "L1",
                     "season": "24/25",
@@ -330,59 +342,62 @@
             ]
         },
         {
-            "check": "matches_count",
-            "status": "WARNING",
-            "results": [
-                {
-                    "league_division": "L1",
-                    "season": "24/25",
-                    "expected_matches_per_team": 34,
-                    "issues": []
-                },
-                {
-                    "league_division": "L1",
-                    "season": "21/22",
-                    "expected_matches_per_team": 38,
-                    "issues": []
-                },
-                {
-                    "league_division": "L1",
-                    "season": "23/24",
-                    "expected_matches_per_team": 34,
-                    "issues": []
-                },
-                {
-                    "league_division": "L1",
-                    "season": "25/26",
-                    "expected_matches_per_team": 34,
-                    "issues": [
-                        {
-                            "league_division": "L1",
-                            "season": "25/26",
-                            "team": "Toulouse",
-                            "matches_played": 33
-                        },
-                        {
-                            "league_division": "L1",
-                            "season": "25/26",
-                            "team": "Nantes",
-                            "matches_played": 33
-                        }
-                    ]
-                },
-                {
-                    "league_division": "L1",
-                    "season": "22/23",
-                    "expected_matches_per_team": 38,
-                    "issues": []
-                }
-            ]
-        },
-        {
-            "check": "results_consistency",
+            "name": "Value Ranges",
             "status": "PASS",
-            "inconsistent_matches_count": 0,
-            "results": []
+            "duration": 0.00857,
+            "timestamp": "2026-06-25T22:21:39.474667",
+            "result": {
+                "non_bookie_violations": {
+                    "full_time_away_goals_negative_values": 0,
+                    "home_corners_negative_values": 0,
+                    "full_time_home_goals_negative_values": 0,
+                    "half_time_home_goals_negative_values": 0,
+                    "away_red_cards_negative_values": 0,
+                    "half_time_away_goals_negative_values": 0,
+                    "home_shots_negative_values": 0,
+                    "away_shots_on_target_negative_values": 0,
+                    "away_shots_negative_values": 0,
+                    "away_fouls_negative_values": 0,
+                    "away_yellow_cards_negative_values": 0,
+                    "home_shots_on_target_negative_values": 0,
+                    "home_red_cards_negative_values": 0,
+                    "away_corners_negative_values": 0,
+                    "home_yellow_cards_negative_values": 0,
+                    "home_fouls_negative_values": 0
+                },
+                "odds_violations": {
+                    "market_average_closing_away_odds_weird_values": 0,
+                    "bet365_closing_away_odds_weird_values": 0,
+                    "market_maximum_draw_odds_weird_values": 0,
+                    "betwin_away_odds_weird_values": 0,
+                    "market_average_home_odds_weird_values": 0,
+                    "market_average_away_odds_weird_values": 0,
+                    "market_maximum_closing_home_odds_weird_values": 0,
+                    "market_maximum_closing_away_odds_weird_values": 0,
+                    "bet365_away_odds_weird_values": 0,
+                    "pinnacle_closing_draw_odds_weird_values": 0,
+                    "market_maximum_closing_draw_odds_weird_values": 0,
+                    "betwin_draw_odds_weird_values": 0,
+                    "bet365_draw_odds_weird_values": 0,
+                    "betwin_closing_draw_odds_weird_values": 0,
+                    "betwin_closing_away_odds_weird_values": 0,
+                    "market_average_closing_home_odds_weird_values": 0,
+                    "pinnacle_home_odds_weird_values": 0,
+                    "pinnacle_closing_away_odds_weird_values": 0,
+                    "pinnacle_away_odds_weird_values": 0,
+                    "bet365_closing_home_odds_weird_values": 0,
+                    "bet365_home_odds_weird_values": 0,
+                    "betwin_home_odds_weird_values": 0,
+                    "pinnacle_closing_home_odds_weird_values": 0,
+                    "market_maximum_away_odds_weird_values": 0,
+                    "market_average_draw_odds_weird_values": 0,
+                    "market_average_closing_draw_odds_weird_values": 0,
+                    "market_maximum_home_odds_weird_values": 0,
+                    "pinnacle_draw_odds_weird_values": 0,
+                    "betwin_closing_home_odds_weird_values": 0,
+                    "bet365_closing_draw_odds_weird_values": 0
+                }
+            }
         }
     ]
 }
