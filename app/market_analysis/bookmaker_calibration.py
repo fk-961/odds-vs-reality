@@ -18,9 +18,9 @@ bookmakers_map = {
     "market_maximum": "Market Max"
 }
 
-bookmakers = match_metrics_df["bookmaker"].unique().tolist()
+bookmakers = sorted(match_metrics_df["bookmaker"].unique().tolist())
 
-st.header('Bookmaker Calibration by Home Wins probabilities')
+st.header('Bookmaker Calibration probabilities')
 st.divider()
 
 selected_bookmaker = st.segmented_control(
@@ -42,13 +42,13 @@ probs_df = match_metrics_df.loc[
 bins = np.linspace(0, 1, 11)
 
 probs_df['opening_bins'] = pd.cut(
-    match_metrics_df['home_norm_prob'],
+    probs_df['home_norm_prob'],
     bins = bins,
     include_lowest = True
 )
 
 probs_df['closing_bins'] = pd.cut(
-    match_metrics_df['closing_home_norm_prob'],
+    probs_df['closing_home_norm_prob'],
     bins = bins,
     include_lowest = True
 )
@@ -101,14 +101,25 @@ closing_dist = (
 
 on = st.toggle("Switch to closing calibration")
 
+# ece
+def compute_ece(calibration_df : pd.DataFrame) -> None:
+    total_matches = calibration_df['nb_matches'].sum()
+    
+    return (
+        (calibration_df['nb_matches'] / total_matches )
+        * (calibration_df['observed_freq'] - calibration_df['mean_pred']).abs()
+    ).sum()
+    
 # plots
-left, right = st.columns(2)
-
 
 def display_charts(
     dist_df : pd.DataFrame,
     calibration_df : pd.DataFrame
 ) -> None:
+    
+    left, right = st.columns(2)
+    
+    left.subheader("Probability distribution")
     
     chart = alt.Chart(dist_df).mark_bar().encode(
         x=alt.X("bins", title = "Bins", axis=alt.Axis(labelAngle=-45)),
@@ -116,6 +127,16 @@ def display_charts(
     )
     
     left.altair_chart(chart)
+    
+    right.subheader(
+        "Calibration Curve",
+        help = """
+        Points close to the diagonal indicate good calibration.
+
+        Points below the line → bookmaker is overconfident  
+        Points above the line → bookmaker is underconfident
+        """
+    )
     
     chart = alt.Chart(calibration_df).mark_circle(size=80).encode(
         x=alt.X("mean_pred", title="Predicted Probability per bin"),
@@ -139,19 +160,40 @@ def display_charts(
     right.altair_chart(chart + line)
         
 
-left.subheader("Probability distribution")
+st.subheader("Calibration Summary")
+st.metric(
+    "ECE",
+    f"{compute_ece(opening_calibration):.4f}" if not on else f"{compute_ece(closing_calibration):.4f}",
+    border = True
+)    
+with st.expander("What is ECE?"):
+    st.write("""
+    Expected Calibration Error measures the weighted average difference
+    between predicted probabilities and the observed frequencies across
+    probability bins.
+    Lower values indicate better calibration.
+    """)
 
+    st.latex(r"""
+    \mathrm{ECE}
+    =
+    \sum_{m=1}^{M}
+    \frac{n_m}{N}
+    \left|
+    \mathrm{acc}(B_m)-\mathrm{conf}(B_m)
+    \right|
+    """)
+    
+    st.write("""
+        Where:
+        - $\mathrm{acc}(B_m)$ = observed frequency in bin $m$
+        - $\mathrm{conf}(B_m)$ = mean predicted probability in bin $m$
+        - $n_m$ = number of samples in bin $m$
+        - $N$ = total number of samples
+    """)
 
-right.subheader(
-    "Calibration Curve",
-    help = """
-    Points close to the diagonal indicate good calibration.
-
-    Points below the line → bookmaker is overconfident  
-    Points above the line → bookmaker is underconfident
-    """
-)
-
+    st.latex(r"0 \leq \mathrm{ECE} \leq 1")
+    
 if on:
     display_charts(
         closing_dist,
@@ -162,3 +204,4 @@ else:
         opening_dist,
         opening_calibration
     )
+    

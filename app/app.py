@@ -28,15 +28,17 @@ APP_PASSWORD = os.getenv("APP_PASSWORD")
 
 #     st.title("Against all Odds...")
 #     st.write("This application is currently in private beta.")
+    
+#     with st.form("login"):
+#         password = st.text_input("Password:", type="password")
+#         submitted = st.form_submit_button("Get started")
 
-#     password = st.text_input("Password:", type="password")
-
-#     if st.button("Get started"):
-#         if password == APP_PASSWORD:
-#             st.session_state.authenticated = True
-#             st.rerun()
-#         else:
-#             st.error("Incorrect password")
+#         if submitted:
+#             if password == APP_PASSWORD:
+#                 st.session_state.authenticated = True
+#                 st.rerun()
+#             else:
+#                 st.error("Incorrect password")
 
 #     st.stop()
 
@@ -49,14 +51,22 @@ st.set_page_config(
 
 pg = st.navigation(
     {
-        "Home" : [st.Page('homepage.py', title = "HomePage", icon = ":material/home:")],
-        "Market Analysis" : [
-            st.Page("odds/bookmaker_calibration.py", title = "Bookmaker Calibration"),
-            st.Page("odds/match_explorer.py", title = "Match Explorer"),
-            st.Page("odds/bookmaker_rankings.py", title = "Bookmaker Rankings")
+        "Home": [
+            st.Page(
+                "homepage.py",
+                title="HomePage",
+                icon=":material/home:"
+            )
         ],
-        "Calibration by Outcome" : [
-            st.Page("calibration/home.py", title = "Home Wins")
+
+        "Market Analysis": [
+            st.Page("market_analysis/match_explorer.py", title="Match Explorer"),
+            st.Page("market_analysis/bookmaker_rankings.py", title="Bookmaker Rankings"),
+            st.Page("market_analysis/bookmaker_calibration.py", title="Bookmaker Calibration")
+        ],
+
+        "References": [
+            st.Page("reference.py", title="References")
         ]
     }
 )
