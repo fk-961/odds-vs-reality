@@ -54,7 +54,7 @@ example_probs = pd.DataFrame({
 st.dataframe(
     example_probs,
     hide_index=True,
-    use_container_width=True
+    use_container_width=True,
 )
 
 st.subheader("Observed Outcome")

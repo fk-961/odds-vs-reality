@@ -9,7 +9,9 @@ from sqlalchemy.engine import Engine
 from src.validation.core.check import (
     ValidationCheck, CheckResult
 )
+from src.validation.core.registry import register_check
 
+@register_check
 class Duplicates(ValidationCheck):
     
     name = "Duplicates"
