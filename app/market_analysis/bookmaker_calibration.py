@@ -23,84 +23,102 @@ bookmakers = sorted(match_metrics_df["bookmaker"].unique().tolist())
 st.header('Bookmaker Calibration probabilities')
 st.divider()
 
-selected_bookmaker = st.segmented_control(
-    label = '',
-    default = "bet365",
-    required = True,
-    width = "stretch",
+# selections
+right, left = st.columns(2)
+selected_bookmaker = right.selectbox(
+    label = 'Select bookmaker',
     options = bookmakers,
-    selection_mode = 'single',
     format_func = lambda option : bookmakers_map[option]
 )
 
-probs_df = match_metrics_df.loc[
-    match_metrics_df['bookmaker'] == selected_bookmaker,
-    ['home_norm_prob', 'closing_home_norm_prob', 'y_home']
-]
+outcome = left.segmented_control(
+    label = 'Select outcome',
+    options = ['Home', 'Draw', 'Away'],
+    selection_mode = 'single',
+    default = 'Home',
+    required = True
+)
 
 # bookmaker calibration
-bins = np.linspace(0, 1, 11)
-
-probs_df['opening_bins'] = pd.cut(
-    probs_df['home_norm_prob'],
-    bins = bins,
-    include_lowest = True
-)
-
-probs_df['closing_bins'] = pd.cut(
-    probs_df['closing_home_norm_prob'],
-    bins = bins,
-    include_lowest = True
-)
-
-opening_calibration = (
-    probs_df
-    .groupby('opening_bins')
-    .agg(
-        nb_matches = ('y_home', 'count'),
-        home_wins = ('y_home', 'sum'),
-        mean_pred = ('home_norm_prob', 'mean')
+def get_calibration_data(
+    bookmaker : str,
+    outcome : str,
+    bins : np.array
+) -> dict[str, tuple[pd.DataFrame, pd.DataFrame]]:
+    outcome = outcome.lower()
+    outcome_norm_prob = f"{outcome}_norm_prob"
+    closing_outcome_norm_prob = f"closing_{outcome}_norm_prob"
+    y_outcome = f"y_{outcome}"
+    
+    probs_df = match_metrics_df.loc[
+        match_metrics_df['bookmaker'] == selected_bookmaker,
+        [outcome_norm_prob, closing_outcome_norm_prob, y_outcome]
+    ].copy()
+    
+    # binning
+    probs_df['opening_bins'] = pd.cut(
+        probs_df[outcome_norm_prob],
+        bins = bins,
+        include_lowest = True
     )
-)
-
-opening_calibration['observed_freq'] = (
-    opening_calibration['home_wins'] / opening_calibration['nb_matches']
-)
-
-closing_calibration = (
-    probs_df
-    .groupby('closing_bins')
-    .agg(
-        nb_matches = ('y_home', 'count'),
-        home_wins = ('y_home', 'sum'),
-        mean_pred = ('closing_home_norm_prob', 'mean')
+    
+    probs_df['closing_bins'] = pd.cut(
+        probs_df[closing_outcome_norm_prob],
+        bins = bins,
+        include_lowest = True
     )
-)
-closing_calibration['observed_freq'] = (
-    closing_calibration['home_wins'] / closing_calibration['nb_matches']
-)
+    
+    # bookmaker probability distribution
+    opening_dist = (
+        probs_df['opening_bins']
+        .value_counts()
+        .sort_index()
+        .rename_axis('bins')
+        .rename(index = str)
+        .reset_index(name = 'count')
+    )
 
-# bookmaker probability distribution
-opening_dist = (
-    probs_df['opening_bins']
-    .value_counts()
-    .sort_index()
-    .rename_axis('bins')
-    .rename(index = str)
-    .reset_index(name = 'count')
-)
-
-closing_dist = (
-    probs_df['closing_bins']
-    .value_counts()
-    .sort_index()
-    .rename_axis('bins')
-    .rename(index = str)
-    .reset_index(name = 'count')
-)
-
-on = st.toggle("Switch to closing calibration")
-
+    closing_dist = (
+        probs_df['closing_bins']
+        .value_counts()
+        .sort_index()
+        .rename_axis('bins')
+        .rename(index = str)
+        .reset_index(name = 'count')
+    )
+    
+    # calibration
+    opening_calibration = (
+        probs_df
+        .groupby('opening_bins')
+        .agg(
+            nb_matches = (y_outcome, 'count'),
+            outcome_wins = (y_outcome, 'sum'),
+            mean_pred = (outcome_norm_prob, 'mean')
+        )
+    )
+    opening_calibration['observed_freq'] = (
+        opening_calibration['outcome_wins'] / opening_calibration['nb_matches']
+    )
+    
+    closing_calibration = (
+        probs_df
+        .groupby('closing_bins')
+        .agg(
+            nb_matches = (y_outcome, 'count'),
+            outcome_wins = (y_outcome, 'sum'),
+            mean_pred = (closing_outcome_norm_prob, 'mean')
+        )
+    )
+    closing_calibration['observed_freq'] = (
+        closing_calibration['outcome_wins'] / closing_calibration['nb_matches']
+    )
+    
+    return {
+        "opening" : (opening_dist, opening_calibration),
+        "closing" : (closing_dist, closing_calibration)
+    }
+    
 # ece
 def compute_ece(calibration_df : pd.DataFrame) -> None:
     total_matches = calibration_df['nb_matches'].sum()
@@ -110,8 +128,8 @@ def compute_ece(calibration_df : pd.DataFrame) -> None:
         * (calibration_df['observed_freq'] - calibration_df['mean_pred']).abs()
     ).sum()
     
+ 
 # plots
-
 def display_charts(
     dist_df : pd.DataFrame,
     calibration_df : pd.DataFrame
@@ -159,6 +177,17 @@ def display_charts(
 
     right.altair_chart(chart + line)
         
+ 
+# get selected calibration data
+bins = np.linspace(0, 1, 11)
+calibration_data = get_calibration_data(
+    selected_bookmaker, outcome, bins
+)
+opening_dist, opening_calibration = calibration_data["opening"]
+closing_dist, closing_calibration = calibration_data["closing"]
+
+# display everything
+on = st.toggle("Switch to closing calibration")
 
 st.subheader("Calibration Summary")
 st.metric(
