@@ -3,20 +3,20 @@ Checks NULL values in our database's matches table.
 """
 
 import pandas as pd
-from sqlalchemy.engine import Engine
 
 from src.mappings import col_mapping, non_bookies_cols
 from src.validation.core.check import (
     ValidationCheck, CheckResult
 )
 from src.validation.core.registry import register_check
+from src.validation.core.context import ValidationContext
 
 @register_check
 class MissingValues(ValidationCheck):
     
     name = "Missing Values"
     
-    def run(self, engine : Engine) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> CheckResult:
         
         cols = list(col_mapping.values())
         select_check = [
@@ -31,7 +31,7 @@ class MissingValues(ValidationCheck):
         FROM matches
         """
         
-        result = pd.read_sql(query, engine)
+        result = pd.read_sql(query, ctx.engine)
         
         # result is one row with results for each columns
         result = result.iloc[0].to_dict()

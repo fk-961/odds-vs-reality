@@ -4,12 +4,12 @@ appearing multiple times.
 """
 
 import pandas as pd
-from sqlalchemy.engine import Engine
 
 from src.validation.core.check import (
     ValidationCheck, CheckResult
 )
 from src.validation.core.registry import register_check
+from src.validation.core.context import ValidationContext
 
 @register_check
 class Duplicates(ValidationCheck):
@@ -17,7 +17,7 @@ class Duplicates(ValidationCheck):
     name = "Duplicates"
     
     
-    def run(self, engine : Engine) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> CheckResult:
         query = """
         SELECT
             league_division,
@@ -36,7 +36,7 @@ class Duplicates(ValidationCheck):
         HAVING COUNT(*) > 1
         """
         
-        df = pd.read_sql(query, engine)
+        df = pd.read_sql(query, ctx.engine)
         status = "PASS"
         if not df.empty:
             status = "FAIL"

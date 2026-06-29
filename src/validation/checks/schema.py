@@ -4,20 +4,20 @@ our predefined schema.
 """
 
 import pandas as pd
-from sqlalchemy.engine import Engine
 
 from src.mappings import col_mapping
 from src.validation.core.check import (
     ValidationCheck, CheckResult
 )
 from src.validation.core.registry import register_check
+from src.validation.core.context import ValidationContext
 
 @register_check
 class Schema(ValidationCheck):
     
     name = "Schema"
     
-    def run(self, engine : Engine) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> CheckResult:
         
         query = """
         SELECT column_name
@@ -25,7 +25,7 @@ class Schema(ValidationCheck):
         WHERE table_name = 'matches';
         """
 
-        actual_df = pd.read_sql(query, engine)
+        actual_df = pd.read_sql(query, ctx.engine)
         actual_columns = set(actual_df["column_name"])
 
         expected_columns = set(col_mapping.values())

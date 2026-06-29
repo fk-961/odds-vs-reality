@@ -1,3 +1,5 @@
+import logging
+
 from src.config import (
     VALIDATION_LOGS,
     VALIDATION_SNAPSHOT,
@@ -9,7 +11,13 @@ from src.validation.core.registry import load_all_checks, get_checks
 
 from src.validation.core.pipeline import ValidationPipeline
 from src.validation.core.runner import ValidationRunner
+from src.validation.core.context import ValidationLogger, ValidationContext
 from src.validation.core.report_builder import ValidationReportBuilder
+
+logging.basicConfig(
+    level = logging.INFO,
+    format = "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
+)
 
 if __name__ == "__main__":
     load_all_checks()
@@ -20,7 +28,11 @@ if __name__ == "__main__":
     )
     
     runner = ValidationRunner()
-    results = runner.run(engine, ingestion_validation)
+    
+    results = runner.run(
+        ValidationContext(engine, ValidationLogger(logging.getLogger("validation"))),
+        ingestion_validation
+    )
     
     report_builder = ValidationReportBuilder(
         VALIDATION_SNAPSHOT, VALIDATION_LOGS

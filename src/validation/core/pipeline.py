@@ -1,6 +1,4 @@
 from dataclasses import dataclass
-from typing import List
-from sqlalchemy.engine import Engine
 
 from src.validation.core.check import (
     ValidationCheck, CheckResult, CheckExecutionResult
@@ -11,7 +9,7 @@ class ValidationPipeline:
     def __init__(
         self,
         name : str,
-        checks : List[ValidationCheck]
+        checks : list[ValidationCheck]
     ):
         self.name = name
         self.checks = checks
@@ -25,4 +23,4 @@ class ValidationExecutionResult:
     fails : int
     duration_seconds : float
     timestamp : str
-    result : List[CheckExecutionResult]
+    result : list[CheckExecutionResult]

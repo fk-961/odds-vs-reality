@@ -1,24 +1,22 @@
 
 from datetime import datetime
 from time import perf_counter
-from sqlalchemy.engine import Engine
 
 from src.validation.core.check import CheckExecutionResult
 from src.validation.core.pipeline import (
     ValidationPipeline, ValidationExecutionResult
 )
+from src.validation.core.context import ValidationContext
 
 class ValidationRunner:
     
     def run(
         self,
-        engine : Engine,
+        ctx : ValidationContext,
         pipeline : ValidationPipeline
     ) -> ValidationExecutionResult:
         
-        print("\n" + "=" * 50)
-        print(f"Starting validation pipeline: {pipeline.name}")
-        print("=" * 50)
+        ctx.logger.info("Starting %s pipeline", pipeline.name)
         
         timestamp = datetime.now().isoformat()
         start = perf_counter()
@@ -26,15 +24,20 @@ class ValidationRunner:
         result = []
         
         for check in pipeline.checks:
-            print(f" Running: {check.name}")
+            ctx.logger.info("Running %s check", check.name)
             
             check_timestamp = datetime.now().isoformat()
             check_start = perf_counter()
             
-            check_result = check.run(engine)
+            check_result = check.run(ctx)
             
             check_duration = round(perf_counter() - check_start, 5)
-            print(f"→ Status: {check_result.status} | Duration: {check_duration}s")
+            ctx.logger.log_status(
+                check_result.status,
+                "Status: %s | Duration %.5fs",
+                check_result.status,
+                check_duration
+            )
             
             result.append(CheckExecutionResult(
                 name = check.name,
@@ -65,12 +68,15 @@ class ValidationRunner:
         else:
             status = "PASS"
             
-        print("\n" + "-" * 50)
-        print(f"Pipeline finished: {pipeline.name}")
-        print(f"Status: {status}")
-        print(f"Warnings: {warnings} | Fails: {fails}")
-        print(f"Total duration: {duration}s")
-        print("-" * 50 + "\n")
+        ctx.logger.info("Pipeline finished: %s", pipeline.name)
+        ctx.logger.log_status(
+            status,
+            "Overall status for %s : %s",
+            pipeline.name,
+            status
+        )
+        ctx.logger.info("Warnings: %s | Fails: %s", warnings, fails)
+        ctx.logger.info("Total duration: %.5fs", duration)
         
         
         return ValidationExecutionResult(

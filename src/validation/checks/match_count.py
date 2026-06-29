@@ -4,20 +4,20 @@ per the inverse square law 2(n-1).
 """
 
 import pandas as pd
-from sqlalchemy.engine import Engine
 
 from src.validation.services.team_numbers import get_nb_teams
 from src.validation.core.check import (
     ValidationCheck, CheckResult
 )
 from src.validation.core.registry import register_check
+from src.validation.core.context import ValidationContext
 
 @register_check
 class MatchCount(ValidationCheck):
     
     name = "Match Count"
     
-    def run(self, engine : Engine) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> CheckResult:
         total_matches_query = """
         WITH nb_matches AS (
             SELECT
@@ -46,7 +46,7 @@ class MatchCount(ValidationCheck):
             season,
             team
         """
-        total_matches_df = pd.read_sql(total_matches_query, engine)
+        total_matches_df = pd.read_sql(total_matches_query, ctx.engine)
         
         # Get the names of leagues and corresponding seasons
         season_leagues_query = """
@@ -58,7 +58,7 @@ class MatchCount(ValidationCheck):
             "league_division",
             "season"
         """
-        season_leagues = pd.read_sql(season_leagues_query, engine).to_dict(orient = "records")
+        season_leagues = pd.read_sql(season_leagues_query, ctx.engine).to_dict(orient = "records")
         
         status = "PASS"
         results = []
@@ -66,7 +66,7 @@ class MatchCount(ValidationCheck):
             n = get_nb_teams(
                 season['league_division'],
                 season['season'],
-                engine
+                ctx.engine
             )
             
             # expected number of matches

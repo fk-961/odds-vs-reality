@@ -3,7 +3,6 @@ Verify that numeric values fall within reasonable ranges.
 """
 
 import pandas as pd
-from sqlalchemy.engine import Engine
 
 from src.mappings import (
     non_bookies_cols,
@@ -14,13 +13,14 @@ from src.validation.core.check import (
     ValidationCheck, CheckResult
 )
 from src.validation.core.registry import register_check
+from src.validation.core.context import ValidationContext
 
 @register_check
 class ValueRanges(ValidationCheck):
     
     name = "Value Ranges"
     
-    def run(self, engine : Engine) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> CheckResult:
         
         non_bookies_numeric_cols = list(
             set(non_bookies_cols.values()) -
@@ -46,7 +46,7 @@ class ValueRanges(ValidationCheck):
         FROM matches
         """
 
-        df = pd.read_sql(query, engine)
+        df = pd.read_sql(query, ctx.engine)
 
         if df.empty:
             raise ValueError("No data returned for non-bookie checks")
@@ -64,7 +64,7 @@ class ValueRanges(ValidationCheck):
         FROM matches
         """
 
-        df = pd.read_sql(query, engine)
+        df = pd.read_sql(query, ctx.engine)
 
         if df.empty:
             raise ValueError("No data returned for odds checks")

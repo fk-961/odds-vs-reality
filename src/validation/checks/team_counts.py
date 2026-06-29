@@ -13,20 +13,20 @@ Check raw_standings notebook for more info.
 
 import pandas as pd
 import numpy as np
-from sqlalchemy.engine import Engine
 
 from src.validation.services.team_numbers import get_nb_teams
 from src.validation.core.check import (
     ValidationCheck, CheckResult
 )
 from src.validation.core.registry import register_check
+from src.validation.core.context import ValidationContext
 
 @register_check
 class TeamCounts(ValidationCheck):
     
     name = "Team Counts"
     
-    def run(self, engine : Engine) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> CheckResult:
         
         query = """
         SELECT
@@ -38,7 +38,7 @@ class TeamCounts(ValidationCheck):
             "league_division",
             "season"
         """
-        df = pd.read_sql(query, engine)
+        df = pd.read_sql(query, ctx.engine)
         
         status = "PASS"
         results = []
@@ -54,7 +54,7 @@ class TeamCounts(ValidationCheck):
             unique_teams = get_nb_teams(
                 season['league_division'],
                 season['season'],
-                engine
+                ctx.engine
             )
             if int(round(n)) != unique_teams:
                 status = "WARNING"

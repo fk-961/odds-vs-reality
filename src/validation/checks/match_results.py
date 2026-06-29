@@ -5,19 +5,19 @@ the match result is home win for example.
 """
 
 import pandas as pd
-from sqlalchemy.engine import Engine
 
 from src.validation.core.check import (
     ValidationCheck, CheckResult
 )
 from src.validation.core.registry import register_check
+from src.validation.core.context import ValidationContext
 
 @register_check
 class MatchResults(ValidationCheck):
     
     name = "Match Results"
     
-    def run(self, engine : Engine) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> CheckResult:
         query = """
         SELECT
             "id",
@@ -41,7 +41,7 @@ class MatchResults(ValidationCheck):
             (full_time_home_goals != full_time_away_goals)
         )
         """
-        df = pd.read_sql(query, engine)
+        df = pd.read_sql(query, ctx.engine)
         
         status = "PASS"
         if not df.empty:
