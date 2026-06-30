@@ -9,18 +9,16 @@ from src.mappings import (
     bookies_cols,
 )
 
-from src.validation.core.check import (
-    ValidationCheck, CheckResult
-)
+from src.core.step import PipelineStep, StepResult
 from src.validation.core.registry import register_check
 from src.validation.core.context import ValidationContext
 
 @register_check
-class ValueRanges(ValidationCheck):
+class ValueRanges(PipelineStep):
     
     name = "Value Ranges"
     
-    def run(self, ctx : ValidationContext) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> StepResult:
         
         non_bookies_numeric_cols = list(
             set(non_bookies_cols.values()) -
@@ -86,7 +84,7 @@ class ValueRanges(ValidationCheck):
                     break
                 
                 
-        return CheckResult(
+        return StepResult(
             status = status,
             result = {
                 "non_bookie_violations" : non_bookies_df,

@@ -1,48 +1,54 @@
 from datetime import datetime
 from time import perf_counter
 
-from src.ingestion.core.step import StepExecutionResult
-from src.ingestion.core.pipeline import IngestionPipeline, IngestionExecutionResult
-from src.ingestion.core.context import IngestionContext
+from src.core.context import PipelineContext
+from src.core.pipeline import Pipeline, PipelineExecutionResult
+from src.core.step import StepExecutionResult
 
-class IngestionRunner:
+class PipelineRunner:
     
     def run(
         self,
-        pipeline : IngestionPipeline,
-        ctx : IngestionContext
-    ) -> IngestionExecutionResult:
+        pipeline : Pipeline,
+        ctx : PipelineContext
+    ) -> PipelineExecutionResult:
         
-        ctx.logger.info("Starting %s pipeline", pipeline.name)
-        
-        result = []
+        ctx.logger.info(
+            "Running %s | layer %s",
+            pipeline.name, pipeline.layer
+        )
         
         timestamp = datetime.now().isoformat()
         start = perf_counter()
+        result = []
         
         for step in pipeline.steps:
-            ctx.logger.info("%s", step.name)
+            ctx.logger.info(
+                "%s | Running step %s",
+                pipeline.layer, step.name
+            )
             step_timestamp = datetime.now().isoformat()
             step_start = perf_counter()
             
             step_result = step.run(ctx)
             
             step_duration = round(perf_counter() - step_start, 5)
-            
+
             ctx.logger.log_status(
                 step_result.status,
-                "Status: %s | Duration: %s",
-                step_result.status,
-                step_duration
+                "%s | %s result: Status %s | Duration %ss",
+                pipeline.layer, step.name, step_result.status, step_duration
             )
             
-            result.append(StepExecutionResult(
-                name = step.name,
-                status = step_result.status,
-                duration_seconds = step_duration,
-                timestamp = step_timestamp,
-                result = step_result.result
-            ))
+            result.append(
+                StepExecutionResult(
+                    name = step.name,
+                    status = step_result.status,
+                    duration_seconds = step_duration,
+                    timestamp = step_timestamp,
+                    result = step_result.result
+                )
+            )
             
         duration = round(perf_counter() - start, 5)
         
@@ -51,10 +57,8 @@ class IngestionRunner:
         fails = 0
 
         for r in result:
-
             if r.status == "FAIL":
                 fails += 1
-
             elif r.status == "WARNING":
                 warnings += 1
 
@@ -74,9 +78,10 @@ class IngestionRunner:
         )
         ctx.logger.info("Warnings: %s | Fails: %s", warnings, fails)
         ctx.logger.info("Total duration: %.5fs", duration)
-            
-        return IngestionExecutionResult(
+        
+        return PipelineExecutionResult(
             name = pipeline.name,
+            layer = pipeline.layer,
             status = status,
             warnings = warnings,
             fails = fails,
@@ -84,3 +89,4 @@ class IngestionRunner:
             timestamp = timestamp,
             result = result
         )
+            

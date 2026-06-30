@@ -6,18 +6,16 @@ the match result is home win for example.
 
 import pandas as pd
 
-from src.validation.core.check import (
-    ValidationCheck, CheckResult
-)
+from src.core.step import PipelineStep, StepResult
 from src.validation.core.registry import register_check
 from src.validation.core.context import ValidationContext
 
 @register_check
-class MatchResults(ValidationCheck):
+class MatchResults(PipelineStep):
     
     name = "Match Results"
     
-    def run(self, ctx : ValidationContext) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> StepResult:
         query = """
         SELECT
             "id",
@@ -47,7 +45,7 @@ class MatchResults(ValidationCheck):
         if not df.empty:
             status = "FAIL"
             
-        return CheckResult(
+        return StepResult(
             status = status,
             result = {
                 "inconsistent_match_counts" : len(df),

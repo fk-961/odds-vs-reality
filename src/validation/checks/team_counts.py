@@ -15,18 +15,16 @@ import pandas as pd
 import numpy as np
 
 from src.validation.services.team_numbers import get_nb_teams
-from src.validation.core.check import (
-    ValidationCheck, CheckResult
-)
+from src.core.step import PipelineStep, StepResult
 from src.validation.core.registry import register_check
 from src.validation.core.context import ValidationContext
 
 @register_check
-class TeamCounts(ValidationCheck):
+class TeamCounts(PipelineStep):
     
     name = "Team Counts"
     
-    def run(self, ctx : ValidationContext) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> StepResult:
         
         query = """
         SELECT
@@ -66,7 +64,7 @@ class TeamCounts(ValidationCheck):
                 "unique_teams_count" : unique_teams
             })
             
-        return CheckResult(
+        return StepResult(
             status = status,
             result = results
         )

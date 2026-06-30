@@ -1,10 +1,10 @@
 import pandas as pd
 
-from src.ingestion.core.step import IngestionStep, StepResult
+from src.core.step import PipelineStep, StepResult
 from src.ingestion.core.context import IngestionContext
 from src.config import ROOT_DIR
 
-class ExtractData(IngestionStep):
+class ExtractData(PipelineStep):
     name = "Extract Data"
     
     def run(self, ctx : IngestionContext) -> StepResult:

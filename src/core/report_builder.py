@@ -1,19 +1,15 @@
 import json
 from pathlib import Path
 
-from src.validation.core.pipeline import ValidationExecutionResult
+from src.core.pipeline import PipelineExecutionResult
 
-class ValidationReportBuilder:
-    
-    def __init__(self, snapshot_path : Path, logs_path : Path):
-        self.snapshot_path = snapshot_path
-        self.logs_path = logs_path
+class ReportBuilder:
         
-    def generate_json_report(self, result : ValidationExecutionResult) -> dict:
+    def generate_json_report(self, result : PipelineExecutionResult) -> dict:
         
         return {
             "pipeline" : result.name,
-            "layer" : "validation",
+            "layer" : result.layer,
             "timestamp" : result.timestamp,
             "status" : result.status,
             "warnings" : result.warnings,
@@ -34,12 +30,20 @@ class ValidationReportBuilder:
     def ensure_path(self, path : Path):
         path.parent.mkdir(parents=True, exist_ok=True)
         
-    def add_snapshot(self, result : ValidationExecutionResult):
-        self.ensure_path(self.snapshot_path)
-        with open(self.snapshot_path, "w") as f:
+    def add_snapshot(
+        self,
+        result : PipelineExecutionResult,
+        snapshot_path : Path
+    ):
+        self.ensure_path(snapshot_path)
+        with open(snapshot_path, "w") as f:
             json.dump(self.generate_json_report(result), f, indent=4)
             
-    def add_logs(self, result : ValidationExecutionResult):
-        self.ensure_path(self.logs_path)
-        with open(self.logs_path, "a") as f:
+    def add_logs(
+        self,
+        result : PipelineExecutionResult,
+        logs_path : Path
+    ):
+        self.ensure_path(logs_path)
+        with open(logs_path, "a") as f:
             f.write(json.dumps(self.generate_json_report(result)) + "\n")

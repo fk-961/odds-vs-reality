@@ -1,17 +1,17 @@
 {
-    "pipeline": "ingestion",
-    "layer": "validation",
-    "timestamp": "2026-06-30T01:28:39.668938",
+    "pipeline": "validation",
+    "layer": "data_quality",
+    "timestamp": "2026-06-30T16:03:28.026905",
     "status": "WARNING",
-    "warnings": 4,
+    "warnings": 3,
     "fails": 0,
-    "duration_seconds": 0.29068,
+    "duration_seconds": 0.11828,
     "checks": [
         {
             "name": "Duplicates",
             "status": "PASS",
-            "duration": 0.19114,
-            "timestamp": "2026-06-30T01:28:39.669084",
+            "duration": 0.00544,
+            "timestamp": "2026-06-30T16:03:28.027081",
             "result": {
                 "duplicates_found": 0,
                 "duplicates_records": []
@@ -20,27 +20,9 @@
         {
             "name": "Match Count",
             "status": "WARNING",
-            "duration": 0.03862,
-            "timestamp": "2026-06-30T01:28:39.860680",
+            "duration": 0.04566,
+            "timestamp": "2026-06-30T16:03:28.032862",
             "result": [
-                {
-                    "league_division": "L1",
-                    "season": "24/25",
-                    "expected_matches_per_team": 34,
-                    "issues": []
-                },
-                {
-                    "league_division": "L1",
-                    "season": "21/22",
-                    "expected_matches_per_team": 38,
-                    "issues": []
-                },
-                {
-                    "league_division": "L1",
-                    "season": "23/24",
-                    "expected_matches_per_team": 34,
-                    "issues": []
-                },
                 {
                     "league_division": "L1",
                     "season": "25/26",
@@ -65,14 +47,165 @@
                     "season": "22/23",
                     "expected_matches_per_team": 38,
                     "issues": []
+                },
+                {
+                    "league_division": "L1",
+                    "season": "23/24",
+                    "expected_matches_per_team": 34,
+                    "issues": []
+                },
+                {
+                    "league_division": "L1",
+                    "season": "24/25",
+                    "expected_matches_per_team": 34,
+                    "issues": []
+                },
+                {
+                    "league_division": "L1",
+                    "season": "19/20",
+                    "expected_matches_per_team": 38,
+                    "issues": [
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Paris SG",
+                            "matches_played": 27
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Strasbourg",
+                            "matches_played": 27
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Angers",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Reims",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Bordeaux",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Marseille",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Nice",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Lyon",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Rennes",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Toulouse",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Dijon",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Metz",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Lille",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "St Etienne",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Brest",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Nimes",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Nantes",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Monaco",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Montpellier",
+                            "matches_played": 28
+                        },
+                        {
+                            "league_division": "L1",
+                            "season": "19/20",
+                            "team": "Amiens",
+                            "matches_played": 28
+                        }
+                    ]
+                },
+                {
+                    "league_division": "L1",
+                    "season": "21/22",
+                    "expected_matches_per_team": 38,
+                    "issues": []
+                },
+                {
+                    "league_division": "L1",
+                    "season": "20/21",
+                    "expected_matches_per_team": 38,
+                    "issues": []
                 }
             ]
         },
         {
             "name": "Match Results",
             "status": "PASS",
-            "duration": 0.00424,
-            "timestamp": "2026-06-30T01:28:39.899850",
+            "duration": 0.00343,
+            "timestamp": "2026-06-30T16:03:28.078916",
             "result": {
                 "inconsistent_match_counts": 0,
                 "inconsistent_matches_records": []
@@ -81,8 +214,8 @@
         {
             "name": "Missing Values",
             "status": "WARNING",
-            "duration": 0.0062,
-            "timestamp": "2026-06-30T01:28:39.904494",
+            "duration": 0.00781,
+            "timestamp": "2026-06-30T16:03:28.082780",
             "result": {
                 "league_division": {
                     "nulls": 0,
@@ -176,112 +309,144 @@
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
-                "pinnacle_away_odds": {
-                    "nulls": 152,
-                    "null_percentage": 9.06
+                "betwin_closing_away_odds": {
+                    "nulls": 126,
+                    "null_percentage": 5.39
                 },
-                "bet365_home_odds": {
+                "bet365_away_odds": {
+                    "nulls": 2,
+                    "null_percentage": 0.09
+                },
+                "pinnacle_draw_odds": {
+                    "nulls": 154,
+                    "null_percentage": 6.59
+                },
+                "bet365_draw_odds": {
+                    "nulls": 2,
+                    "null_percentage": 0.09
+                },
+                "market_average_closing_away_odds": {
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
+                "bet365_home_odds": {
+                    "nulls": 2,
+                    "null_percentage": 0.09
+                },
+                "pinnacle_closing_draw_odds": {
+                    "nulls": 152,
+                    "null_percentage": 6.51
+                },
+                "market_maximum_home_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "pinnacle_closing_home_odds": {
+                    "nulls": 152,
+                    "null_percentage": 6.51
+                },
                 "pinnacle_closing_away_odds": {
                     "nulls": 152,
-                    "null_percentage": 9.06
+                    "null_percentage": 6.51
                 },
-                "betwin_home_odds": {
-                    "nulls": 127,
-                    "null_percentage": 7.57
+                "bet365_closing_draw_odds": {
+                    "nulls": 1,
+                    "null_percentage": 0.04
                 },
-                "bet365_draw_odds": {
+                "bet365_closing_home_odds": {
+                    "nulls": 1,
+                    "null_percentage": 0.04
+                },
+                "bet365_closing_away_odds": {
+                    "nulls": 1,
+                    "null_percentage": 0.04
+                },
+                "market_average_closing_draw_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "betwin_away_odds": {
+                    "nulls": 128,
+                    "null_percentage": 5.48
+                },
+                "market_maximum_away_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "betwin_closing_home_odds": {
+                    "nulls": 126,
+                    "null_percentage": 5.39
+                },
+                "market_average_draw_odds": {
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
                 "pinnacle_home_odds": {
-                    "nulls": 152,
-                    "null_percentage": 9.06
+                    "nulls": 154,
+                    "null_percentage": 6.59
                 },
-                "betwin_away_odds": {
-                    "nulls": 127,
-                    "null_percentage": 7.57
+                "pinnacle_away_odds": {
+                    "nulls": 154,
+                    "null_percentage": 6.59
                 },
-                "bet365_away_odds": {
+                "market_maximum_draw_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "market_maximum_closing_draw_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "market_average_home_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "market_maximum_closing_home_odds": {
                     "nulls": 0,
                     "null_percentage": 0.0
                 },
                 "betwin_draw_odds": {
-                    "nulls": 127,
-                    "null_percentage": 7.57
+                    "nulls": 128,
+                    "null_percentage": 5.48
                 },
-                "pinnacle_closing_home_odds": {
-                    "nulls": 152,
-                    "null_percentage": 9.06
+                "market_average_closing_home_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
                 },
-                "pinnacle_draw_odds": {
-                    "nulls": 152,
-                    "null_percentage": 9.06
+                "betwin_closing_draw_odds": {
+                    "nulls": 126,
+                    "null_percentage": 5.39
                 },
-                "pinnacle_closing_draw_odds": {
-                    "nulls": 152,
-                    "null_percentage": 9.06
+                "betwin_home_odds": {
+                    "nulls": 128,
+                    "null_percentage": 5.48
+                },
+                "market_maximum_closing_away_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
+                },
+                "market_average_away_odds": {
+                    "nulls": 0,
+                    "null_percentage": 0.0
                 }
             }
         },
         {
             "name": "Schema",
-            "status": "WARNING",
-            "duration": 0.01636,
-            "timestamp": "2026-06-30T01:28:39.910993",
+            "status": "PASS",
+            "duration": 0.01293,
+            "timestamp": "2026-06-30T16:03:28.090969",
             "result": {
                 "missing_columns": [],
-                "extra_columns": [
-                    "betwin_closing_draw_odds",
-                    "market_maximum_closing_home_odds",
-                    "market_average_closing_home_odds",
-                    "market_average_closing_away_odds",
-                    "market_average_away_odds",
-                    "market_average_home_odds",
-                    "bet365_closing_away_odds",
-                    "market_average_closing_draw_odds",
-                    "betwin_closing_away_odds",
-                    "market_maximum_draw_odds",
-                    "market_maximum_closing_away_odds",
-                    "bet365_closing_draw_odds",
-                    "bet365_closing_home_odds",
-                    "market_average_draw_odds",
-                    "market_maximum_home_odds",
-                    "market_maximum_away_odds",
-                    "betwin_closing_home_odds",
-                    "market_maximum_closing_draw_odds"
-                ]
+                "extra_columns": []
             }
         },
         {
             "name": "Team Counts",
             "status": "WARNING",
-            "duration": 0.02448,
-            "timestamp": "2026-06-30T01:28:39.927765",
+            "duration": 0.02917,
+            "timestamp": "2026-06-30T16:03:28.104296",
             "result": [
-                {
-                    "league_division": "L1",
-                    "season": "24/25",
-                    "row_count": 306,
-                    "calculated_n": 18.0,
-                    "unique_teams_count": 18
-                },
-                {
-                    "league_division": "L1",
-                    "season": "21/22",
-                    "row_count": 380,
-                    "calculated_n": 20.0,
-                    "unique_teams_count": 20
-                },
-                {
-                    "league_division": "L1",
-                    "season": "23/24",
-                    "row_count": 306,
-                    "calculated_n": 18.0,
-                    "unique_teams_count": 18
-                },
                 {
                     "league_division": "L1",
                     "season": "25/26",
@@ -295,46 +460,99 @@
                     "row_count": 380,
                     "calculated_n": 20.0,
                     "unique_teams_count": 20
+                },
+                {
+                    "league_division": "L1",
+                    "season": "23/24",
+                    "row_count": 306,
+                    "calculated_n": 18.0,
+                    "unique_teams_count": 18
+                },
+                {
+                    "league_division": "L1",
+                    "season": "24/25",
+                    "row_count": 306,
+                    "calculated_n": 18.0,
+                    "unique_teams_count": 18
+                },
+                {
+                    "league_division": "L1",
+                    "season": "19/20",
+                    "row_count": 279,
+                    "calculated_n": 17.210774967068403,
+                    "unique_teams_count": 20
+                },
+                {
+                    "league_division": "L1",
+                    "season": "21/22",
+                    "row_count": 380,
+                    "calculated_n": 20.0,
+                    "unique_teams_count": 20
+                },
+                {
+                    "league_division": "L1",
+                    "season": "20/21",
+                    "row_count": 380,
+                    "calculated_n": 20.0,
+                    "unique_teams_count": 20
                 }
             ]
         },
         {
             "name": "Value Ranges",
             "status": "PASS",
-            "duration": 0.00677,
-            "timestamp": "2026-06-30T01:28:39.952617",
+            "duration": 0.01109,
+            "timestamp": "2026-06-30T16:03:28.133890",
             "result": {
                 "non_bookie_violations": {
-                    "home_yellow_cards_negative_values": 0,
-                    "away_shots_on_target_negative_values": 0,
-                    "away_yellow_cards_negative_values": 0,
-                    "away_corners_negative_values": 0,
-                    "home_red_cards_negative_values": 0,
+                    "full_time_home_goals_negative_values": 0,
                     "half_time_home_goals_negative_values": 0,
                     "home_shots_on_target_negative_values": 0,
-                    "away_red_cards_negative_values": 0,
                     "home_shots_negative_values": 0,
+                    "home_yellow_cards_negative_values": 0,
                     "full_time_away_goals_negative_values": 0,
-                    "away_shots_negative_values": 0,
-                    "home_fouls_negative_values": 0,
-                    "full_time_home_goals_negative_values": 0,
+                    "away_yellow_cards_negative_values": 0,
+                    "half_time_away_goals_negative_values": 0,
+                    "away_red_cards_negative_values": 0,
+                    "away_shots_on_target_negative_values": 0,
+                    "home_red_cards_negative_values": 0,
+                    "away_corners_negative_values": 0,
                     "home_corners_negative_values": 0,
+                    "away_shots_negative_values": 0,
                     "away_fouls_negative_values": 0,
-                    "half_time_away_goals_negative_values": 0
+                    "home_fouls_negative_values": 0
                 },
                 "odds_violations": {
-                    "pinnacle_away_odds_weird_values": 0,
-                    "bet365_home_odds_weird_values": 0,
-                    "pinnacle_closing_away_odds_weird_values": 0,
-                    "betwin_home_odds_weird_values": 0,
-                    "bet365_draw_odds_weird_values": 0,
-                    "pinnacle_home_odds_weird_values": 0,
-                    "betwin_away_odds_weird_values": 0,
+                    "betwin_closing_away_odds_weird_values": 0,
                     "bet365_away_odds_weird_values": 0,
-                    "betwin_draw_odds_weird_values": 0,
-                    "pinnacle_closing_home_odds_weird_values": 0,
                     "pinnacle_draw_odds_weird_values": 0,
-                    "pinnacle_closing_draw_odds_weird_values": 0
+                    "bet365_draw_odds_weird_values": 0,
+                    "market_average_closing_away_odds_weird_values": 0,
+                    "bet365_home_odds_weird_values": 0,
+                    "pinnacle_closing_draw_odds_weird_values": 0,
+                    "market_maximum_home_odds_weird_values": 0,
+                    "pinnacle_closing_home_odds_weird_values": 0,
+                    "pinnacle_closing_away_odds_weird_values": 0,
+                    "bet365_closing_draw_odds_weird_values": 0,
+                    "bet365_closing_home_odds_weird_values": 0,
+                    "bet365_closing_away_odds_weird_values": 0,
+                    "market_average_closing_draw_odds_weird_values": 0,
+                    "betwin_away_odds_weird_values": 0,
+                    "market_maximum_away_odds_weird_values": 0,
+                    "betwin_closing_home_odds_weird_values": 0,
+                    "market_average_draw_odds_weird_values": 0,
+                    "pinnacle_home_odds_weird_values": 0,
+                    "pinnacle_away_odds_weird_values": 0,
+                    "market_maximum_draw_odds_weird_values": 0,
+                    "market_maximum_closing_draw_odds_weird_values": 0,
+                    "market_average_home_odds_weird_values": 0,
+                    "market_maximum_closing_home_odds_weird_values": 0,
+                    "betwin_draw_odds_weird_values": 0,
+                    "market_average_closing_home_odds_weird_values": 0,
+                    "betwin_closing_draw_odds_weird_values": 0,
+                    "betwin_home_odds_weird_values": 0,
+                    "market_maximum_closing_away_odds_weird_values": 0,
+                    "market_average_away_odds_weird_values": 0
                 }
             }
         }

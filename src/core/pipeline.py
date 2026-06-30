@@ -1,15 +1,17 @@
 from dataclasses import dataclass
 
-from src.ingestion.core.step import IngestionStep, StepExecutionResult
+from src.core.step import PipelineStep, StepExecutionResult
 
 @dataclass
-class IngestionPipeline:
+class Pipeline:
     name : str
-    steps : list[IngestionStep]
+    layer : str
+    steps : list[PipelineStep]
     
 @dataclass
-class IngestionExecutionResult:
+class PipelineExecutionResult:
     name : str
+    layer : str
     status : str
     warnings : int
     fails : int

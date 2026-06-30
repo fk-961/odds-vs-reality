@@ -5,18 +5,16 @@ Checks NULL values in our database's matches table.
 import pandas as pd
 
 from src.mappings import col_mapping, non_bookies_cols
-from src.validation.core.check import (
-    ValidationCheck, CheckResult
-)
+from src.core.step import PipelineStep, StepResult
 from src.validation.core.registry import register_check
 from src.validation.core.context import ValidationContext
 
 @register_check
-class MissingValues(ValidationCheck):
+class MissingValues(PipelineStep):
     
     name = "Missing Values"
     
-    def run(self, ctx : ValidationContext) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> StepResult:
         
         cols = list(col_mapping.values())
         select_check = [
@@ -50,7 +48,7 @@ class MissingValues(ValidationCheck):
             elif null_counts > 0:
                 status = "WARNING"
                 
-        return CheckResult(
+        return StepResult(
             status = status,
             result = results
         )

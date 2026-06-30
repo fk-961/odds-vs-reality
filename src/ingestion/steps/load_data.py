@@ -1,9 +1,9 @@
 import pandas as pd
 
-from src.ingestion.core.step import IngestionStep, StepResult
+from src.core.step import PipelineStep, StepResult
 from src.ingestion.core.context import IngestionContext
 
-class LoadData(IngestionStep):
+class LoadData(PipelineStep):
     name = "Load Data"
     
     def run(self, ctx : IngestionContext) -> StepResult:

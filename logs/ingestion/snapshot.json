@@ -1,40 +1,72 @@
 {
-    "overall_status": "PASS",
+    "pipeline": "ingestion",
+    "layer": "raw_extraction",
+    "timestamp": "2026-06-30T16:03:27.134791",
+    "status": "PASS",
     "warnings": 0,
-    "timestamp": "2026-06-18T02:00:52.136037",
-    "duration_seconds": 0.78604,
-    "files_processed": 5,
-    "rows_loaded": 1677,
-    "report": [
+    "fails": 0,
+    "duration_seconds": 0.89104,
+    "checks": [
         {
-            "file": "F1_2122",
-            "rows": 380,
-            "columns": 54,
-            "status": "PASS"
+            "name": "Create Schema",
+            "status": "PASS",
+            "duration": 0.11069,
+            "timestamp": "2026-06-30T16:03:27.134936",
+            "result": []
         },
         {
-            "file": "F1_2223",
-            "rows": 380,
-            "columns": 54,
-            "status": "PASS"
+            "name": "Extract Data",
+            "status": "PASS",
+            "duration": 0.0747,
+            "timestamp": "2026-06-30T16:03:27.246263",
+            "result": {
+                "files_processed": 7,
+                "total_rows": 2336,
+                "files": {
+                    "F1_1920": {
+                        "nb_rows": 279,
+                        "nb_columns": 105
+                    },
+                    "F1_2021": {
+                        "nb_rows": 380,
+                        "nb_columns": 105
+                    },
+                    "F1_2122": {
+                        "nb_rows": 380,
+                        "nb_columns": 105
+                    },
+                    "F1_2223": {
+                        "nb_rows": 380,
+                        "nb_columns": 105
+                    },
+                    "F1_2324": {
+                        "nb_rows": 306,
+                        "nb_columns": 105
+                    },
+                    "F1_2425": {
+                        "nb_rows": 306,
+                        "nb_columns": 119
+                    },
+                    "F1_2526": {
+                        "nb_rows": 305,
+                        "nb_columns": 131
+                    }
+                }
+            }
         },
         {
-            "file": "F1_2324",
-            "rows": 306,
-            "columns": 54,
-            "status": "PASS"
+            "name": "Fix Columns",
+            "status": "PASS",
+            "duration": 0.04681,
+            "timestamp": "2026-06-30T16:03:27.321295",
+            "result": {}
         },
         {
-            "file": "F1_2425",
-            "rows": 306,
-            "columns": 54,
-            "status": "PASS"
-        },
-        {
-            "file": "F1_2526",
-            "rows": 305,
-            "columns": 54,
-            "status": "PASS"
+            "name": "Load Data",
+            "status": "PASS",
+            "duration": 0.65702,
+            "timestamp": "2026-06-30T16:03:27.368562",
+            "result": {}
         }
     ]
 }

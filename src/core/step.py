@@ -1,27 +1,21 @@
-"""
-Validation Checks are used on created tables.
-"""
-
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from src.validation.core.context import ValidationContext
+from src.core.context import PipelineContext
 
-class ValidationCheck(ABC):
-    
+class PipelineStep(ABC):
     name : str
-        
+
     @abstractmethod
-    def run(self, ctx : ValidationContext) -> CheckResult:
+    def run(self, ctx : PipelineContext) -> StepResult:
         pass
     
-
 @dataclass
-class CheckResult:
+class StepResult:
     status : str
     result : dict[str, any]
     
 @dataclass
-class CheckExecutionResult:
+class StepExecutionResult:
     name : str
     status : str
     duration_seconds : float

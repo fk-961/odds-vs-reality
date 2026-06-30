@@ -1,15 +1,17 @@
 from dataclasses import dataclass, field
 from sqlalchemy.engine import Engine
 from pathlib import Path
+
+from src.core.context import PipelineContext
 from src.core.logger import PipelineLogger
 
 # mutable pipeline context
 @dataclass
-class IngestionContext:
+class IngestionContext(PipelineContext):
     
     # configuration
-    engine : Engine
     logger : PipelineLogger
+    engine : Engine
     raw_schema : Path
     source_data : Path
     col_mapping : dict[str, str]

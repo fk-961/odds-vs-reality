@@ -6,18 +6,16 @@ our predefined schema.
 import pandas as pd
 
 from src.mappings import col_mapping
-from src.validation.core.check import (
-    ValidationCheck, CheckResult
-)
+from src.core.step import PipelineStep, StepResult
 from src.validation.core.registry import register_check
 from src.validation.core.context import ValidationContext
 
 @register_check
-class Schema(ValidationCheck):
+class Schema(PipelineStep):
     
     name = "Schema"
     
-    def run(self, ctx : ValidationContext) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> StepResult:
         
         query = """
         SELECT column_name
@@ -40,7 +38,7 @@ class Schema(ValidationCheck):
         elif extra:
             status = "WARNING"
             
-        return CheckResult(
+        return StepResult(
             status = status,
             result = {
                 "missing_columns" : list(missing),

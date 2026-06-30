@@ -5,12 +5,10 @@ from pathlib import Path
 from sqlalchemy import text
 from sqlalchemy.engine import Engine
 
-from src.ingestion.core.step import (
-    IngestionStep, StepResult
-)
+from src.core.step import PipelineStep, StepResult
 from src.ingestion.core.context import IngestionContext
 
-class CreateSchema(IngestionStep):
+class CreateSchema(PipelineStep):
     name = "Create Schema"
     
     def run(self, ctx : IngestionContext) -> StepResult:

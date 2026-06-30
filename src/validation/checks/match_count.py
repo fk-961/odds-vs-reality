@@ -6,18 +6,16 @@ per the inverse square law 2(n-1).
 import pandas as pd
 
 from src.validation.services.team_numbers import get_nb_teams
-from src.validation.core.check import (
-    ValidationCheck, CheckResult
-)
+from src.core.step import PipelineStep, StepResult
 from src.validation.core.registry import register_check
 from src.validation.core.context import ValidationContext
 
 @register_check
-class MatchCount(ValidationCheck):
+class MatchCount(PipelineStep):
     
     name = "Match Count"
     
-    def run(self, ctx : ValidationContext) -> CheckResult:
+    def run(self, ctx : ValidationContext) -> StepResult:
         total_matches_query = """
         WITH nb_matches AS (
             SELECT
@@ -91,7 +89,7 @@ class MatchCount(ValidationCheck):
             }
             results.append(season_result)
             
-        return CheckResult(
+        return StepResult(
             status = status,
             result = results
         )
