@@ -1,0 +1,91 @@
+{
+    "pipeline": "transformation",
+    "layer": "data_transformation",
+    "timestamp": "2026-07-01T00:13:54.503744",
+    "status": "PASS",
+    "warnings": 0,
+    "fails": 0,
+    "duration_seconds": 2.96035,
+    "checks": [
+        {
+            "name": "Load matches table",
+            "status": "PASS",
+            "duration": 0.05588,
+            "timestamp": "2026-07-01T00:13:54.503853",
+            "result": {
+                "nb_rows": 2336,
+                "nb_columns": 55
+            }
+        },
+        {
+            "name": "Build standings table",
+            "status": "PASS",
+            "duration": 0.12077,
+            "timestamp": "2026-07-01T00:13:54.560159",
+            "result": {}
+        },
+        {
+            "name": "Persist data",
+            "status": "PASS",
+            "duration": 0.0795,
+            "timestamp": "2026-07-01T00:13:54.681420",
+            "result": {}
+        },
+        {
+            "name": "Build teams table",
+            "status": "PASS",
+            "duration": 0.02067,
+            "timestamp": "2026-07-01T00:13:54.761262",
+            "result": {}
+        },
+        {
+            "name": "Persist data",
+            "status": "PASS",
+            "duration": 0.05313,
+            "timestamp": "2026-07-01T00:13:54.782251",
+            "result": {}
+        },
+        {
+            "name": "Build Match Probabilites table",
+            "status": "PASS",
+            "duration": 0.05184,
+            "timestamp": "2026-07-01T00:13:54.835701",
+            "result": {}
+        },
+        {
+            "name": "Persist data",
+            "status": "PASS",
+            "duration": 1.78781,
+            "timestamp": "2026-07-01T00:13:54.887951",
+            "result": {}
+        },
+        {
+            "name": "Build expected_points table",
+            "status": "PASS",
+            "duration": 0.00537,
+            "timestamp": "2026-07-01T00:13:56.676277",
+            "result": {}
+        },
+        {
+            "name": "Persist data",
+            "status": "PASS",
+            "duration": 0.66713,
+            "timestamp": "2026-07-01T00:13:56.681999",
+            "result": {}
+        },
+        {
+            "name": "Build expected_standings table",
+            "status": "PASS",
+            "duration": 0.0185,
+            "timestamp": "2026-07-01T00:13:57.349613",
+            "result": {}
+        },
+        {
+            "name": "Persist data",
+            "status": "PASS",
+            "duration": 0.09531,
+            "timestamp": "2026-07-01T00:13:57.368527",
+            "result": {}
+        }
+    ]
+}

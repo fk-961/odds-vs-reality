@@ -6,7 +6,7 @@ import streamlit as st
 import altair as alt
 import pandas as pd
 
-from src.utils import load_table
+from src.db.utils import load_table
 from src.db.engine import engine
 
 bookmaker_metrics_df = load_table("bookmaker_metrics", engine)

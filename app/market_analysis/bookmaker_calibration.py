@@ -4,7 +4,7 @@ import numpy as np
 import altair as alt
 
 from src.db.engine import engine
-from src.utils import load_table
+from src.db.utils import load_table
 
 match_metrics_df = load_table("match_metrics", engine)
 

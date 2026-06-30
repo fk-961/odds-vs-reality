@@ -1,7 +1,7 @@
 import streamlit as st
 
 from src.db.engine import engine
-from src.utils import load_table
+from src.db.utils import load_table
 from src.analytics.team_history import get_team_stats
 
 

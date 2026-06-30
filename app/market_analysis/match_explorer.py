@@ -6,7 +6,7 @@ import streamlit as st
 import pandas as pd
 
 from src.db.engine import engine
-from src.utils import load_table
+from src.db.utils import load_table
 
 raw_matches_df = load_table("matches", engine)
 match_prob_df = load_table("match_probs", engine)

@@ -18,7 +18,8 @@ INGESTION_SNAPSHOT = LOGS_DIR/"ingestion"/"snapshot.json"
 INGESTION_LOGS = LOGS_DIR/"ingestion"/"logs.jsonl"
 VALIDATION_SNAPSHOT = LOGS_DIR/"validation"/"snapshot.json"
 VALIDATION_LOGS = LOGS_DIR/"validation"/"logs.jsonl"
-
+TRANSFORMATION_SNAPSHOT = LOGS_DIR/"transformation"/"snapshot.json"
+TRANSFORMATION_LOGS = LOGS_DIR/"transformation"/"logs.jsonl"
 
 # DB credentials
 DB_USER = os.getenv("DB_USER")
