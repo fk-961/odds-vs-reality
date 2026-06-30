@@ -1,50 +1,47 @@
-
 from datetime import datetime
 from time import perf_counter
 
-from src.validation.core.check import CheckExecutionResult
-from src.validation.core.pipeline import (
-    ValidationPipeline, ValidationExecutionResult
-)
-from src.validation.core.context import ValidationContext
+from src.ingestion.core.step import StepExecutionResult
+from src.ingestion.core.pipeline import IngestionPipeline, IngestionExecutionResult
+from src.ingestion.core.context import IngestionContext
 
-class ValidationRunner:
+class IngestionRunner:
     
     def run(
         self,
-        pipeline : ValidationPipeline,
-        ctx : ValidationContext
-    ) -> ValidationExecutionResult:
+        pipeline : IngestionPipeline,
+        ctx : IngestionContext
+    ) -> IngestionExecutionResult:
         
         ctx.logger.info("Starting %s pipeline", pipeline.name)
+        
+        result = []
         
         timestamp = datetime.now().isoformat()
         start = perf_counter()
         
-        result = []
-        
-        for check in pipeline.checks:
-            ctx.logger.info("Running %s check", check.name)
+        for step in pipeline.steps:
+            ctx.logger.info("%s", step.name)
+            step_timestamp = datetime.now().isoformat()
+            step_start = perf_counter()
             
-            check_timestamp = datetime.now().isoformat()
-            check_start = perf_counter()
+            step_result = step.run(ctx)
             
-            check_result = check.run(ctx)
+            step_duration = round(perf_counter() - step_start, 5)
             
-            check_duration = round(perf_counter() - check_start, 5)
             ctx.logger.log_status(
-                check_result.status,
-                "Status: %s | Duration %.5fs",
-                check_result.status,
-                check_duration
+                step_result.status,
+                "Status: %s | Duration: %s",
+                step_result.status,
+                step_duration
             )
             
-            result.append(CheckExecutionResult(
-                name = check.name,
-                status = check_result.status,
-                duration_seconds = check_duration,
-                timestamp = check_timestamp,
-                result = check_result.result
+            result.append(StepExecutionResult(
+                name = step.name,
+                status = step_result.status,
+                duration_seconds = step_duration,
+                timestamp = step_timestamp,
+                result = step_result.result
             ))
             
         duration = round(perf_counter() - start, 5)
@@ -77,9 +74,8 @@ class ValidationRunner:
         )
         ctx.logger.info("Warnings: %s | Fails: %s", warnings, fails)
         ctx.logger.info("Total duration: %.5fs", duration)
-        
-        
-        return ValidationExecutionResult(
+            
+        return IngestionExecutionResult(
             name = pipeline.name,
             status = status,
             warnings = warnings,

@@ -1,57 +1,47 @@
-"""
-Runs the ingestion pipeline that creates our raw matches
-table and build reports.
-"""
-
-import json
-from datetime import datetime
-from time import perf_counter
-
+from src.ingestion.core.pipeline import IngestionPipeline
+from src.ingestion.steps.create_schema import CreateSchema
+from src.ingestion.steps.extract_data import ExtractData
+from src.ingestion.steps.fix_columns import FixColumns
+from src.ingestion.steps.load_data import LoadData
+from src.ingestion.core.runner import IngestionRunner
+from src.ingestion.core.context import IngestionContext
 from src.db.engine import engine
+from src.core.logger import PipelineLogger
+import logging
 from src.config import (
-    ROOT_DIR,
-    RAW_LIGUE1_DIR,
-    INGESTION_SNAPSHOT,
-    INGESTION_LOGS
+    DB_SCHEMA, RAW_LIGUE1_DIR
 )
-from src.ingestion.create_table import create_raw_tables
-from src.ingestion.load_data import load_data
-from src.utils import (
-    get_report,
-    add_snapshot,
-    add_to_logs
+from src.mappings import col_mapping
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(name)s | %(levelname)s | %(message)s"
 )
 
 if __name__ == "__main__":
-    print("="*30)
-    print("Starting Ingestion pipeline !")
-    print("="*30)
+    ingestion_steps = [
+        CreateSchema(),
+        ExtractData(),
+        FixColumns(),
+        LoadData()
+    ]
     
-    start = perf_counter()
-    start_time = datetime.now().isoformat()
-    
-    create_raw_tables()
-    print("- Created raw table.")
-    
-    print(f"Looking for data in {RAW_LIGUE1_DIR.relative_to(ROOT_DIR.parent)}")
-    results, metadata = load_data(engine, RAW_LIGUE1_DIR)
-    print("- Loaded data into database.")
-    
-    end = perf_counter()
-    duration = round(end - start, 5)
-    
-    report = get_report(
-        results,
-        timestamp = start_time,
-        duration_seconds = duration,
-        **metadata
+    ingestion_pipeline = IngestionPipeline(
+        "ingestion", ingestion_steps
     )
-    print(f"Completed Ingestion pipeline with {report['warnings']} warnings.")
-    print(f"Status: {report['overall_status']}")
-    print(f"Duration: {duration} seconds")
     
-    add_snapshot(report, INGESTION_SNAPSHOT)
-    print(f"Generated report at {INGESTION_SNAPSHOT.relative_to(ROOT_DIR.parent)}")
-    add_to_logs(report, INGESTION_LOGS)
+    ingestion_context = IngestionContext(
+        engine,
+        PipelineLogger(logging.getLogger("ingestion")),
+        DB_SCHEMA,
+        RAW_LIGUE1_DIR,
+        col_mapping
+    )
     
-    print("="*30)
+    runner = IngestionRunner()
+    results = runner.run(
+        ingestion_pipeline, ingestion_context
+    )
+    
+    

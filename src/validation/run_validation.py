@@ -11,7 +11,8 @@ from src.validation.core.registry import load_all_checks, get_checks
 
 from src.validation.core.pipeline import ValidationPipeline
 from src.validation.core.runner import ValidationRunner
-from src.validation.core.context import ValidationLogger, ValidationContext
+from src.validation.core.context import ValidationContext
+from src.core.logger import PipelineLogger
 from src.validation.core.report_builder import ValidationReportBuilder
 
 logging.basicConfig(
@@ -30,8 +31,8 @@ if __name__ == "__main__":
     runner = ValidationRunner()
     
     results = runner.run(
-        ValidationContext(engine, ValidationLogger(logging.getLogger("validation"))),
-        ingestion_validation
+        ingestion_validation,
+        ValidationContext(engine, PipelineLogger(logging.getLogger("validation")))
     )
     
     report_builder = ValidationReportBuilder(
