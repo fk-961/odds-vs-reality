@@ -4,19 +4,19 @@ from src.core.pipeline import Pipeline
 
 from src.transformation.core.context import TransformationContext
 
-from src.transformation.steps.load_matches import LoadMatches
+from src.core.common_steps.load_table import LoadTable
 from src.transformation.steps.build_standings import BuildStandings
 from src.transformation.steps.build_teams import BuildTeams
 from src.transformation.steps.build_match_probs import BuildMatchProbs
 from src.transformation.steps.build_expected_points import BuildExpectedPoints
 from src.transformation.steps.build_expected_standings import BuildExpectedStandings
-from src.transformation.steps.persist_table import PersistTable
+from src.core.common_steps.persist_table import PersistTable
 
 from src.config import TRANSFORMATION_SNAPSHOT, TRANSFORMATION_LOGS
 from src.db.engine import engine
 
 transformation_steps = [
-    LoadMatches(),
+    LoadTable("matches"),
     BuildStandings(),
     PersistTable("standings" , "standings"),
     BuildTeams(),

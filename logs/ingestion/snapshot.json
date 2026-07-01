@@ -1,24 +1,24 @@
 {
     "pipeline": "ingestion",
     "layer": "raw_extraction",
-    "timestamp": "2026-07-01T23:49:52.363252",
+    "timestamp": "2026-07-02T01:40:27.239157",
     "status": "PASS",
     "warnings": 0,
     "fails": 0,
-    "duration_seconds": 0.84234,
+    "duration_seconds": 1.08899,
     "checks": [
         {
             "name": "Create Schema",
             "status": "PASS",
-            "duration": 0.06942,
-            "timestamp": "2026-07-01T23:49:52.363415",
+            "duration": 0.29563,
+            "timestamp": "2026-07-02T01:40:27.239273",
             "result": []
         },
         {
             "name": "Extract Data",
             "status": "PASS",
-            "duration": 0.06609,
-            "timestamp": "2026-07-01T23:49:52.433266",
+            "duration": 0.07419,
+            "timestamp": "2026-07-02T01:40:27.535533",
             "result": {
                 "files_processed": 7,
                 "total_rows": 2336,
@@ -57,15 +57,15 @@
         {
             "name": "Fix Columns",
             "status": "PASS",
-            "duration": 0.04465,
-            "timestamp": "2026-07-01T23:49:52.499661",
+            "duration": 0.04725,
+            "timestamp": "2026-07-02T01:40:27.610101",
             "result": {}
         },
         {
             "name": "Load Data",
             "status": "PASS",
-            "duration": 0.66072,
-            "timestamp": "2026-07-01T23:49:52.544634",
+            "duration": 0.67017,
+            "timestamp": "2026-07-02T01:40:27.657689",
             "result": {}
         }
     ]

@@ -1,0 +1,49 @@
+{
+    "pipeline": "analytics",
+    "layer": "data_analysis",
+    "timestamp": "2026-07-02T01:40:31.457772",
+    "status": "PASS",
+    "warnings": 0,
+    "fails": 0,
+    "duration_seconds": 1.53859,
+    "checks": [
+        {
+            "name": "Load table [match_probs]",
+            "status": "PASS",
+            "duration": 0.17168,
+            "timestamp": "2026-07-02T01:40:31.457922",
+            "result": {
+                "nb_rows": 11680,
+                "nb_columns": 27
+            }
+        },
+        {
+            "name": "Build match_metrics",
+            "status": "PASS",
+            "duration": 0.01477,
+            "timestamp": "2026-07-02T01:40:31.630049",
+            "result": {}
+        },
+        {
+            "name": "Persist table [match_metrics]",
+            "status": "PASS",
+            "duration": 1.28967,
+            "timestamp": "2026-07-02T01:40:31.645305",
+            "result": {}
+        },
+        {
+            "name": "Build bookmaker_metrics",
+            "status": "PASS",
+            "duration": 0.01716,
+            "timestamp": "2026-07-02T01:40:32.935335",
+            "result": {}
+        },
+        {
+            "name": "Persist table [bookmaker_metrics]",
+            "status": "PASS",
+            "duration": 0.04329,
+            "timestamp": "2026-07-02T01:40:32.952849",
+            "result": {}
+        }
+    ]
+}

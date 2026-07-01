@@ -6,6 +6,7 @@ logging.basicConfig(
 
 from src.core.orchestrator import PipelineMaestro
 from src.core.runner import PipelineRunner
+from src.core.logger import PipelineLogger
 from src.core.report_builder import ReportBuilder
 
 from src.ingestion.pipeline import (
@@ -17,17 +18,22 @@ from src.validation.pipeline import (
 from src.transformation.pipeline import (
     transformation_pipeline, transformation_context
 )
+from src.analytics.pipeline import (
+    analytics_pipeline, analytics_context
+)
 
 if __name__ == "__main__":
     pipeline_runs = [
         (ingestion_pipeline, ingestion_context),
         (validation_pipeline, validation_context),
-        (transformation_pipeline, transformation_context)
+        (transformation_pipeline, transformation_context),
+        (analytics_pipeline, analytics_context)
     ]
     
     executor = PipelineMaestro(
         pipeline_runs = pipeline_runs,
         runner = PipelineRunner(),
+        logger = PipelineLogger(logging.getLogger("maestro")),
         report_builder = ReportBuilder()
     )
     

@@ -1,4 +1,4 @@
 from src.core.context import PipelineContext
 
-class ValidationContext(PipelineContext):
+class AnalyticsContext(PipelineContext):
     pass
