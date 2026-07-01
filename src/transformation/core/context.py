@@ -1,12 +1,11 @@
 from dataclasses import dataclass, field
 from sqlalchemy.engine import Engine
-from src.core.logger import PipelineLogger
+from src.core.context import PipelineContext
 
 @dataclass
-class TransformationContext:
+class TransformationContext(PipelineContext):
     
     # configuration
-    logger : PipelineLogger
     engine : Engine
     
     # runtime
