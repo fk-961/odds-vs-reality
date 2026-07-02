@@ -13,6 +13,19 @@ for file in RAW_LIGUE1_DIR.glob("*.csv"):
 cols_sets = [set(cols) for cols in raw_l1_cols.values()]
 common_cols = set.intersection(*cols_sets)
 
+# mandatory columns
+required_cols = set(
+    [
+        'Div',
+        'Date',
+        'HomeTeam',
+        'AwayTeam',
+        'FTHG',
+        'FTAG',
+        'FTR'
+    ]
+)
+
 non_bookies_cols = {
     'Div' : "league_division",
     'Date' : "match_date",

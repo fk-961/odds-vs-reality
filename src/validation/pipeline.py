@@ -14,7 +14,8 @@ checks = get_checks()
 validation_pipeline = Pipeline(
     "validation",
     "data_quality",
-    steps = checks
+    steps = checks,
+    stop_on_fail = False
 )
 
 validation_context = ValidationContext(

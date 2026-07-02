@@ -6,12 +6,15 @@ class BuildStandings(PipelineStep):
     name = "Build standings table"
     
     def run(self, ctx : TransformationContext) -> StepResult:
-        matches = ctx.artifacts["matches"]
+        matches = ctx.get_artifact("matches")
         
         standings = build_standings(matches)
         ctx.artifacts["standings"] = standings
         
         return StepResult(
             status = "PASS",
-            result = {}
+            result = {
+                "table_name" : "standings",
+                "rows_loaded" : len(standings)
+            }
         )

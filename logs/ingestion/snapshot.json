@@ -1,24 +1,26 @@
 {
     "pipeline": "ingestion",
     "layer": "raw_extraction",
-    "timestamp": "2026-07-02T01:40:27.239157",
+    "timestamp": "2026-07-02T22:22:30.567433",
     "status": "PASS",
     "warnings": 0,
     "fails": 0,
-    "duration_seconds": 1.08899,
+    "duration_seconds": 0.9993,
     "checks": [
         {
             "name": "Create Schema",
             "status": "PASS",
-            "duration": 0.29563,
-            "timestamp": "2026-07-02T01:40:27.239273",
-            "result": []
+            "duration": 0.20093,
+            "timestamp": "2026-07-02T22:22:30.567529",
+            "result": {
+                "schema_file": "odds-vs-reality\\src\\db\\schema.sql"
+            }
         },
         {
             "name": "Extract Data",
             "status": "PASS",
-            "duration": 0.07419,
-            "timestamp": "2026-07-02T01:40:27.535533",
+            "duration": 0.07463,
+            "timestamp": "2026-07-02T22:22:30.768809",
             "result": {
                 "files_processed": 7,
                 "total_rows": 2336,
@@ -57,16 +59,23 @@
         {
             "name": "Fix Columns",
             "status": "PASS",
-            "duration": 0.04725,
-            "timestamp": "2026-07-02T01:40:27.610101",
-            "result": {}
+            "duration": 0.04993,
+            "timestamp": "2026-07-02T22:22:30.843770",
+            "result": {
+                "tables_processed": 7,
+                "rows_processed": 2336
+            }
         },
         {
             "name": "Load Data",
             "status": "PASS",
-            "duration": 0.67017,
-            "timestamp": "2026-07-02T01:40:27.657689",
-            "result": {}
+            "duration": 0.67241,
+            "timestamp": "2026-07-02T22:22:30.894109",
+            "result": {
+                "table_name": "matches",
+                "rows_loaded": 2336,
+                "columns_loaded": 54
+            }
         }
     ]
 }

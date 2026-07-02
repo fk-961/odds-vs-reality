@@ -6,11 +6,14 @@ class BuildMatchProbs(PipelineStep):
     name = "Build Match Probabilites table"
     
     def run(self, ctx : TransformationContext) -> StepResult:
-        matches = ctx.artifacts["matches"]
+        matches = ctx.get_artifact("matches")
         
         match_probs = build_match_probs(matches)
         ctx.artifacts["match_probs"] = match_probs
         return StepResult(
             status = "PASS",
-            result = {}
+            result = {
+                "table_name" : "match_probs",
+                "rows_loaded" : len(match_probs)
+            }
         )

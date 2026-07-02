@@ -1,17 +1,17 @@
 {
     "pipeline": "transformation",
     "layer": "data_transformation",
-    "timestamp": "2026-07-02T01:40:28.474820",
+    "timestamp": "2026-07-02T22:22:31.699300",
     "status": "PASS",
     "warnings": 0,
     "fails": 0,
-    "duration_seconds": 2.97996,
+    "duration_seconds": 3.20192,
     "checks": [
         {
             "name": "Load table [matches]",
             "status": "PASS",
-            "duration": 0.05834,
-            "timestamp": "2026-07-02T01:40:28.474927",
+            "duration": 0.05528,
+            "timestamp": "2026-07-02T22:22:31.699436",
             "result": {
                 "nb_rows": 2336,
                 "nb_columns": 55
@@ -20,71 +20,71 @@
         {
             "name": "Build standings table",
             "status": "PASS",
-            "duration": 0.12085,
-            "timestamp": "2026-07-02T01:40:28.533635",
+            "duration": 0.12721,
+            "timestamp": "2026-07-02T22:22:31.755092",
             "result": {}
         },
         {
             "name": "Persist table [standings]",
             "status": "PASS",
-            "duration": 0.11426,
-            "timestamp": "2026-07-02T01:40:28.654917",
+            "duration": 0.11178,
+            "timestamp": "2026-07-02T22:22:31.882675",
             "result": {}
         },
         {
             "name": "Build teams table",
             "status": "PASS",
-            "duration": 0.01946,
-            "timestamp": "2026-07-02T01:40:28.769614",
+            "duration": 0.02323,
+            "timestamp": "2026-07-02T22:22:31.994837",
             "result": {}
         },
         {
             "name": "Persist table [teams]",
             "status": "PASS",
-            "duration": 0.03067,
-            "timestamp": "2026-07-02T01:40:28.789494",
+            "duration": 0.03729,
+            "timestamp": "2026-07-02T22:22:32.018537",
             "result": {}
         },
         {
             "name": "Build Match Probabilites table",
             "status": "PASS",
-            "duration": 0.04957,
-            "timestamp": "2026-07-02T01:40:28.820526",
+            "duration": 0.06158,
+            "timestamp": "2026-07-02T22:22:32.056209",
             "result": {}
         },
         {
             "name": "Persist table [match_probs]",
             "status": "PASS",
-            "duration": 1.85852,
-            "timestamp": "2026-07-02T01:40:28.870581",
+            "duration": 2.00978,
+            "timestamp": "2026-07-02T22:22:32.118132",
             "result": {}
         },
         {
             "name": "Build expected_points table",
             "status": "PASS",
-            "duration": 0.00794,
-            "timestamp": "2026-07-02T01:40:30.729457",
+            "duration": 0.00979,
+            "timestamp": "2026-07-02T22:22:34.128609",
             "result": {}
         },
         {
             "name": "Persist table [expected_points]",
             "status": "PASS",
-            "duration": 0.64221,
-            "timestamp": "2026-07-02T01:40:30.737837",
+            "duration": 0.67781,
+            "timestamp": "2026-07-02T22:22:34.138780",
             "result": {}
         },
         {
             "name": "Build expected_standings table",
             "status": "PASS",
-            "duration": 0.01765,
-            "timestamp": "2026-07-02T01:40:31.380408",
+            "duration": 0.02644,
+            "timestamp": "2026-07-02T22:22:34.817079",
             "result": {}
         },
         {
             "name": "Persist table [expected_standings]",
             "status": "PASS",
-            "duration": 0.0559,
-            "timestamp": "2026-07-02T01:40:31.398620",
+            "duration": 0.05705,
+            "timestamp": "2026-07-02T22:22:34.843921",
             "result": {}
         }
     ]

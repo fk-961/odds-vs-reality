@@ -14,14 +14,41 @@ class ExtractData(PipelineStep):
         nb_files = 0
         total_rows = 0
         
-        
         source_path = ctx.source_data.relative_to(ROOT_DIR.parent)
+        
+        if not ctx.source_data.exists():
+            reason = f"{source_path} does not exist"
+            ctx.logger.error(reason)
+            return StepResult(
+                status = "FAIL",
+                message = reason
+            )
+        
         ctx.logger.info("Looking for data in %s", source_path)
         
-        for file in ctx.source_data.glob("*.csv"):
+        csv_files = list(ctx.source_data.glob("*.csv"))
+        if not csv_files:
+            reason = f"No files found in {source_path}"
+            ctx.logger.error(reason)
+            return StepResult(
+                status = "FAIL",
+                message = reason
+            )
+            
+        for file in csv_files:
             ctx.logger.info("CSV file found: %s", file.stem)
             
-            df = pd.read_csv(file)
+            try:
+                df = pd.read_csv(file)
+            except Exception as e :
+                reason = f"failed to read {file.stem}"
+                ctx.logger.error(reason)
+                return StepResult(
+                    status = "FAIL",
+                    message = reason,
+                    error = str(e)
+                )
+            
             data[file.stem] = df
             files[file.stem] = {
                 "nb_rows" : int(df.shape[0]),
@@ -30,15 +57,8 @@ class ExtractData(PipelineStep):
             
             nb_files += 1
             total_rows += int(df.shape[0])
-        
-        if not data:
-            ctx.logger.error("No data found")
-            return StepResult(
-                status = "FAIL",
-                result = {}
-            )
             
-        ctx.logger.info("%s files found", nb_files)
+        ctx.logger.info("%s files found, total_rows = %s", nb_files, total_rows)
         ctx.artifacts['raw'] = data
         return StepResult(
             status = "PASS",

@@ -6,7 +6,7 @@ class BuildExpectedStandings(PipelineStep):
     name = "Build expected_standings table"
     
     def run(self, ctx : TransformationContext) -> StepResult:
-        expected_points = ctx.artifacts["expected_points"]
+        expected_points = ctx.get_artifact("expected_points")
         
         expected_standings = build_expected_standings(expected_points)
         ctx.artifacts["expected_standings"] = expected_standings

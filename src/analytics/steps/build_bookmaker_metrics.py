@@ -6,12 +6,15 @@ class BuildBookmakerMetrics(PipelineStep):
     name = "Build bookmaker_metrics"
     
     def run(self, ctx : AnalyticsContext) -> StepResult:
-        match_metrics = ctx.artifacts["match_metrics"]
+        match_metrics = ctx.get_artifact("match_metrics")
         
         bookmaker_metrics = build_bookmaker_metrics(match_metrics)
         ctx.artifacts["bookmaker_metrics"] = bookmaker_metrics
         
         return StepResult(
             status = "PASS",
-            result = {}
+            result = {
+                "table_name" : "bookmaker_metrics",
+                "rows_loaded" : len(bookmaker_metrics)
+            }
         )

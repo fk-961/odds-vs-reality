@@ -16,7 +16,7 @@ from src.config import (
     RAW_LIGUE1_DIR
 )
 from src.db.engine import engine
-from src.mappings import col_mapping
+from src.mappings import col_mapping, required_cols
 
 ingestion_steps = [
     CreateSchema(),
@@ -38,5 +38,6 @@ ingestion_context = IngestionContext(
     engine = engine,
     raw_schema = DB_SCHEMA,
     source_data = RAW_LIGUE1_DIR,
-    col_mapping = col_mapping
+    col_mapping = col_mapping,
+    required_cols = required_cols
 )

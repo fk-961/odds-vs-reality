@@ -1,17 +1,17 @@
 {
     "pipeline": "analytics",
     "layer": "data_analysis",
-    "timestamp": "2026-07-02T01:40:31.457772",
+    "timestamp": "2026-07-02T22:22:34.903265",
     "status": "PASS",
     "warnings": 0,
     "fails": 0,
-    "duration_seconds": 1.53859,
+    "duration_seconds": 1.62489,
     "checks": [
         {
             "name": "Load table [match_probs]",
             "status": "PASS",
-            "duration": 0.17168,
-            "timestamp": "2026-07-02T01:40:31.457922",
+            "duration": 0.17347,
+            "timestamp": "2026-07-02T22:22:34.903414",
             "result": {
                 "nb_rows": 11680,
                 "nb_columns": 27
@@ -20,29 +20,29 @@
         {
             "name": "Build match_metrics",
             "status": "PASS",
-            "duration": 0.01477,
-            "timestamp": "2026-07-02T01:40:31.630049",
+            "duration": 0.01637,
+            "timestamp": "2026-07-02T22:22:35.077352",
             "result": {}
         },
         {
             "name": "Persist table [match_metrics]",
             "status": "PASS",
-            "duration": 1.28967,
-            "timestamp": "2026-07-02T01:40:31.645305",
+            "duration": 1.38966,
+            "timestamp": "2026-07-02T22:22:35.094228",
             "result": {}
         },
         {
             "name": "Build bookmaker_metrics",
             "status": "PASS",
-            "duration": 0.01716,
-            "timestamp": "2026-07-02T01:40:32.935335",
+            "duration": 0.01322,
+            "timestamp": "2026-07-02T22:22:36.484368",
             "result": {}
         },
         {
             "name": "Persist table [bookmaker_metrics]",
             "status": "PASS",
-            "duration": 0.04329,
-            "timestamp": "2026-07-02T01:40:32.952849",
+            "duration": 0.02992,
+            "timestamp": "2026-07-02T22:22:36.498049",
             "result": {}
         }
     ]

@@ -50,6 +50,12 @@ Pipelines scheduled: %s
             self.report_builder.add_snapshot(run_result, ctx.snapshot_path)
             self.report_builder.add_logs(run_result, ctx.logs_path)
             
+            if run_result.status == "FAIL" and pipeline.stop_on_fail:
+                ctx.logger.error(
+                    "ABORT Execution: [%s] failed", pipeline.name
+                )
+                break
+            
         self.logger.info(
             "\n%s\nExecution Summary: Duration %ss",
             divider,

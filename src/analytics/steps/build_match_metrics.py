@@ -6,11 +6,14 @@ class BuildMatchMetrics(PipelineStep):
     name = "Build match_metrics"
     
     def run(self, ctx : AnalyticsContext) -> StepResult:
-        match_probs = ctx.artifacts["match_probs"]
+        match_probs = ctx.get_artifact("match_probs")
         
         match_metrics = build_match_metrics(match_probs)
         ctx.artifacts["match_metrics"] = match_metrics
         return StepResult(
             status = "PASS",
-            result = {}
+            result = {
+                "table_name" : "match_metrics",
+                "rows_loaded" : len(match_metrics)
+            }
         )

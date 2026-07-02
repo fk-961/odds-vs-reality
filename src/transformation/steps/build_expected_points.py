@@ -6,11 +6,14 @@ class BuildExpectedPoints(PipelineStep):
     name = "Build expected_points table"
     
     def run(self, ctx : TransformationContext) -> StepResult:
-        match_probs = ctx.artifacts["match_probs"]
+        match_probs = ctx.get_artifact("match_probs")
         
         expected_points = build_expected_points(match_probs)
         ctx.artifacts["expected_points"] = expected_points
         return StepResult(
             status = "PASS",
-            result = {}
+            result = {
+                "table_name" : "expected_points",
+                "rows_loaded" : len(expected_points)
+            }
         )

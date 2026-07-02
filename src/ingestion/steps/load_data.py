@@ -8,19 +8,43 @@ class LoadData(PipelineStep):
     
     def run(self, ctx : IngestionContext) -> StepResult:
         
-        data = pd.concat(
-            list(ctx.artifacts['normalized'].values()),
-            ignore_index = True
-        )
+        normalized_matches = ctx.get_artifact("normalized")
+            
+        try:
+            data = pd.concat(
+                list(normalized_matches.values()),
+                ignore_index = True
+            )
+        except Exception as e:
+            reason = "Could not concatenate normalized data"
+            ctx.logger.error("%s: %s", reason, e)
+            return StepResult(
+                status = "FAIL",
+                message = reason,
+                error = str(e)
+            )
         
-        data.to_sql(
-            "matches",
-            ctx.engine,
-            if_exists = "append",
-            index = False
-        )
+        try:
+            data.to_sql(
+                "matches",
+                ctx.engine,
+                if_exists = "append",
+                index = False
+            )
+        except Exception as e:
+            reason = "Could not write data to database"
+            ctx.logger.error("%s: %s", reason, e)
+            return StepResult(
+                status = "FAIL",
+                message = reason,
+                error = str(e)
+            )
         
         return StepResult(
             status = "PASS",
-            result = {}
+            result = {
+                "table_name" : "matches",
+                "rows_loaded" : len(data),
+                "columns_loaded" : int(data.shape[1])
+            }
         )

@@ -9,4 +9,4 @@ class IngestionContext(PipelineContext):
     raw_schema : Path
     source_data : Path
     col_mapping : dict[str, str]
-    
+    required_cols : set
