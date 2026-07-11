@@ -9,7 +9,6 @@ from src.core.execution.logger import PipelineLogger
 @dataclass
 class PipelineContext(ABC):
     # configuration
-    logger : PipelineLogger
     engine : Engine
     snaphot_path : Path
     

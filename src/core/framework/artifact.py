@@ -81,7 +81,7 @@ class ArtifactRunner:
         ctx : PipelineContext
     ) -> ArtifactExecutionResult:
         
-        artifact_logger = ctx.logger.child(
+        artifact_logger = self.execution.logger.child(
             artifact = artifact.name
         )
         
@@ -103,7 +103,8 @@ class ArtifactRunner:
                         
                     artifact_results.append(stage_results)
                     
-                    artifact_logger.info(
+                    artifact_logger.log_status(
+                        stage_results.status,
                         "END [%s] stage status = %s duration = %s",
                         stage.value,
                         stage_results.status.value,
