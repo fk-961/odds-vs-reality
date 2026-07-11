@@ -19,4 +19,4 @@ class PipelineExecutionResult:
     status : Status
     warnings : int
     fails : int
-    result : 
+    pipeline_results : list 

@@ -13,3 +13,6 @@ class Execution:
     timestamp : datetime = field(
         default_factory = datetime.now, init = False
     )
+    
+    def get_run_id(self) -> UUID:
+        return self.run_id

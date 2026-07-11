@@ -18,7 +18,7 @@ class PipelineStep(ABC):
 @dataclass
 class StepResult:
     status : Status
-    result : dict[str, Any] | None = None
+    step_results : dict[str, Any] | None = None
     message : str | None = None
     error : str | None = None
     
@@ -29,6 +29,6 @@ class StepExecutionResult:
     timestamp : datetime
     duration_seconds : float
     status : Status
-    result : dict[str, Any] | None = None
+    step_results : dict[str, Any] | None = None
     message : str | None = None
     error : str | None = None

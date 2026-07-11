@@ -37,8 +37,6 @@ class PipelineLogger:
             layers.append(self.layer['artifact'])
         if "stage" in self.layer:
             layers.append(f"[{self.layer['stage']}]")
-        if "step" in self.layer:
-            layers.append(self.layer['step'])
         
         prefix = " | ".join(layers)
         return prefix + " " + msg

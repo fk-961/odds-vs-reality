@@ -23,3 +23,4 @@ class PipelineContext(ABC):
         if table_name not in self.artifacts:
             raise KeyError(f"Missing artifact '{table_name}'")
         return self.artifacts[table_name]
+    
