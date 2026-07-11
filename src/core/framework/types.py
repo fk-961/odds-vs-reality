@@ -4,6 +4,7 @@ class Status(str, Enum):
     PASS = "PASS"
     WARNING = "WARNING"
     FAIL = "FAIL"
+    SKIPPED = "SKIPPED"
     
 class Stage(str, Enum):
     BUILD = "BUILD"

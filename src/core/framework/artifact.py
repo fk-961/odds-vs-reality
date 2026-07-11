@@ -24,6 +24,7 @@ class Artifact:
     builders : list[PipelineStep]
     validators : list[PipelineStep]
     persisters : list[PipelineStep]
+    dependencies : list[str]
     stages : list[Stage] = field(
         default_factory = lambda: [
             Stage.BUILD, Stage.VALIDATE, Stage.PERSIST
@@ -39,6 +40,9 @@ class Artifact:
     
     def get_persisters(self) -> list[PipelineStep]:
         return self.persisters
+    
+    def get_dependencies(self) -> list[str]:
+        return self.dependencies
     
     def get_stages(self) -> list[Stage]:
         return self.stages
@@ -123,6 +127,22 @@ class ArtifactRunner:
                             artifact_logger.info(
                                 "Skipping [%s]",
                                 remaining.value
+                            )
+                            
+                            artifact_results.append(
+                                StageExecutionResult(
+                                    run_id=self.execution.get_run_id(),
+                                    stage=remaining,
+                                    artifact_name=artifact.name,
+                                    scheduled_steps=0,
+                                    timestamp=tracker.timestamp,
+                                    duration_seconds=0,
+                                    status=Status.SKIPPED,
+                                    steps_attempted=0,
+                                    steps_warnings_count=0,
+                                    message="Skipped",
+                                    error=f"Previous stage [{stage.value}] failed"
+                                )
                             )
                         
                         break

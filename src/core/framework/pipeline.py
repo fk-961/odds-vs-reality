@@ -25,6 +25,7 @@ class PipelineExecutionResult:
     status : Status
     artifacts_scheduled : int
     artifacts_failed : int
+    artifacts_skipped : int
     pipeline_results : list[ArtifactExecutionResult] | None = None
     message : str | None = None
     error : str | None = None
@@ -49,6 +50,7 @@ class PipelineRunner:
         
         pipeline_results = []
         fails = 0
+        skipped = 0
         
         with ExecutionTracker() as tracker:
             
@@ -63,22 +65,50 @@ class PipelineRunner:
                             artifact.name
                         )
                         
-                        artifact_results = artifact_runner.run(
-                            artifact, ctx
-                        )
+                        persisted_artifacts = self.execution.get_persisted_artifacts()
+                        if all(dep in persisted_artifacts for dep in artifact.get_dependencies()):
+                            pipeline_logger.info(
+                                "All dependencies found, starting execution"
+                            )
                         
-                        pipeline_results.append(artifact_results)
-                        
-                        pipeline_logger.log_status(
-                            artifact_results.status,
-                            "Executed [%s] lifecycle status = %s duration = %s",
-                            artifact.name,
-                            artifact_results.status.value,
-                            artifact_results.duration_seconds
-                        )
-                        
-                        if artifact_results.status == Status.FAIL:
-                            fails += 1
+                            artifact_results = artifact_runner.run(
+                                artifact, ctx
+                            )
+                            
+                            if artifact_results.status == Status.FAIL:
+                                fails += 1
+                            if artifact_results.status == Status.PASS:
+                                self.execution.add_successful_artifact(artifact.name)
+                            
+                            pipeline_results.append(artifact_results)
+                            
+                            pipeline_logger.log_status(
+                                artifact_results.status,
+                                "Executed [%s] lifecycle status = %s duration = %s",
+                                artifact.name,
+                                artifact_results.status.value,
+                                artifact_results.duration_seconds
+                            )
+                            
+                        else:
+                            skipped += 1
+                            
+                            pipeline_logger.warning(
+                                "SKIPPING %s execution: missing dependencies",
+                                artifact.name
+                            )
+                            
+                            pipeline_results.append(
+                                ArtifactExecutionResult(
+                                    run_id = self.execution.get_run_id(),
+                                    name = artifact.name,
+                                    timestamp = tracker.timestamp,
+                                    duration_seconds = tracker.duration,
+                                    status = Status.SKIPPED,
+                                    message = "Skipping execution",
+                                    error = "Missing dependencies"
+                                )
+                            )
                             
                 status = get_overall_status(pipeline_results)
                             
@@ -90,6 +120,7 @@ class PipelineRunner:
                     status = status,
                     artifacts_scheduled = len(pipeline.artifacts),
                     artifacts_failed = fails,
+                    artifacts_skipped = skipped,
                     pipeline_results = pipeline_results,
                 )
                         
@@ -111,6 +142,7 @@ class PipelineRunner:
                     status = Status.FAIL,
                     artifacts_scheduled = len(pipeline.artifacts),
                     artifacts_failed = fails,
+                    artifacts_skipped = skipped,
                     message = message,
                     error = error
                 )
