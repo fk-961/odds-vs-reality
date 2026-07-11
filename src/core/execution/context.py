@@ -4,8 +4,6 @@ from sqlalchemy.engine import Engine
 from pathlib import Path
 from typing import Any
 
-from src.core.execution.logger import PipelineLogger
-
 @dataclass
 class PipelineContext(ABC):
     # configuration

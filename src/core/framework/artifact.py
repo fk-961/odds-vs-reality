@@ -15,7 +15,7 @@ from src.core.framework.types import (
 )
 from src.core.execution.context import PipelineContext
 from src.core.execution.tracker import ExecutionTracker
-from src.core.execution.execution import Execution
+from src.core.execution.session import Session
 from src.core.execution.logger import PipelineLogger
 
 @dataclass
@@ -77,7 +77,7 @@ class ArtifactExecutionResult:
     
 @dataclass
 class ArtifactRunner:
-    execution : Execution
+    session : Session
     
     def run(
         self,
@@ -85,7 +85,7 @@ class ArtifactRunner:
         ctx : PipelineContext
     ) -> ArtifactExecutionResult:
         
-        artifact_logger = self.execution.logger.child(
+        artifact_logger = self.session.logger.child(
             artifact = artifact.name
         )
         
@@ -131,7 +131,7 @@ class ArtifactRunner:
                             
                             artifact_results.append(
                                 StageExecutionResult(
-                                    run_id=self.execution.get_run_id(),
+                                    run_id=self.session.get_run_id(),
                                     stage=remaining,
                                     artifact_name=artifact.name,
                                     scheduled_steps=0,
@@ -152,7 +152,7 @@ class ArtifactRunner:
                 )
                 
                 return ArtifactExecutionResult(
-                    run_id = self.execution.get_run_id(),
+                    run_id = self.session.get_run_id(),
                     name = artifact.name,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
@@ -171,7 +171,7 @@ class ArtifactRunner:
                 )
                 
                 return ArtifactExecutionResult(
-                    run_id = self.execution.get_run_id(),
+                    run_id = self.session.get_run_id(),
                     name = artifact.name,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
@@ -228,7 +228,7 @@ class ArtifactRunner:
                     steps_attempted += 1
                     
                     stage_results.append(StepExecutionResult(
-                        run_id = self.execution.get_run_id(),
+                        run_id = self.session.get_run_id(),
                         name = step.name,
                         timestamp = step_tracker.timestamp,
                         duration_seconds = step_tracker.duration,
@@ -247,7 +247,7 @@ class ArtifactRunner:
                         )
                         
                         return StageExecutionResult(
-                            run_id = self.execution.get_run_id(),
+                            run_id = self.session.get_run_id(),
                             stage = stage,
                             artifact_name = artifact.name,
                             scheduled_steps = len(steps),
@@ -278,7 +278,7 @@ class ArtifactRunner:
                 )
                 
                 return StageExecutionResult(
-                    run_id = self.execution.get_run_id(),
+                    run_id = self.session.get_run_id(),
                     stage = stage,
                     artifact_name = artifact.name,
                     scheduled_steps = len(steps),
@@ -301,7 +301,7 @@ class ArtifactRunner:
                 )
                 
                 return StageExecutionResult(
-                    run_id = self.execution.get_run_id(),
+                    run_id = self.session.get_run_id(),
                     stage = stage,
                     artifact_name = artifact.name,
                     scheduled_steps = len(steps),

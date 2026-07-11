@@ -5,7 +5,7 @@ from datetime import datetime
 from src.core.execution.logger import PipelineLogger
 
 @dataclass
-class Execution:
+class Session:
     logger : PipelineLogger
     persisted_artifacts : list[str]
     run_id : UUID = field(

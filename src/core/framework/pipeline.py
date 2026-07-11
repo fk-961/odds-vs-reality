@@ -6,7 +6,7 @@ from src.core.framework.artifact import (
     Artifact, ArtifactExecutionResult, ArtifactRunner
 )
 from src.core.framework.types import Status, get_overall_status
-from src.core.execution.execution import Execution
+from src.core.execution.session import Session
 from src.core.execution.tracker import ExecutionTracker
 from src.core.execution.context import PipelineContext
 
@@ -32,7 +32,7 @@ class PipelineExecutionResult:
     
 @dataclass
 class PipelineRunner:
-    execution : Execution
+    session : Session
     
     def run(
         self,
@@ -40,7 +40,7 @@ class PipelineRunner:
         ctx : PipelineContext
     ) -> PipelineExecutionResult:
         
-        pipeline_logger = self.execution.logger.child(
+        pipeline_logger = self.session.logger.child(
             pipeline = pipeline.name
         )
         pipeline_logger.info(
@@ -56,7 +56,7 @@ class PipelineRunner:
             
             try:
                 artifact_runner = ArtifactRunner(
-                    execution = self.execution
+                    session = self.session
                 )
                 
                 for artifact in pipeline.artifacts:
@@ -65,7 +65,7 @@ class PipelineRunner:
                             artifact.name
                         )
                         
-                        persisted_artifacts = self.execution.get_persisted_artifacts()
+                        persisted_artifacts = set(self.session.get_persisted_artifacts())
                         if all(dep in persisted_artifacts for dep in artifact.get_dependencies()):
                             pipeline_logger.info(
                                 "All dependencies found, starting execution"
@@ -78,7 +78,7 @@ class PipelineRunner:
                             if artifact_results.status == Status.FAIL:
                                 fails += 1
                             if artifact_results.status == Status.PASS:
-                                self.execution.add_successful_artifact(artifact.name)
+                                self.session.add_successful_artifact(artifact.name)
                             
                             pipeline_results.append(artifact_results)
                             
@@ -100,7 +100,7 @@ class PipelineRunner:
                             
                             pipeline_results.append(
                                 ArtifactExecutionResult(
-                                    run_id = self.execution.get_run_id(),
+                                    run_id = self.session.get_run_id(),
                                     name = artifact.name,
                                     timestamp = tracker.timestamp,
                                     duration_seconds = tracker.duration,
@@ -113,7 +113,7 @@ class PipelineRunner:
                 status = get_overall_status(pipeline_results)
                             
                 return PipelineExecutionResult(
-                    run_id = self.execution.get_run_id(),
+                    run_id = self.session.get_run_id(),
                     name = pipeline.name,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
@@ -135,7 +135,7 @@ class PipelineRunner:
                 )
                 
                 return PipelineExecutionResult(
-                    run_id = self.execution.get_run_id(),
+                    run_id = self.session.get_run_id(),
                     name = pipeline.name,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,

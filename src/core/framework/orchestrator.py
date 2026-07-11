@@ -4,7 +4,7 @@ from uuid import UUID
 from datetime import datetime
 
 from src.core.framework.types import Status, get_overall_status
-from src.core.execution.execution import Execution
+from src.core.execution.session import Session
 from src.core.framework.pipeline import (
     Pipeline, PipelineExecutionResult, PipelineRunner
 )
@@ -29,11 +29,11 @@ class MaestroExecutionResult:
     
 @dataclass
 class MaestroRunner:
-    execution : Execution
+    session : Session
     
     def execute(self, maestro : Maestro) -> MaestroExecutionResult:
         divider = "="*100
-        maestro_logger = self.execution.logger.child(
+        maestro_logger = self.session.logger.child(
             orchestrator = "maestro"
         )
         
@@ -51,7 +51,7 @@ Pipelines Scheduled: %s
             
             try:
                 pipeline_runner = PipelineRunner(
-                    self.execution
+                    self.session
                 )
                 
                 for pipeline, ctx in maestro.pipelines:
@@ -86,7 +86,7 @@ Pipelines Scheduled: %s
                 )
             
                 return MaestroExecutionResult(
-                    run_id = self.execution.get_run_id(),
+                    run_id = self.session.get_run_id(),
                     status = status,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
@@ -105,10 +105,12 @@ Pipelines Scheduled: %s
                 )
                 
                 return MaestroExecutionResult(
-                    run_id = self.execution.get_run_id(),
+                    run_id = self.session.get_run_id(),
                     status = Status.FAIL,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
                     pipelines_scheduled = len(maestro.pipelines),
-                    maestro_results = maestro_results
+                    maestro_results = maestro_results,
+                    message = message,
+                    error = error
                 )
