@@ -1,5 +1,6 @@
 import pandas as pd
 
+from src.core.framework.types import Status
 from src.core.framework.step import PipelineStep, StepResult
 from src.ingestion.core.context import IngestionContext
 from src.core.execution.context import ExecutionContext
@@ -14,14 +15,14 @@ class FixColumns(PipelineStep):
     ) -> StepResult:
         
         # 2 kinda redundant checks
-        raw_matches = ctx.get_artifact("raw")
+        raw_matches = ctx.get_artifact("raw_matches")
         
         if not raw_matches:
             reason = "raw table is empty in context's artifacts"
             etx.logger.error(reason)
             return StepResult(
-                status = "FAIL",
-                result = {"reason" : reason}
+                status = Status.FAIL,
+                message = reason
             )
             
         normalized = {}
@@ -36,7 +37,7 @@ class FixColumns(PipelineStep):
                     reason = "Missing required columns"
                     etx.logger.error("%s: %s", reason, missing_cols)
                     return StepResult(
-                        status = "FAIL",
+                        status = Status.FAIL,
                         message = reason,
                         error = f"missing_cols = {missing_cols}"
                     )
@@ -60,16 +61,16 @@ class FixColumns(PipelineStep):
                 reason = f"Could not fix columns for {name}"
                 etx.logger.error("%s: %s", reason, e)
                 return StepResult(
-                    status = "FAIL",
+                    status = Status.FAIL,
                     message = reason,
                     error = str(e)
                 )
         
-        ctx.artifacts['normalized'] = normalized
+        ctx.artifacts['normalized_matches'] = normalized
             
         return StepResult(
-            status = "PASS",
-            result = {
+            status = Status.PASS,
+            step_results = {
                 "tables_processed" : len(normalized),
                 "rows_processed" : sum(len(df) for df in normalized.values())
             }

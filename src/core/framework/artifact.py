@@ -17,7 +17,6 @@ from src.core.execution.context import (
     PipelineContext, ExecutionContext
 )
 from src.core.execution.tracker import ExecutionTracker
-from src.core.execution.logger import PipelineLogger
 
 @dataclass
 class Artifact:
@@ -102,7 +101,7 @@ class ArtifactRunner:
                 
                 stages = artifact.get_stages()
                 for stage in stages:
-                    etx.logger.info("START [%s] stage", stage.value)
+                    etx.logger.info("Staging [%s] steps", stage.value)
 
                     stage_results = self._run_stage(
                         artifact, stage, ctx, etx

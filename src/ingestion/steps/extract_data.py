@@ -1,5 +1,6 @@
 import pandas as pd
 
+from src.core.framework.types import Status
 from src.core.framework.step import PipelineStep, StepResult
 from src.ingestion.core.context import IngestionContext
 from src.core.execution.context import ExecutionContext
@@ -25,7 +26,7 @@ class ExtractData(PipelineStep):
             reason = f"{source_path} does not exist"
             etx.logger.error(reason)
             return StepResult(
-                status = "FAIL",
+                status = Status.FAIL,
                 message = reason
             )
         
@@ -36,7 +37,7 @@ class ExtractData(PipelineStep):
             reason = f"No files found in {source_path}"
             etx.logger.error(reason)
             return StepResult(
-                status = "FAIL",
+                status = Status.FAIL,
                 message = reason
             )
             
@@ -49,7 +50,7 @@ class ExtractData(PipelineStep):
                 reason = f"failed to read {file.stem}"
                 etx.logger.error(reason)
                 return StepResult(
-                    status = "FAIL",
+                    status = Status.FAIL,
                     message = reason,
                     error = str(e)
                 )
@@ -64,10 +65,10 @@ class ExtractData(PipelineStep):
             total_rows += int(df.shape[0])
             
         etx.logger.info("%s files found, total_rows = %s", nb_files, total_rows)
-        ctx.artifacts['raw'] = data
+        ctx.artifacts['raw_matches'] = data
         return StepResult(
-            status = "PASS",
-            result = {
+            status = Status.PASS,
+            step_results = {
                 "files_processed" : nb_files,
                 "total_rows" : total_rows,
                 "files" : files

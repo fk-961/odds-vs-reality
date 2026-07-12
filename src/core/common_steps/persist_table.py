@@ -2,6 +2,7 @@ from src.core.framework.step import PipelineStep, StepResult
 from src.core.execution.context import (
     PipelineContext, ExecutionContext
 )
+from src.core.framework.types import Status
 from src.db.utils import create_table
 
 class PersistTable(PipelineStep):
@@ -25,6 +26,5 @@ class PersistTable(PipelineStep):
             ctx.engine
         )
         return StepResult(
-            status = "PASS",
-            result = {}
+            status = Status.PASS,
         )
