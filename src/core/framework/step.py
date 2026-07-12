@@ -16,7 +16,7 @@ class PipelineStep(ABC):
     def run(
         self,
         ctx : PipelineContext,
-        exec : ExecutionContext
+        etx : ExecutionContext
     ) -> StepResult:
         pass
     

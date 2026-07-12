@@ -1,63 +1,121 @@
-2026-07-12 22:45:41,701 | analytics_pipeline | INFO | maestro | Starting execution
-Pipelines Scheduled: 1
+2026-07-13 00:07:42,348 | analytics_pipeline | INFO | maestro | Starting execution
+Pipelines Scheduled: 2
 ====================================================================================================
-2026-07-12 22:45:41,702 | analytics_pipeline | INFO | maestro | Running [ingestion]
+2026-07-13 00:07:42,348 | analytics_pipeline | INFO | maestro | Running [ingestion]
 ====================================================================================================
-2026-07-12 22:45:41,702 | analytics_pipeline | INFO | [ingestion] | START pipeline execution, artifacts scheduled: 1
-2026-07-12 22:45:41,702 | analytics_pipeline | INFO | [ingestion] | Staging artifact [matches]
-2026-07-12 22:45:41,702 | analytics_pipeline | INFO | [ingestion] | All dependencies found, starting execution
-2026-07-12 22:45:41,703 | analytics_pipeline | INFO | [ingestion] | matches | START Artifact lifecycle
-2026-07-12 22:45:41,703 | analytics_pipeline | INFO | [ingestion] | matches | Staging [BUILD] steps
-2026-07-12 22:45:41,703 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Scheduled steps 4
-2026-07-12 22:45:41,703 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Create Schema
-2026-07-12 22:45:41,775 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Schema successfully created
-2026-07-12 22:45:41,775 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Create Schema status = PASS duration = 0.07127
-2026-07-12 22:45:41,775 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Extract Data
-2026-07-12 22:45:41,775 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Looking for data in odds-vs-reality\data\raw\ligue1
-2026-07-12 22:45:41,776 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_1920
-2026-07-12 22:45:41,785 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2021
-2026-07-12 22:45:41,794 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2122
-2026-07-12 22:45:41,805 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2223
-2026-07-12 22:45:41,815 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2324
-2026-07-12 22:45:41,825 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2425
-2026-07-12 22:45:41,840 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2526
-2026-07-12 22:45:41,855 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | 7 files found, total_rows = 2336
-2026-07-12 22:45:41,856 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Extract Data status = PASS duration = 0.08045
-2026-07-12 22:45:41,856 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Fix Columns
-2026-07-12 22:45:41,856 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_1920
-2026-07-12 22:45:41,870 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2021
-2026-07-12 22:45:41,877 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2122
-2026-07-12 22:45:41,887 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2223
-2026-07-12 22:45:41,896 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2324
-2026-07-12 22:45:41,905 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2425
-2026-07-12 22:45:41,931 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2526
-2026-07-12 22:45:41,958 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Fix Columns status = PASS duration = 0.10185
-2026-07-12 22:45:41,964 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Concatenate tables
-2026-07-12 22:45:41,966 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Concatenate tables status = PASS duration = 0.00234
-2026-07-12 22:45:41,967 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END [BUILD] stage status = PASS duration = 0.26339
-2026-07-12 22:45:41,967 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Staging [VALIDATE] steps
-2026-07-12 22:45:41,967 | analytics_pipeline | INFO | [ingestion] | matches | [VALIDATE] | Scheduled steps 0
-2026-07-12 22:45:41,967 | analytics_pipeline | INFO | [ingestion] | matches | [VALIDATE] | END [VALIDATE] stage status = PASS duration = 0.0
-2026-07-12 22:45:41,967 | analytics_pipeline | INFO | [ingestion] | matches | [VALIDATE] | Staging [PERSIST] steps
-2026-07-12 22:45:41,967 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | Scheduled steps 1
-2026-07-12 22:45:41,968 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | START step = Persist table [matches]
-2026-07-12 22:45:41,968 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | Persisting table matches
-2026-07-12 22:45:42,713 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | END step = Persist table [matches] status = PASS duration = 0.74527
-2026-07-12 22:45:42,714 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | END [PERSIST] stage status = PASS duration = 0.7459
-2026-07-12 22:45:42,714 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | Executed [matches] lifecycle status = PASS duration = 1.01091
-2026-07-12 22:45:42,714 | analytics_pipeline | INFO | maestro | [ingestion] execution finished status = PASS duration = 1.01187
-2026-07-12 22:45:42,714 | analytics_pipeline | INFO | maestro | 
+2026-07-13 00:07:42,349 | analytics_pipeline | INFO | [ingestion] | START pipeline execution, artifacts scheduled: 1
+2026-07-13 00:07:42,349 | analytics_pipeline | INFO | [ingestion] | Staging artifact [matches]
+2026-07-13 00:07:42,349 | analytics_pipeline | INFO | [ingestion] | All dependencies found, starting execution
+2026-07-13 00:07:42,349 | analytics_pipeline | INFO | [ingestion] | matches | START Artifact lifecycle
+2026-07-13 00:07:42,349 | analytics_pipeline | INFO | [ingestion] | matches | Staging [BUILD] steps
+2026-07-13 00:07:42,350 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Scheduled steps 4
+2026-07-13 00:07:42,350 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Create Schema
+2026-07-13 00:07:42,418 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Schema successfully created
+2026-07-13 00:07:42,418 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Create Schema status = PASS duration = 0.06818
+2026-07-13 00:07:42,418 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Extract Data
+2026-07-13 00:07:42,419 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Looking for data in odds-vs-reality\data\raw\ligue1
+2026-07-13 00:07:42,419 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_1920
+2026-07-13 00:07:42,428 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2021
+2026-07-13 00:07:42,440 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2122
+2026-07-13 00:07:42,449 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2223
+2026-07-13 00:07:42,459 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2324
+2026-07-13 00:07:42,466 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2425
+2026-07-13 00:07:42,476 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2526
+2026-07-13 00:07:42,486 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | 7 files found, total_rows = 2336
+2026-07-13 00:07:42,487 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Extract Data status = PASS duration = 0.06778
+2026-07-13 00:07:42,487 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Fix Columns
+2026-07-13 00:07:42,487 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_1920
+2026-07-13 00:07:42,498 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2021
+2026-07-13 00:07:42,504 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2122
+2026-07-13 00:07:42,511 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2223
+2026-07-13 00:07:42,516 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2324
+2026-07-13 00:07:42,522 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2425
+2026-07-13 00:07:42,530 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2526
+2026-07-13 00:07:42,536 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Fix Columns status = PASS duration = 0.04921
+2026-07-13 00:07:42,536 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Concatenate tables
+2026-07-13 00:07:42,538 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Concatenate tables status = PASS duration = 0.00143
+2026-07-13 00:07:42,538 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END [BUILD] stage status = PASS duration = 0.18842
+2026-07-13 00:07:42,539 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Staging [VALIDATE] steps
+2026-07-13 00:07:42,539 | analytics_pipeline | INFO | [ingestion] | matches | [VALIDATE] | Scheduled steps 0
+2026-07-13 00:07:42,539 | analytics_pipeline | INFO | [ingestion] | matches | [VALIDATE] | END [VALIDATE] stage status = PASS duration = 0.0
+2026-07-13 00:07:42,539 | analytics_pipeline | INFO | [ingestion] | matches | [VALIDATE] | Staging [PERSIST] steps
+2026-07-13 00:07:42,539 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | Scheduled steps 1
+2026-07-13 00:07:42,540 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | START step = Persist table [matches]
+2026-07-13 00:07:42,540 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | Persisting table matches
+2026-07-13 00:07:43,183 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | END step = Persist table [matches] status = PASS duration = 0.64324
+2026-07-13 00:07:43,183 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | END [PERSIST] stage status = PASS duration = 0.64372
+2026-07-13 00:07:43,184 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | Executed [matches] lifecycle status = PASS duration = 0.83409
+2026-07-13 00:07:43,184 | analytics_pipeline | INFO | maestro | [ingestion] execution finished status = PASS duration = 0.8349
+2026-07-13 00:07:43,184 | analytics_pipeline | INFO | maestro | Running [transformation]
+====================================================================================================
+2026-07-13 00:07:43,184 | analytics_pipeline | INFO | [transformation] | matches | [PERSIST] | START pipeline execution, artifacts scheduled: 5
+2026-07-13 00:07:43,184 | analytics_pipeline | INFO | [transformation] | matches | [PERSIST] | Staging artifact [standings]
+2026-07-13 00:07:43,185 | analytics_pipeline | INFO | [transformation] | matches | [PERSIST] | All dependencies found, starting execution
+2026-07-13 00:07:43,185 | analytics_pipeline | INFO | [transformation] | standings | [PERSIST] | START Artifact lifecycle
+2026-07-13 00:07:43,185 | analytics_pipeline | INFO | [transformation] | standings | [PERSIST] | Staging [BUILD] steps
+2026-07-13 00:07:43,185 | analytics_pipeline | INFO | [transformation] | standings | [BUILD] | Scheduled steps 2
+2026-07-13 00:07:43,185 | analytics_pipeline | INFO | [transformation] | standings | [BUILD] | START step = Load table [matches]
+2026-07-13 00:07:43,239 | analytics_pipeline | INFO | [transformation] | standings | [BUILD] | END step = Load table [matches] status = PASS duration = 0.05316
+2026-07-13 00:07:43,239 | analytics_pipeline | INFO | [transformation] | standings | [BUILD] | START step = Build table standings
+2026-07-13 00:07:43,350 | analytics_pipeline | INFO | [transformation] | standings | [BUILD] | END step = Build table standings status = PASS duration = 0.11087
+2026-07-13 00:07:43,350 | analytics_pipeline | INFO | [transformation] | standings | [BUILD] | END [BUILD] stage status = PASS duration = 0.16511
+2026-07-13 00:07:43,351 | analytics_pipeline | INFO | [transformation] | standings | [BUILD] | Staging [VALIDATE] steps
+2026-07-13 00:07:43,351 | analytics_pipeline | INFO | [transformation] | standings | [VALIDATE] | Scheduled steps 0
+2026-07-13 00:07:43,351 | analytics_pipeline | INFO | [transformation] | standings | [VALIDATE] | END [VALIDATE] stage status = PASS duration = 0.0
+2026-07-13 00:07:43,351 | analytics_pipeline | INFO | [transformation] | standings | [VALIDATE] | Staging [PERSIST] steps
+2026-07-13 00:07:43,352 | analytics_pipeline | INFO | [transformation] | standings | [PERSIST] | Scheduled steps 1
+2026-07-13 00:07:43,352 | analytics_pipeline | INFO | [transformation] | standings | [PERSIST] | START step = Persist table [standings]
+2026-07-13 00:07:43,352 | analytics_pipeline | INFO | [transformation] | standings | [PERSIST] | Persisting table standings
+2026-07-13 00:07:43,430 | analytics_pipeline | INFO | [transformation] | standings | [PERSIST] | END step = Persist table [standings] status = PASS duration = 0.07765
+2026-07-13 00:07:43,430 | analytics_pipeline | INFO | [transformation] | standings | [PERSIST] | END [PERSIST] stage status = PASS duration = 0.07813
+2026-07-13 00:07:43,430 | analytics_pipeline | INFO | [transformation] | standings | [PERSIST] | Executed [standings] lifecycle status = PASS duration = 0.24525
+2026-07-13 00:07:43,430 | analytics_pipeline | INFO | [transformation] | standings | [PERSIST] | Staging artifact [teams]
+2026-07-13 00:07:43,431 | analytics_pipeline | INFO | [transformation] | standings | [PERSIST] | All dependencies found, starting execution
+2026-07-13 00:07:43,431 | analytics_pipeline | INFO | [transformation] | teams | [PERSIST] | START Artifact lifecycle
+2026-07-13 00:07:43,431 | analytics_pipeline | INFO | [transformation] | teams | [PERSIST] | Staging [BUILD] steps
+2026-07-13 00:07:43,431 | analytics_pipeline | INFO | [transformation] | teams | [BUILD] | Scheduled steps 1
+2026-07-13 00:07:43,431 | analytics_pipeline | INFO | [transformation] | teams | [BUILD] | START step = Build table teams
+2026-07-13 00:07:43,452 | analytics_pipeline | INFO | [transformation] | teams | [BUILD] | END step = Build table teams status = PASS duration = 0.02011
+2026-07-13 00:07:43,452 | analytics_pipeline | INFO | [transformation] | teams | [BUILD] | END [BUILD] stage status = PASS duration = 0.02061
+2026-07-13 00:07:43,452 | analytics_pipeline | INFO | [transformation] | teams | [BUILD] | Staging [VALIDATE] steps
+2026-07-13 00:07:43,453 | analytics_pipeline | INFO | [transformation] | teams | [VALIDATE] | Scheduled steps 0
+2026-07-13 00:07:43,453 | analytics_pipeline | INFO | [transformation] | teams | [VALIDATE] | END [VALIDATE] stage status = PASS duration = 0.0
+2026-07-13 00:07:43,453 | analytics_pipeline | INFO | [transformation] | teams | [VALIDATE] | Staging [PERSIST] steps
+2026-07-13 00:07:43,453 | analytics_pipeline | INFO | [transformation] | teams | [PERSIST] | Scheduled steps 1
+2026-07-13 00:07:43,454 | analytics_pipeline | INFO | [transformation] | teams | [PERSIST] | START step = Persist table [teams]
+2026-07-13 00:07:43,454 | analytics_pipeline | INFO | [transformation] | teams | [PERSIST] | Persisting table teams
+2026-07-13 00:07:43,558 | analytics_pipeline | INFO | [transformation] | teams | [PERSIST] | END step = Persist table [teams] status = PASS duration = 0.10409
+2026-07-13 00:07:43,666 | analytics_pipeline | INFO | [transformation] | teams | [PERSIST] | END [PERSIST] stage status = PASS duration = 0.21277
+2026-07-13 00:07:43,667 | analytics_pipeline | INFO | [transformation] | teams | [PERSIST] | Executed [teams] lifecycle status = PASS duration = 0.23561
+2026-07-13 00:07:43,667 | analytics_pipeline | INFO | [transformation] | teams | [PERSIST] | Staging artifact [match_probs]
+2026-07-13 00:07:43,667 | analytics_pipeline | INFO | [transformation] | teams | [PERSIST] | All dependencies found, starting execution
+2026-07-13 00:07:43,668 | analytics_pipeline | INFO | [transformation] | match_probs | [PERSIST] | START Artifact lifecycle
+2026-07-13 00:07:43,668 | analytics_pipeline | INFO | [transformation] | match_probs | [PERSIST] | Staging [BUILD] steps
+2026-07-13 00:07:43,668 | analytics_pipeline | INFO | [transformation] | match_probs | [BUILD] | Scheduled steps 1
+2026-07-13 00:07:43,668 | analytics_pipeline | INFO | [transformation] | match_probs | [BUILD] | START step = Build Table match_probs
+2026-07-13 00:07:43,670 | analytics_pipeline | ERROR | [transformation] | match_probs | [BUILD] | ABORT BUILD reason step = Build Table match_probs failed, Unexpected Exception: "['id'] not in index"
+2026-07-13 00:07:43,670 | analytics_pipeline | ERROR | [transformation] | match_probs | [BUILD] | END [BUILD] stage status = FAIL duration = 0.00152
+2026-07-13 00:07:43,670 | analytics_pipeline | ERROR | [transformation] | match_probs | [BUILD] | ABORT [BUILD] Unexpected Exception: "['id'] not in index"
+2026-07-13 00:07:43,670 | analytics_pipeline | INFO | [transformation] | match_probs | [BUILD] | Skipping [VALIDATE]
+2026-07-13 00:07:43,670 | analytics_pipeline | INFO | [transformation] | match_probs | [BUILD] | Skipping [PERSIST]
+2026-07-13 00:07:43,671 | analytics_pipeline | ERROR | [transformation] | match_probs | [BUILD] | Executed [match_probs] lifecycle status = FAIL duration = 0.00273
+2026-07-13 00:07:43,671 | analytics_pipeline | INFO | [transformation] | match_probs | [BUILD] | Staging artifact [expected_points]
+2026-07-13 00:07:43,671 | analytics_pipeline | WARNING | [transformation] | match_probs | [BUILD] | SKIPPING expected_points execution: missing dependencies
+2026-07-13 00:07:43,671 | analytics_pipeline | INFO | [transformation] | match_probs | [BUILD] | Staging artifact [expected_standings]
+2026-07-13 00:07:43,671 | analytics_pipeline | WARNING | [transformation] | match_probs | [BUILD] | SKIPPING expected_standings execution: missing dependencies
+2026-07-13 00:07:43,672 | analytics_pipeline | ERROR | maestro | [transformation] execution finished status = FAIL duration = 0.48712
+2026-07-13 00:07:43,672 | analytics_pipeline | INFO | maestro | 
 ====================================================================================================
 Maestro execution done for scheduled pipelines
-2026-07-12 22:45:42,715 | analytics_pipeline | INFO | maestro | 
+2026-07-13 00:07:43,672 | analytics_pipeline | ERROR | maestro | 
 ====================================================================================================
 Execution summary
 
-Pipelines : 1
-Artifacts : 1
-Passed : 1
-Skipped : 0
-Failed : 0
+Pipelines : 2
+Artifacts : 6
+Passed : 3
+Skipped : 2
+Failed : 1
 
-Duration : 1.01293 s
+Duration : 1.32357 s
 ====================================================================================================
