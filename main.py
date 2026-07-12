@@ -4,37 +4,35 @@ logging.basicConfig(
     format = "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
 )
 
-from src.core.orchestrator import PipelineMaestro
-from src.core.runner import PipelineRunner
-from src.core.logger import PipelineLogger
-from src.core.report_builder import ReportBuilder
+from src.core.execution.context import ExecutionContext
+from src.core.execution.logger import PipelineLogger
+from src.core.framework.orchestrator import (
+    Maestro, MaestroRunner
+)
+from src.ingestion.pipeline import ingestion_job
 
-from src.ingestion.pipeline import (
-    ingestion_pipeline, ingestion_context
-)
-from src.validation.pipeline import (
-    validation_pipeline, validation_context
-)
-from src.transformation.pipeline import (
-    transformation_pipeline, transformation_context
-)
-from src.analytics.pipeline import (
-    analytics_pipeline, analytics_context
-)
-
-if __name__ == "__main__":
-    pipeline_runs = [
-        (ingestion_pipeline, ingestion_context),
-        (validation_pipeline, validation_context),
-        (transformation_pipeline, transformation_context),
-        (analytics_pipeline, analytics_context)
-    ]
+def main():
     
-    executor = PipelineMaestro(
-        pipeline_runs = pipeline_runs,
-        runner = PipelineRunner(),
-        logger = PipelineLogger(logging.getLogger("maestro")),
-        report_builder = ReportBuilder()
+    # Define current run session
+    # Generates session specific info like run id and timestamp
+    session = ExecutionContext(
+        logger = PipelineLogger(
+            logging.getLogger(__name__)
+        )
     )
     
-    executor.execute()
+    # Define maestro runner that executes the pipelines
+    runner = MaestroRunner()
+    
+    # Define jobs
+    jobs = Maestro(
+        jobs = [
+            ingestion_job
+        ]
+    )
+    
+    # execute
+    result = runner.execute(jobs, session)
+    
+if __name__ == "__main__":
+    main()

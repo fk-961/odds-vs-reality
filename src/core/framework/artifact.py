@@ -13,9 +13,10 @@ from src.core.framework.step import (
 from src.core.framework.types import (
     Status, Stage, get_overall_status
 )
-from src.core.execution.context import PipelineContext
+from src.core.execution.context import (
+    PipelineContext, ExecutionContext
+)
 from src.core.execution.tracker import ExecutionTracker
-from src.core.execution.session import Session
 from src.core.execution.logger import PipelineLogger
 
 @dataclass
@@ -77,19 +78,21 @@ class ArtifactExecutionResult:
     
 @dataclass
 class ArtifactRunner:
-    session : Session
     
     def run(
         self,
         artifact : Artifact,
-        ctx : PipelineContext
+        ctx : PipelineContext,
+        etx : ExecutionContext
     ) -> ArtifactExecutionResult:
         
-        artifact_logger = self.session.logger.child(
-            artifact = artifact.name
+        etx.cascade_logger(
+            etx.logger.child(
+                artifact = artifact.name
+            )
         )
         
-        artifact_logger.info("START Artifact lifecycle")
+        etx.logger.info("START Artifact lifecycle")
         
         artifact_results = []
         
@@ -99,15 +102,15 @@ class ArtifactRunner:
                 
                 stages = artifact.get_stages()
                 for stage in stages:
-                    artifact_logger.info("START [%s] stage", stage.value)
+                    etx.logger.info("START [%s] stage", stage.value)
 
                     stage_results = self._run_stage(
-                        artifact, stage, artifact_logger, ctx
+                        artifact, stage, ctx, etx
                     )
                         
                     artifact_results.append(stage_results)
                     
-                    artifact_logger.log_status(
+                    etx.logger.log_status(
                         stage_results.status,
                         "END [%s] stage status = %s duration = %s",
                         stage.value,
@@ -116,7 +119,7 @@ class ArtifactRunner:
                     )
                     
                     if stage_results.status == Status.FAIL:
-                        artifact_logger.error(
+                        etx.logger.error(
                             "ABORT [%s] %s: %s",
                             stage.value,
                             stage_results.message,
@@ -124,14 +127,14 @@ class ArtifactRunner:
                         )
                         
                         for remaining in stages[stages.index(stage)+1:]:
-                            artifact_logger.info(
+                            etx.logger.info(
                                 "Skipping [%s]",
                                 remaining.value
                             )
                             
                             artifact_results.append(
                                 StageExecutionResult(
-                                    run_id=self.session.get_run_id(),
+                                    run_id=etx.get_run_id(),
                                     stage=remaining,
                                     artifact_name=artifact.name,
                                     scheduled_steps=0,
@@ -152,7 +155,7 @@ class ArtifactRunner:
                 )
                 
                 return ArtifactExecutionResult(
-                    run_id = self.session.get_run_id(),
+                    run_id = etx.get_run_id(),
                     name = artifact.name,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
@@ -163,7 +166,7 @@ class ArtifactRunner:
             except Exception as e:
                 message = "Unexpected Exception"
                 error = str(e)
-                artifact_logger.error(
+                etx.logger.error(
                     "ABORT %s, %s: %s",
                     artifact.name,
                     message,
@@ -171,7 +174,7 @@ class ArtifactRunner:
                 )
                 
                 return ArtifactExecutionResult(
-                    run_id = self.session.get_run_id(),
+                    run_id = etx.get_run_id(),
                     name = artifact.name,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
@@ -186,12 +189,14 @@ class ArtifactRunner:
         self,
         artifact : Artifact,
         stage : Stage,
-        logger : PipelineLogger,
-        ctx : PipelineContext
+        ctx : PipelineContext,
+        etx : ExecutionContext
     ) -> StageExecutionResult:
         
-        stage_logger = logger.child(
-            stage = f"[{stage.value}]"
+        etx.cascade_logger(
+            etx.logger.child(
+                stage = f"{stage.value}"
+            )
         )
         
         steps = {
@@ -200,7 +205,7 @@ class ArtifactRunner:
             Stage.PERSIST: artifact.get_persisters(),
         }[stage]
             
-        stage_logger.info(
+        etx.logger.info(
             "Scheduled steps %s", len(steps)
         )
         
@@ -212,13 +217,13 @@ class ArtifactRunner:
             
             try:
                 for step in steps:
-                    stage_logger.info(
+                    etx.logger.info(
                         "START step = %s", step.name
                     )
                     
                     with ExecutionTracker() as step_tracker:
                         try:
-                            step_result = step.run(ctx)
+                            step_result = step.run(ctx, etx)
                         except Exception as e:
                             step_result = StepResult(
                                 status = Status.FAIL,
@@ -228,7 +233,7 @@ class ArtifactRunner:
                     steps_attempted += 1
                     
                     stage_results.append(StepExecutionResult(
-                        run_id = self.session.get_run_id(),
+                        run_id = etx.get_run_id(),
                         name = step.name,
                         timestamp = step_tracker.timestamp,
                         duration_seconds = step_tracker.duration,
@@ -239,15 +244,16 @@ class ArtifactRunner:
                     ))
                             
                     if step_result.status == Status.FAIL and stage.abort_on_fail:
-                        stage_logger.error(
-                            "ABORT reason step = %s failed, %s: %s",
+                        etx.logger.error(
+                            "ABORT %s reason step = %s failed, %s: %s",
+                            stage.value,
                             step.name,
                             step_result.message,
                             step_result.error
                         )
                         
                         return StageExecutionResult(
-                            run_id = self.session.get_run_id(),
+                            run_id = etx.get_run_id(),
                             stage = stage,
                             artifact_name = artifact.name,
                             scheduled_steps = len(steps),
@@ -264,7 +270,7 @@ class ArtifactRunner:
                     else:
                         if step_result.status == Status.WARNING:
                             warnings += 1
-                        stage_logger.log_status(
+                        etx.logger.log_status(
                             step_result.status,
                             "END step = %s status = %s duration = %s",
                             step.name,
@@ -278,7 +284,7 @@ class ArtifactRunner:
                 )
                 
                 return StageExecutionResult(
-                    run_id = self.session.get_run_id(),
+                    run_id = etx.get_run_id(),
                     stage = stage,
                     artifact_name = artifact.name,
                     scheduled_steps = len(steps),
@@ -293,7 +299,7 @@ class ArtifactRunner:
             except Exception as e:
                 message = "Unexpected Exception"
                 error = str(e)
-                stage_logger.error(
+                etx.logger.error(
                     "ABORT [%s] %s: %s",
                     stage.value,
                     message,
@@ -301,7 +307,7 @@ class ArtifactRunner:
                 )
                 
                 return StageExecutionResult(
-                    run_id = self.session.get_run_id(),
+                    run_id = etx.get_run_id(),
                     stage = stage,
                     artifact_name = artifact.name,
                     scheduled_steps = len(steps),

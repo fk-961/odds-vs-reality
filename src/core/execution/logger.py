@@ -39,7 +39,7 @@ class PipelineLogger:
             layers.append(f"[{self.layer['stage']}]")
         
         prefix = " | ".join(layers)
-        return prefix + " " + msg
+        return prefix + " | " + msg
     
     def info(self, msg : str, *args, **kwargs):
         self.logger.info(

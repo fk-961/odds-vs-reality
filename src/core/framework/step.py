@@ -4,14 +4,20 @@ from typing import Any
 from uuid import UUID
 from datetime import datetime
 
-from src.core.execution.context import PipelineContext
+from src.core.execution.context import (
+    PipelineContext, ExecutionContext
+)
 from src.core.framework.types import Status
 
 class PipelineStep(ABC):
     name : str
     
     @abstractmethod
-    def run(self, ctx : PipelineContext) -> StepResult:
+    def run(
+        self,
+        ctx : PipelineContext,
+        exec : ExecutionContext
+    ) -> StepResult:
         pass
     
     

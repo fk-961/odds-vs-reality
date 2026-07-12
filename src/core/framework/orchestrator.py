@@ -4,7 +4,6 @@ from uuid import UUID
 from datetime import datetime
 
 from src.core.framework.types import Status, get_overall_status
-from src.core.execution.session import Session
 from src.core.framework.pipeline import (
     Pipeline, PipelineExecutionResult, PipelineRunner
 )
@@ -12,8 +11,13 @@ from src.core.execution.context import PipelineContext
 from src.core.execution.tracker import ExecutionTracker
 
 @dataclass
+class PipelineExecution:
+    pipeline : Pipeline
+    context : PipelineContext
+    
+@dataclass
 class Maestro:
-    pipelines : list[Tuple[Pipeline, PipelineContext]]
+    jobs : list[PipelineExecution]
     
 @dataclass
 class MaestroExecutionResult:
@@ -29,11 +33,14 @@ class MaestroExecutionResult:
     
 @dataclass
 class MaestroRunner:
-    session : Session
     
-    def execute(self, maestro : Maestro) -> MaestroExecutionResult:
+    def execute(
+        self,
+        maestro : Maestro,
+        etx : ExecutionTracker
+    ) -> MaestroExecutionResult:
         divider = "="*100
-        maestro_logger = self.session.logger.child(
+        maestro_logger = etx.logger.child(
             orchestrator = "maestro"
         )
         
@@ -41,7 +48,7 @@ class MaestroRunner:
         """Starting execution
 Pipelines Scheduled: %s
 %s""",
-            len(maestro.pipelines),
+            len(maestro.jobs),
             divider
         )
         
@@ -50,19 +57,17 @@ Pipelines Scheduled: %s
         with ExecutionTracker() as tracker:
             
             try:
-                pipeline_runner = PipelineRunner(
-                    self.session
-                )
+                pipeline_runner = PipelineRunner()
                 
-                for pipeline, ctx in maestro.pipelines:
+                for job in maestro.jobs:
                     maestro_logger.info(
                         "Running [%s]\n%s",
-                        pipeline.name,
+                        job.pipeline.name,
                         divider
                     )
                     
                     pipeline_results = pipeline_runner.run(
-                        pipeline, ctx
+                        job.pipeline, job.context, etx
                     )
                     
                     maestro_results.append(pipeline_results)
@@ -70,7 +75,7 @@ Pipelines Scheduled: %s
                     maestro_logger.log_status(
                         pipeline_results.status,
                         "[%s] execution finished status = %s duration = %s",
-                        pipeline.name,
+                        job.pipeline.name,
                         pipeline_results.status.value,
                         pipeline_results.duration_seconds
                     )
@@ -86,11 +91,11 @@ Pipelines Scheduled: %s
                 )
             
                 return MaestroExecutionResult(
-                    run_id = self.session.get_run_id(),
+                    run_id = etx.get_run_id(),
                     status = status,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
-                    pipelines_scheduled = len(maestro.pipelines),
+                    pipelines_scheduled = len(maestro.jobs),
                     maestro_results = maestro_results
                 )
                 
@@ -105,11 +110,11 @@ Pipelines Scheduled: %s
                 )
                 
                 return MaestroExecutionResult(
-                    run_id = self.session.get_run_id(),
+                    run_id = etx.get_run_id(),
                     status = Status.FAIL,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
-                    pipelines_scheduled = len(maestro.pipelines),
+                    pipelines_scheduled = len(maestro.jobs),
                     maestro_results = maestro_results,
                     message = message,
                     error = error

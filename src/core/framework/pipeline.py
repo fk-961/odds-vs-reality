@@ -6,9 +6,10 @@ from src.core.framework.artifact import (
     Artifact, ArtifactExecutionResult, ArtifactRunner
 )
 from src.core.framework.types import Status, get_overall_status
-from src.core.execution.session import Session
 from src.core.execution.tracker import ExecutionTracker
-from src.core.execution.context import PipelineContext
+from src.core.execution.context import (
+    PipelineContext, ExecutionContext
+)
 
 
 @dataclass
@@ -32,18 +33,21 @@ class PipelineExecutionResult:
     
 @dataclass
 class PipelineRunner:
-    session : Session
     
     def run(
         self,
         pipeline : Pipeline,
-        ctx : PipelineContext
+        ctx : PipelineContext,
+        etx : ExecutionContext
     ) -> PipelineExecutionResult:
         
-        pipeline_logger = self.session.logger.child(
-            pipeline = pipeline.name
+        etx.cascade_logger(
+            etx.logger.child(
+                pipeline = pipeline.name
+            )
         )
-        pipeline_logger.info(
+                            
+        etx.logger.info(
             "START pipeline execution, artifacts scheduled: %s",
             len(pipeline.artifacts)
         )
@@ -55,34 +59,32 @@ class PipelineRunner:
         with ExecutionTracker() as tracker:
             
             try:
-                artifact_runner = ArtifactRunner(
-                    session = self.session
-                )
+                artifact_runner = ArtifactRunner()
                 
                 for artifact in pipeline.artifacts:
-                        pipeline_logger.info(
+                        etx.logger.info(
                             "Staging artifact [%s]",
                             artifact.name
                         )
                         
-                        persisted_artifacts = set(self.session.get_persisted_artifacts())
+                        persisted_artifacts = set(etx.get_persisted_artifacts())
                         if all(dep in persisted_artifacts for dep in artifact.get_dependencies()):
-                            pipeline_logger.info(
+                            etx.logger.info(
                                 "All dependencies found, starting execution"
                             )
                         
                             artifact_results = artifact_runner.run(
-                                artifact, ctx
+                                artifact, ctx, etx
                             )
                             
                             if artifact_results.status == Status.FAIL:
                                 fails += 1
                             if artifact_results.status == Status.PASS:
-                                self.session.add_successful_artifact(artifact.name)
+                                etx.add_successful_artifact(artifact.name)
                             
                             pipeline_results.append(artifact_results)
                             
-                            pipeline_logger.log_status(
+                            etx.logger.log_status(
                                 artifact_results.status,
                                 "Executed [%s] lifecycle status = %s duration = %s",
                                 artifact.name,
@@ -93,14 +95,14 @@ class PipelineRunner:
                         else:
                             skipped += 1
                             
-                            pipeline_logger.warning(
+                            etx.logger.warning(
                                 "SKIPPING %s execution: missing dependencies",
                                 artifact.name
                             )
                             
                             pipeline_results.append(
                                 ArtifactExecutionResult(
-                                    run_id = self.session.get_run_id(),
+                                    run_id = etx.get_run_id(),
                                     name = artifact.name,
                                     timestamp = tracker.timestamp,
                                     duration_seconds = tracker.duration,
@@ -113,7 +115,7 @@ class PipelineRunner:
                 status = get_overall_status(pipeline_results)
                             
                 return PipelineExecutionResult(
-                    run_id = self.session.get_run_id(),
+                    run_id = etx.get_run_id(),
                     name = pipeline.name,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
@@ -128,14 +130,14 @@ class PipelineRunner:
                 message = "Unexpected Exception"
                 error = str(e)
                 
-                pipeline_logger.error(
+                etx.logger.error(
                     "ABORT pipeline, %s: %s",
                     message,
                     error
                 )
                 
                 return PipelineExecutionResult(
-                    run_id = self.session.get_run_id(),
+                    run_id = etx.get_run_id(),
                     name = pipeline.name,
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
