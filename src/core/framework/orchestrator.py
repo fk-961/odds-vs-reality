@@ -7,7 +7,9 @@ from src.core.framework.types import Status, get_overall_status
 from src.core.framework.pipeline import (
     Pipeline, PipelineExecutionResult, PipelineRunner
 )
-from src.core.execution.context import PipelineContext
+from src.core.execution.context import (
+    PipelineContext, ExecutionContext
+)
 from src.core.execution.tracker import ExecutionTracker
 
 @dataclass
@@ -37,7 +39,7 @@ class MaestroRunner:
     def execute(
         self,
         maestro : Maestro,
-        etx : ExecutionTracker
+        etx : ExecutionContext
     ) -> MaestroExecutionResult:
         divider = "="*100
         maestro_logger = etx.logger.child(

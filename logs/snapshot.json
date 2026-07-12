@@ -1,0 +1,172 @@
+{
+    "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+    "status": "PASS",
+    "timestamp": "2026-07-12T20:46:34.289603",
+    "duration_seconds": 0.98961,
+    "pipelines_scheduled": 1,
+    "maestro_results": [
+        {
+            "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+            "name": "ingestion",
+            "timestamp": "2026-07-12T20:46:34.290028",
+            "duration_seconds": 0.98871,
+            "status": "PASS",
+            "artifacts_scheduled": 1,
+            "artifacts_failed": 0,
+            "artifacts_skipped": 0,
+            "pipeline_results": [
+                {
+                    "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+                    "name": "matches",
+                    "timestamp": "2026-07-12T20:46:34.290522",
+                    "duration_seconds": 0.98793,
+                    "status": "PASS",
+                    "artifact_results": [
+                        {
+                            "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+                            "stage": "BUILD",
+                            "artifact_name": "matches",
+                            "scheduled_steps": 4,
+                            "timestamp": "2026-07-12T20:46:34.290876",
+                            "duration_seconds": 0.32017,
+                            "status": "PASS",
+                            "steps_attempted": 4,
+                            "steps_warnings_count": 0,
+                            "stage_results": [
+                                {
+                                    "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+                                    "name": "Create Schema",
+                                    "timestamp": "2026-07-12T20:46:34.291048",
+                                    "duration_seconds": 0.20333,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "schema_file": "odds-vs-reality\\src\\db\\schema.sql"
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+                                    "name": "Extract Data",
+                                    "timestamp": "2026-07-12T20:46:34.494935",
+                                    "duration_seconds": 0.06506,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "files_processed": 7,
+                                        "total_rows": 2336,
+                                        "files": {
+                                            "F1_1920": {
+                                                "nb_rows": 279,
+                                                "nb_columns": 105
+                                            },
+                                            "F1_2021": {
+                                                "nb_rows": 380,
+                                                "nb_columns": 105
+                                            },
+                                            "F1_2122": {
+                                                "nb_rows": 380,
+                                                "nb_columns": 105
+                                            },
+                                            "F1_2223": {
+                                                "nb_rows": 380,
+                                                "nb_columns": 105
+                                            },
+                                            "F1_2324": {
+                                                "nb_rows": 306,
+                                                "nb_columns": 105
+                                            },
+                                            "F1_2425": {
+                                                "nb_rows": 306,
+                                                "nb_columns": 119
+                                            },
+                                            "F1_2526": {
+                                                "nb_rows": 305,
+                                                "nb_columns": 131
+                                            }
+                                        }
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+                                    "name": "Fix Columns",
+                                    "timestamp": "2026-07-12T20:46:34.560557",
+                                    "duration_seconds": 0.04755,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "tables_processed": 7,
+                                        "rows_processed": 2336
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+                                    "name": "Concatenate tables",
+                                    "timestamp": "2026-07-12T20:46:34.608649",
+                                    "duration_seconds": 0.00211,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "tables_concatenated": 7,
+                                        "total_rows": 2336,
+                                        "total_columns": 54
+                                    },
+                                    "message": null,
+                                    "error": null
+                                }
+                            ],
+                            "message": null,
+                            "error": null
+                        },
+                        {
+                            "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+                            "stage": "VALIDATE",
+                            "artifact_name": "matches",
+                            "scheduled_steps": 0,
+                            "timestamp": "2026-07-12T20:46:34.611711",
+                            "duration_seconds": 1e-05,
+                            "status": "PASS",
+                            "steps_attempted": 0,
+                            "steps_warnings_count": 0,
+                            "stage_results": [],
+                            "message": null,
+                            "error": null
+                        },
+                        {
+                            "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+                            "stage": "PERSIST",
+                            "artifact_name": "matches",
+                            "scheduled_steps": 1,
+                            "timestamp": "2026-07-12T20:46:34.612313",
+                            "duration_seconds": 0.6659,
+                            "status": "PASS",
+                            "steps_attempted": 1,
+                            "steps_warnings_count": 0,
+                            "stage_results": [
+                                {
+                                    "run_id": "196784b2-e914-48d3-b5f6-0996254cd265",
+                                    "name": "Persist table [matches]",
+                                    "timestamp": "2026-07-12T20:46:34.612554",
+                                    "duration_seconds": 0.66536,
+                                    "status": "PASS",
+                                    "step_results": null,
+                                    "message": null,
+                                    "error": null
+                                }
+                            ],
+                            "message": null,
+                            "error": null
+                        }
+                    ],
+                    "message": null,
+                    "error": null
+                }
+            ],
+            "message": null,
+            "error": null
+        }
+    ],
+    "message": null,
+    "error": null
+}

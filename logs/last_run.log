@@ -1,0 +1,51 @@
+2026-07-12 20:46:34,289 | analytics_pipeline | INFO | maestro | Starting execution
+Pipelines Scheduled: 1
+====================================================================================================
+2026-07-12 20:46:34,289 | analytics_pipeline | INFO | maestro | Running [ingestion]
+====================================================================================================
+2026-07-12 20:46:34,289 | analytics_pipeline | INFO | [ingestion] | START pipeline execution, artifacts scheduled: 1
+2026-07-12 20:46:34,290 | analytics_pipeline | INFO | [ingestion] | Staging artifact [matches]
+2026-07-12 20:46:34,290 | analytics_pipeline | INFO | [ingestion] | All dependencies found, starting execution
+2026-07-12 20:46:34,290 | analytics_pipeline | INFO | [ingestion] | matches | START Artifact lifecycle
+2026-07-12 20:46:34,290 | analytics_pipeline | INFO | [ingestion] | matches | Staging [BUILD] steps
+2026-07-12 20:46:34,290 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Scheduled steps 4
+2026-07-12 20:46:34,290 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Create Schema
+2026-07-12 20:46:34,494 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Schema successfully created
+2026-07-12 20:46:34,494 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Create Schema status = PASS duration = 0.20333
+2026-07-12 20:46:34,494 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Extract Data
+2026-07-12 20:46:34,495 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Looking for data in odds-vs-reality\data\raw\ligue1
+2026-07-12 20:46:34,495 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_1920
+2026-07-12 20:46:34,503 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2021
+2026-07-12 20:46:34,512 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2122
+2026-07-12 20:46:34,521 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2223
+2026-07-12 20:46:34,529 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2324
+2026-07-12 20:46:34,538 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2425
+2026-07-12 20:46:34,549 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | CSV file found: F1_2526
+2026-07-12 20:46:34,559 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | 7 files found, total_rows = 2336
+2026-07-12 20:46:34,560 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Extract Data status = PASS duration = 0.06506
+2026-07-12 20:46:34,560 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Fix Columns
+2026-07-12 20:46:34,560 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_1920
+2026-07-12 20:46:34,567 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2021
+2026-07-12 20:46:34,575 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2122
+2026-07-12 20:46:34,581 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2223
+2026-07-12 20:46:34,587 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2324
+2026-07-12 20:46:34,594 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2425
+2026-07-12 20:46:34,600 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Fixing columns for F1_2526
+2026-07-12 20:46:34,608 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Fix Columns status = PASS duration = 0.04755
+2026-07-12 20:46:34,608 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | START step = Concatenate tables
+2026-07-12 20:46:34,610 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END step = Concatenate tables status = PASS duration = 0.00211
+2026-07-12 20:46:34,611 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | END [BUILD] stage status = PASS duration = 0.32017
+2026-07-12 20:46:34,611 | analytics_pipeline | INFO | [ingestion] | matches | [BUILD] | Staging [VALIDATE] steps
+2026-07-12 20:46:34,611 | analytics_pipeline | INFO | [ingestion] | matches | [VALIDATE] | Scheduled steps 0
+2026-07-12 20:46:34,611 | analytics_pipeline | INFO | [ingestion] | matches | [VALIDATE] | END [VALIDATE] stage status = PASS duration = 1e-05
+2026-07-12 20:46:34,611 | analytics_pipeline | INFO | [ingestion] | matches | [VALIDATE] | Staging [PERSIST] steps
+2026-07-12 20:46:34,612 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | Scheduled steps 1
+2026-07-12 20:46:34,612 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | START step = Persist table [matches]
+2026-07-12 20:46:34,612 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | Persisting table matches
+2026-07-12 20:46:35,277 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | END step = Persist table [matches] status = PASS duration = 0.66536
+2026-07-12 20:46:35,278 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | END [PERSIST] stage status = PASS duration = 0.6659
+2026-07-12 20:46:35,278 | analytics_pipeline | INFO | [ingestion] | matches | [PERSIST] | Executed [matches] lifecycle status = PASS duration = 0.98793
+2026-07-12 20:46:35,278 | analytics_pipeline | INFO | maestro | [ingestion] execution finished status = PASS duration = 0.98871
+2026-07-12 20:46:35,279 | analytics_pipeline | INFO | maestro | 
+====================================================================================================
+Execution Summary: status = PASS duration = 0.98943
