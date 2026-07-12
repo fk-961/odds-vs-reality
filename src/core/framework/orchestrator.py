@@ -28,6 +28,10 @@ class MaestroExecutionResult:
     timestamp : datetime
     duration_seconds : float
     pipelines_scheduled : int
+    artifacts_count : int
+    artifacts_passed : int
+    artifacts_skipped : int
+    artifacts_failed : int
     maestro_results: list[PipelineExecutionResult] | None = None
     message : str | None = None
     error : str | None = None
@@ -36,7 +40,7 @@ class MaestroExecutionResult:
 @dataclass
 class MaestroRunner:
     
-    def execute(
+    def run(
         self,
         maestro : Maestro,
         etx : ExecutionContext
@@ -55,6 +59,10 @@ Pipelines Scheduled: %s
         )
         
         maestro_results = []
+        artifacts_count = 0
+        artifacts_passed = 0
+        artifacts_skipped = 0
+        artifacts_failed = 0
         
         with ExecutionTracker() as tracker:
             
@@ -71,6 +79,10 @@ Pipelines Scheduled: %s
                     pipeline_results = pipeline_runner.run(
                         job.pipeline, job.context, etx
                     )
+                    artifacts_count += pipeline_results.artifacts_scheduled
+                    artifacts_passed += pipeline_results.artifacts_passed
+                    artifacts_skipped += pipeline_results.artifacts_skipped
+                    artifacts_failed += pipeline_results.artifacts_failed
                     
                     maestro_results.append(pipeline_results)
                     
@@ -84,12 +96,30 @@ Pipelines Scheduled: %s
                     
                 status = get_overall_status(maestro_results)
                 
+                maestro_logger.info(
+                    "\n%s\nMaestro execution done for scheduled pipelines",
+                    divider
+                )
                 maestro_logger.log_status(
                     status,
-                    "\n%s\nExecution Summary: status = %s duration = %s",
+                    """\n%s
+Execution summary\n
+Pipelines : %s
+Artifacts : %s
+Passed : %s
+Skipped : %s
+Failed : %s
+
+Duration : %s s
+%s""",
                     divider,
-                    status.value,
-                    tracker.duration
+                    len(maestro.jobs),
+                    artifacts_count,
+                    artifacts_passed,
+                    artifacts_skipped,
+                    artifacts_failed,
+                    tracker.duration,
+                    divider
                 )
             
                 return MaestroExecutionResult(
@@ -98,6 +128,10 @@ Pipelines Scheduled: %s
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
                     pipelines_scheduled = len(maestro.jobs),
+                    artifacts_count = artifacts_count,
+                    artifacts_passed = artifacts_passed,
+                    artifacts_skipped = artifacts_skipped,
+                    artifacts_failed = artifacts_failed,
                     maestro_results = maestro_results
                 )
                 

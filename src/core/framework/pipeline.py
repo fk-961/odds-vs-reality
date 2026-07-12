@@ -25,6 +25,7 @@ class PipelineExecutionResult:
     duration_seconds : float
     status : Status
     artifacts_scheduled : int
+    artifacts_passed : int
     artifacts_failed : int
     artifacts_skipped : int
     pipeline_results : list[ArtifactExecutionResult] | None = None
@@ -53,6 +54,7 @@ class PipelineRunner:
         )
         
         pipeline_results = []
+        passed = 0
         fails = 0
         skipped = 0
         
@@ -80,6 +82,7 @@ class PipelineRunner:
                             if artifact_results.status == Status.FAIL:
                                 fails += 1
                             if artifact_results.status == Status.PASS:
+                                passed += 1
                                 etx.add_successful_artifact(artifact.name)
                             
                             pipeline_results.append(artifact_results)
@@ -121,6 +124,7 @@ class PipelineRunner:
                     duration_seconds = tracker.duration,
                     status = status,
                     artifacts_scheduled = len(pipeline.artifacts),
+                    artifacts_passed = passed,
                     artifacts_failed = fails,
                     artifacts_skipped = skipped,
                     pipeline_results = pipeline_results,
@@ -143,6 +147,7 @@ class PipelineRunner:
                     duration_seconds = tracker.duration,
                     status = Status.FAIL,
                     artifacts_scheduled = len(pipeline.artifacts),
+                    artifacts_passed = passed,
                     artifacts_failed = fails,
                     artifacts_skipped = skipped,
                     message = message,
