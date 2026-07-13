@@ -18,7 +18,7 @@ def create_table(
     df : pd.DataFrame,
     table_name : str,
     engine : Engine,
-    if_exists : str = "replace"
+    if_exists : str = "append"
 ) -> None:
     df.to_sql(
         table_name,

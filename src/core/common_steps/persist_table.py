@@ -1,3 +1,5 @@
+from sqlalchemy import text
+
 from src.core.framework.step import PipelineStep, StepResult
 from src.core.execution.context import (
     PipelineContext, ExecutionContext
@@ -20,6 +22,15 @@ class PersistTable(PipelineStep):
         etx.logger.info(
             "Persisting table %s", self.table_name
         )
+        
+        with ctx.engine.begin() as conn:
+            conn.execute(
+                text(f"TRUNCATE TABLE {self.table_name} RESTART IDENTITY;")
+            )
+        etx.logger.info(
+            "%s truncated", self.table_name
+        )
+        
         create_table(
             ctx.artifacts[self.artifact],
             self.table_name,
