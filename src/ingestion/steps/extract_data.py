@@ -52,7 +52,7 @@ class ExtractData(PipelineStep):
                 return StepResult(
                     status = Status.FAIL,
                     message = reason,
-                    error = str(e)
+                    error = f"{type(e).__name__}: {e}"
                 )
             
             data[file.stem] = df

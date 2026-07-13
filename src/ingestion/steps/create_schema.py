@@ -36,7 +36,7 @@ class CreateSchema(PipelineStep):
             return StepResult(
                 status = Status.FAIL,
                 message = reason,
-                error = str(e)
+                error = f"{type(e).__name__}: {e}"
             )
             
             
@@ -49,7 +49,7 @@ class CreateSchema(PipelineStep):
             return StepResult(
                 status = Status.FAIL,
                 message = reason,
-                error = str(e)
+                error = f"{type(e).__name__}: {e}"
             )
         
         etx.logger.info("Schema successfully created")

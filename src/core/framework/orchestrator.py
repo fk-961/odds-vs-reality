@@ -137,7 +137,7 @@ Duration : %s s
                 
             except Exception as e:
                 message = "Unexpected Exception"
-                error = str(e)
+                error = f"{type(e).__name__}: {e}"
                 
                 maestro_logger.error(
                     "ABORT Execution, %s: %s",

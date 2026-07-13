@@ -63,7 +63,7 @@ class FixColumns(PipelineStep):
                 return StepResult(
                     status = Status.FAIL,
                     message = reason,
-                    error = str(e)
+                    error = f"{type(e).__name__}: {e}"
                 )
         
         ctx.artifacts['normalized_matches'] = normalized

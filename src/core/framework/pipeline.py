@@ -132,7 +132,7 @@ class PipelineRunner:
                         
             except Exception as e:
                 message = "Unexpected Exception"
-                error = str(e)
+                error = f"{type(e).__name__}: {e}"
                 
                 etx.logger.error(
                     "ABORT pipeline, %s: %s",

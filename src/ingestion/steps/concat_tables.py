@@ -25,7 +25,7 @@ class ConcatTables(PipelineStep):
             
         except Exception as e:
             message = "Could not concatenate tables"
-            error = str(e)
+            error = f"{type(e).__name__}: {e}"
             return StepResult(
                 status = Status.FAIL,
                 message = message,

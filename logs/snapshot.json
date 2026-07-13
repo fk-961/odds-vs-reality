@@ -1,19 +1,19 @@
 {
-    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
     "status": "PASS",
-    "timestamp": "2026-07-14T00:01:00.990235",
-    "duration_seconds": 6.51886,
-    "pipelines_scheduled": 2,
-    "artifacts_count": 6,
-    "artifacts_passed": 6,
+    "timestamp": "2026-07-14T00:46:07.665351",
+    "duration_seconds": 5.66342,
+    "pipelines_scheduled": 3,
+    "artifacts_count": 8,
+    "artifacts_passed": 8,
     "artifacts_skipped": 0,
     "artifacts_failed": 0,
     "maestro_results": [
         {
-            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
             "name": "ingestion",
-            "timestamp": "2026-07-14T00:01:00.990751",
-            "duration_seconds": 2.53877,
+            "timestamp": "2026-07-14T00:46:07.666011",
+            "duration_seconds": 1.0638,
             "status": "PASS",
             "artifacts_scheduled": 1,
             "artifacts_passed": 1,
@@ -21,28 +21,28 @@
             "artifacts_skipped": 0,
             "pipeline_results": [
                 {
-                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                     "name": "matches",
-                    "timestamp": "2026-07-14T00:01:00.991329",
-                    "duration_seconds": 2.538,
+                    "timestamp": "2026-07-14T00:46:07.666646",
+                    "duration_seconds": 1.06278,
                     "status": "PASS",
                     "artifact_results": [
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "BUILD",
                             "artifact_name": "matches",
                             "scheduled_steps": 4,
-                            "timestamp": "2026-07-14T00:01:00.991702",
-                            "duration_seconds": 1.31116,
+                            "timestamp": "2026-07-14T00:46:07.667067",
+                            "duration_seconds": 0.31053,
                             "status": "PASS",
                             "steps_attempted": 4,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Create Schema",
-                                    "timestamp": "2026-07-14T00:01:00.991848",
-                                    "duration_seconds": 0.93566,
+                                    "timestamp": "2026-07-14T00:46:07.667201",
+                                    "duration_seconds": 0.19359,
                                     "status": "PASS",
                                     "step_results": {
                                         "schema_file": "odds-vs-reality\\src\\db\\raw_matches.sql"
@@ -51,10 +51,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Extract Data",
-                                    "timestamp": "2026-07-14T00:01:01.927984",
-                                    "duration_seconds": 0.06594,
+                                    "timestamp": "2026-07-14T00:46:07.861317",
+                                    "duration_seconds": 0.06242,
                                     "status": "PASS",
                                     "step_results": {
                                         "files_processed": 7,
@@ -94,10 +94,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Fix Columns",
-                                    "timestamp": "2026-07-14T00:01:01.994473",
-                                    "duration_seconds": 0.30584,
+                                    "timestamp": "2026-07-14T00:46:07.924144",
+                                    "duration_seconds": 0.05009,
                                     "status": "PASS",
                                     "step_results": {
                                         "tables_processed": 7,
@@ -107,10 +107,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Concatenate tables",
-                                    "timestamp": "2026-07-14T00:01:02.300975",
-                                    "duration_seconds": 0.00161,
+                                    "timestamp": "2026-07-14T00:46:07.974793",
+                                    "duration_seconds": 0.0024,
                                     "status": "PASS",
                                     "step_results": {
                                         "tables_concatenated": 7,
@@ -125,11 +125,11 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "VALIDATE",
                             "artifact_name": "matches",
                             "scheduled_steps": 0,
-                            "timestamp": "2026-07-14T00:01:02.303640",
+                            "timestamp": "2026-07-14T00:46:07.978299",
                             "duration_seconds": 0.0,
                             "status": "PASS",
                             "steps_attempted": 0,
@@ -139,21 +139,21 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "PERSIST",
                             "artifact_name": "matches",
                             "scheduled_steps": 1,
-                            "timestamp": "2026-07-14T00:01:02.304409",
-                            "duration_seconds": 1.22471,
+                            "timestamp": "2026-07-14T00:46:07.978929",
+                            "duration_seconds": 0.75017,
                             "status": "PASS",
                             "steps_attempted": 1,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Persist table [matches]",
-                                    "timestamp": "2026-07-14T00:01:02.304697",
-                                    "duration_seconds": 1.22418,
+                                    "timestamp": "2026-07-14T00:46:07.979091",
+                                    "duration_seconds": 0.74964,
                                     "status": "PASS",
                                     "step_results": null,
                                     "message": null,
@@ -172,10 +172,10 @@
             "error": null
         },
         {
-            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
             "name": "transformation",
-            "timestamp": "2026-07-14T00:01:03.530168",
-            "duration_seconds": 3.97802,
+            "timestamp": "2026-07-14T00:46:08.730777",
+            "duration_seconds": 2.98384,
             "status": "PASS",
             "artifacts_scheduled": 5,
             "artifacts_passed": 5,
@@ -183,28 +183,28 @@
             "artifacts_skipped": 0,
             "pipeline_results": [
                 {
-                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                     "name": "standings",
-                    "timestamp": "2026-07-14T00:01:03.530711",
-                    "duration_seconds": 0.587,
+                    "timestamp": "2026-07-14T00:46:08.731580",
+                    "duration_seconds": 0.18852,
                     "status": "PASS",
                     "artifact_results": [
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "BUILD",
                             "artifact_name": "standings",
                             "scheduled_steps": 2,
-                            "timestamp": "2026-07-14T00:01:03.531052",
-                            "duration_seconds": 0.47278,
+                            "timestamp": "2026-07-14T00:46:08.731938",
+                            "duration_seconds": 0.16091,
                             "status": "PASS",
                             "steps_attempted": 2,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Load table [matches]",
-                                    "timestamp": "2026-07-14T00:01:03.531230",
-                                    "duration_seconds": 0.05592,
+                                    "timestamp": "2026-07-14T00:46:08.732150",
+                                    "duration_seconds": 0.05198,
                                     "status": "PASS",
                                     "step_results": {
                                         "nb_rows": 2336,
@@ -214,10 +214,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Build table standings",
-                                    "timestamp": "2026-07-14T00:01:03.587640",
-                                    "duration_seconds": 0.41587,
+                                    "timestamp": "2026-07-14T00:46:08.784701",
+                                    "duration_seconds": 0.10786,
                                     "status": "PASS",
                                     "step_results": {
                                         "table_name": "standings",
@@ -232,11 +232,11 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "VALIDATE",
                             "artifact_name": "standings",
                             "scheduled_steps": 0,
-                            "timestamp": "2026-07-14T00:01:04.004517",
+                            "timestamp": "2026-07-14T00:46:08.893380",
                             "duration_seconds": 0.0,
                             "status": "PASS",
                             "steps_attempted": 0,
@@ -246,21 +246,21 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "PERSIST",
                             "artifact_name": "standings",
                             "scheduled_steps": 1,
-                            "timestamp": "2026-07-14T00:01:04.005306",
-                            "duration_seconds": 0.11206,
+                            "timestamp": "2026-07-14T00:46:08.893920",
+                            "duration_seconds": 0.02596,
                             "status": "PASS",
                             "steps_attempted": 1,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Persist table [standings]",
-                                    "timestamp": "2026-07-14T00:01:04.005547",
-                                    "duration_seconds": 0.11142,
+                                    "timestamp": "2026-07-14T00:46:08.894120",
+                                    "duration_seconds": 0.02544,
                                     "status": "PASS",
                                     "step_results": null,
                                     "message": null,
@@ -275,28 +275,28 @@
                     "error": null
                 },
                 {
-                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                     "name": "teams",
-                    "timestamp": "2026-07-14T00:01:04.118666",
-                    "duration_seconds": 0.19524,
+                    "timestamp": "2026-07-14T00:46:08.920748",
+                    "duration_seconds": 0.03689,
                     "status": "PASS",
                     "artifact_results": [
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "BUILD",
                             "artifact_name": "teams",
                             "scheduled_steps": 1,
-                            "timestamp": "2026-07-14T00:01:04.119150",
-                            "duration_seconds": 0.18007,
+                            "timestamp": "2026-07-14T00:46:08.921105",
+                            "duration_seconds": 0.02202,
                             "status": "PASS",
                             "steps_attempted": 1,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Build table teams",
-                                    "timestamp": "2026-07-14T00:01:04.119363",
-                                    "duration_seconds": 0.17951,
+                                    "timestamp": "2026-07-14T00:46:08.921273",
+                                    "duration_seconds": 0.02157,
                                     "status": "PASS",
                                     "step_results": {
                                         "table_name": "teams",
@@ -310,11 +310,11 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "VALIDATE",
                             "artifact_name": "teams",
                             "scheduled_steps": 0,
-                            "timestamp": "2026-07-14T00:01:04.299978",
+                            "timestamp": "2026-07-14T00:46:08.943651",
                             "duration_seconds": 0.0,
                             "status": "PASS",
                             "steps_attempted": 0,
@@ -324,21 +324,21 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "PERSIST",
                             "artifact_name": "teams",
                             "scheduled_steps": 1,
-                            "timestamp": "2026-07-14T00:01:04.300756",
-                            "duration_seconds": 0.0129,
+                            "timestamp": "2026-07-14T00:46:08.944215",
+                            "duration_seconds": 0.01315,
                             "status": "PASS",
                             "steps_attempted": 1,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Persist table [teams]",
-                                    "timestamp": "2026-07-14T00:01:04.301006",
-                                    "duration_seconds": 0.01227,
+                                    "timestamp": "2026-07-14T00:46:08.944364",
+                                    "duration_seconds": 0.0124,
                                     "status": "PASS",
                                     "step_results": null,
                                     "message": null,
@@ -353,28 +353,28 @@
                     "error": null
                 },
                 {
-                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                     "name": "match_probs",
-                    "timestamp": "2026-07-14T00:01:04.315052",
-                    "duration_seconds": 2.13711,
+                    "timestamp": "2026-07-14T00:46:08.958562",
+                    "duration_seconds": 1.82389,
                     "status": "PASS",
                     "artifact_results": [
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "BUILD",
                             "artifact_name": "match_probs",
                             "scheduled_steps": 1,
-                            "timestamp": "2026-07-14T00:01:04.315604",
-                            "duration_seconds": 0.04396,
+                            "timestamp": "2026-07-14T00:46:08.959058",
+                            "duration_seconds": 0.04847,
                             "status": "PASS",
                             "steps_attempted": 1,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Build Table match_probs",
-                                    "timestamp": "2026-07-14T00:01:04.315830",
-                                    "duration_seconds": 0.04342,
+                                    "timestamp": "2026-07-14T00:46:08.959220",
+                                    "duration_seconds": 0.04797,
                                     "status": "PASS",
                                     "step_results": {
                                         "table_name": "match_probs",
@@ -389,12 +389,12 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "VALIDATE",
                             "artifact_name": "match_probs",
                             "scheduled_steps": 0,
-                            "timestamp": "2026-07-14T00:01:04.360300",
-                            "duration_seconds": 0.0,
+                            "timestamp": "2026-07-14T00:46:09.008311",
+                            "duration_seconds": 2e-05,
                             "status": "PASS",
                             "steps_attempted": 0,
                             "steps_warnings_count": 0,
@@ -403,21 +403,21 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "PERSIST",
                             "artifact_name": "match_probs",
                             "scheduled_steps": 1,
-                            "timestamp": "2026-07-14T00:01:04.361064",
-                            "duration_seconds": 2.09083,
+                            "timestamp": "2026-07-14T00:46:09.008953",
+                            "duration_seconds": 1.77326,
                             "status": "PASS",
                             "steps_attempted": 1,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Persist table [match_probs]",
-                                    "timestamp": "2026-07-14T00:01:04.361264",
-                                    "duration_seconds": 2.09026,
+                                    "timestamp": "2026-07-14T00:46:09.009167",
+                                    "duration_seconds": 1.77274,
                                     "status": "PASS",
                                     "step_results": null,
                                     "message": null,
@@ -432,28 +432,28 @@
                     "error": null
                 },
                 {
-                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                     "name": "expected_points",
-                    "timestamp": "2026-07-14T00:01:06.453235",
-                    "duration_seconds": 0.68938,
+                    "timestamp": "2026-07-14T00:46:10.783327",
+                    "duration_seconds": 0.72656,
                     "status": "PASS",
                     "artifact_results": [
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "BUILD",
                             "artifact_name": "expected_points",
                             "scheduled_steps": 1,
-                            "timestamp": "2026-07-14T00:01:06.453645",
-                            "duration_seconds": 0.00614,
+                            "timestamp": "2026-07-14T00:46:10.783722",
+                            "duration_seconds": 0.00733,
                             "status": "PASS",
                             "steps_attempted": 1,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Build expected_points table",
-                                    "timestamp": "2026-07-14T00:01:06.453848",
-                                    "duration_seconds": 0.00561,
+                                    "timestamp": "2026-07-14T00:46:10.783874",
+                                    "duration_seconds": 0.0069,
                                     "status": "PASS",
                                     "step_results": {
                                         "table_name": "expected_points",
@@ -468,11 +468,11 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "VALIDATE",
                             "artifact_name": "expected_points",
                             "scheduled_steps": 0,
-                            "timestamp": "2026-07-14T00:01:06.460390",
+                            "timestamp": "2026-07-14T00:46:10.791688",
                             "duration_seconds": 0.0,
                             "status": "PASS",
                             "steps_attempted": 0,
@@ -482,21 +482,21 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "PERSIST",
                             "artifact_name": "expected_points",
                             "scheduled_steps": 1,
-                            "timestamp": "2026-07-14T00:01:06.460917",
-                            "duration_seconds": 0.68125,
+                            "timestamp": "2026-07-14T00:46:10.792209",
+                            "duration_seconds": 0.71717,
                             "status": "PASS",
                             "steps_attempted": 1,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Persist table [expected_points]",
-                                    "timestamp": "2026-07-14T00:01:06.461118",
-                                    "duration_seconds": 0.68061,
+                                    "timestamp": "2026-07-14T00:46:10.792370",
+                                    "duration_seconds": 0.71648,
                                     "status": "PASS",
                                     "step_results": null,
                                     "message": null,
@@ -511,28 +511,28 @@
                     "error": null
                 },
                 {
-                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                     "name": "expected_standings",
-                    "timestamp": "2026-07-14T00:01:07.144043",
-                    "duration_seconds": 0.36386,
+                    "timestamp": "2026-07-14T00:46:11.511114",
+                    "duration_seconds": 0.20313,
                     "status": "PASS",
                     "artifact_results": [
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "BUILD",
                             "artifact_name": "expected_standings",
                             "scheduled_steps": 1,
-                            "timestamp": "2026-07-14T00:01:07.144709",
-                            "duration_seconds": 0.10788,
+                            "timestamp": "2026-07-14T00:46:11.511780",
+                            "duration_seconds": 0.01827,
                             "status": "PASS",
                             "steps_attempted": 1,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Build expected_standings table",
-                                    "timestamp": "2026-07-14T00:01:07.145080",
-                                    "duration_seconds": 0.10711,
+                                    "timestamp": "2026-07-14T00:46:11.512105",
+                                    "duration_seconds": 0.01763,
                                     "status": "PASS",
                                     "step_results": {
                                         "table_name": "expected_points",
@@ -547,11 +547,11 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "VALIDATE",
                             "artifact_name": "expected_standings",
                             "scheduled_steps": 0,
-                            "timestamp": "2026-07-14T00:01:07.253501",
+                            "timestamp": "2026-07-14T00:46:11.530862",
                             "duration_seconds": 0.0,
                             "status": "PASS",
                             "steps_attempted": 0,
@@ -561,21 +561,207 @@
                             "error": null
                         },
                         {
-                            "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                             "stage": "PERSIST",
                             "artifact_name": "expected_standings",
                             "scheduled_steps": 1,
-                            "timestamp": "2026-07-14T00:01:07.254340",
-                            "duration_seconds": 0.25323,
+                            "timestamp": "2026-07-14T00:46:11.531575",
+                            "duration_seconds": 0.1823,
                             "status": "PASS",
                             "steps_attempted": 1,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "c2bf4e41-ee7a-4769-80b7-868183178a53",
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
                                     "name": "Persist table [expected_standings]",
-                                    "timestamp": "2026-07-14T00:01:07.254672",
-                                    "duration_seconds": 0.2525,
+                                    "timestamp": "2026-07-14T00:46:11.531830",
+                                    "duration_seconds": 0.18166,
+                                    "status": "PASS",
+                                    "step_results": null,
+                                    "message": null,
+                                    "error": null
+                                }
+                            ],
+                            "message": null,
+                            "error": null
+                        }
+                    ],
+                    "message": null,
+                    "error": null
+                }
+            ],
+            "message": null,
+            "error": null
+        },
+        {
+            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+            "name": "analytics",
+            "timestamp": "2026-07-14T00:46:11.715288",
+            "duration_seconds": 1.61283,
+            "status": "PASS",
+            "artifacts_scheduled": 2,
+            "artifacts_passed": 2,
+            "artifacts_failed": 0,
+            "artifacts_skipped": 0,
+            "pipeline_results": [
+                {
+                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                    "name": "match_metrics",
+                    "timestamp": "2026-07-14T00:46:11.715955",
+                    "duration_seconds": 1.57526,
+                    "status": "PASS",
+                    "artifact_results": [
+                        {
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                            "stage": "BUILD",
+                            "artifact_name": "match_metrics",
+                            "scheduled_steps": 2,
+                            "timestamp": "2026-07-14T00:46:11.716306",
+                            "duration_seconds": 0.17474,
+                            "status": "PASS",
+                            "steps_attempted": 2,
+                            "steps_warnings_count": 0,
+                            "stage_results": [
+                                {
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                                    "name": "Load table [match_probs]",
+                                    "timestamp": "2026-07-14T00:46:11.716467",
+                                    "duration_seconds": 0.16191,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "nb_rows": 11680,
+                                        "nb_columns": 27
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                                    "name": "Build match_metrics table",
+                                    "timestamp": "2026-07-14T00:46:11.878959",
+                                    "duration_seconds": 0.01179,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "table_name": "match_metrics",
+                                        "rows_created": 11680,
+                                        "cols_created": 20
+                                    },
+                                    "message": null,
+                                    "error": null
+                                }
+                            ],
+                            "message": null,
+                            "error": null
+                        },
+                        {
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                            "stage": "VALIDATE",
+                            "artifact_name": "match_metrics",
+                            "scheduled_steps": 0,
+                            "timestamp": "2026-07-14T00:46:11.891640",
+                            "duration_seconds": 0.0,
+                            "status": "PASS",
+                            "steps_attempted": 0,
+                            "steps_warnings_count": 0,
+                            "stage_results": [],
+                            "message": null,
+                            "error": null
+                        },
+                        {
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                            "stage": "PERSIST",
+                            "artifact_name": "match_metrics",
+                            "scheduled_steps": 1,
+                            "timestamp": "2026-07-14T00:46:11.892250",
+                            "duration_seconds": 1.39853,
+                            "status": "PASS",
+                            "steps_attempted": 1,
+                            "steps_warnings_count": 0,
+                            "stage_results": [
+                                {
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                                    "name": "Persist table [match_metrics]",
+                                    "timestamp": "2026-07-14T00:46:11.892447",
+                                    "duration_seconds": 1.39783,
+                                    "status": "PASS",
+                                    "step_results": null,
+                                    "message": null,
+                                    "error": null
+                                }
+                            ],
+                            "message": null,
+                            "error": null
+                        }
+                    ],
+                    "message": null,
+                    "error": null
+                },
+                {
+                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                    "name": "bookmaker_metrics",
+                    "timestamp": "2026-07-14T00:46:13.292644",
+                    "duration_seconds": 0.03526,
+                    "status": "PASS",
+                    "artifact_results": [
+                        {
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                            "stage": "BUILD",
+                            "artifact_name": "bookmaker_metrics",
+                            "scheduled_steps": 1,
+                            "timestamp": "2026-07-14T00:46:13.293348",
+                            "duration_seconds": 0.01657,
+                            "status": "PASS",
+                            "steps_attempted": 1,
+                            "steps_warnings_count": 0,
+                            "stage_results": [
+                                {
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                                    "name": "Build bookmaker_metrics table",
+                                    "timestamp": "2026-07-14T00:46:13.293646",
+                                    "duration_seconds": 0.01599,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "table_name": "bookmaker_metrics",
+                                        "rows_created": 35,
+                                        "cols_created": 12
+                                    },
+                                    "message": null,
+                                    "error": null
+                                }
+                            ],
+                            "message": null,
+                            "error": null
+                        },
+                        {
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                            "stage": "VALIDATE",
+                            "artifact_name": "bookmaker_metrics",
+                            "scheduled_steps": 0,
+                            "timestamp": "2026-07-14T00:46:13.310527",
+                            "duration_seconds": 1e-05,
+                            "status": "PASS",
+                            "steps_attempted": 0,
+                            "steps_warnings_count": 0,
+                            "stage_results": [],
+                            "message": null,
+                            "error": null
+                        },
+                        {
+                            "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                            "stage": "PERSIST",
+                            "artifact_name": "bookmaker_metrics",
+                            "scheduled_steps": 1,
+                            "timestamp": "2026-07-14T00:46:13.311263",
+                            "duration_seconds": 0.01645,
+                            "status": "PASS",
+                            "steps_attempted": 1,
+                            "steps_warnings_count": 0,
+                            "stage_results": [
+                                {
+                                    "run_id": "da2b2355-99b8-463b-aaa7-8e3576fc79e8",
+                                    "name": "Persist table [bookmaker_metrics]",
+                                    "timestamp": "2026-07-14T00:46:13.311499",
+                                    "duration_seconds": 0.01589,
                                     "status": "PASS",
                                     "step_results": null,
                                     "message": null,

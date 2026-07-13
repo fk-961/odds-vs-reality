@@ -164,7 +164,7 @@ class ArtifactRunner:
             
             except Exception as e:
                 message = "Unexpected Exception"
-                error = str(e)
+                error = f"{type(e).__name__}: {e}"
                 etx.logger.error(
                     "ABORT %s, %s: %s",
                     artifact.name,
@@ -227,7 +227,7 @@ class ArtifactRunner:
                             step_result = StepResult(
                                 status = Status.FAIL,
                                 message = "Unexpected Exception",
-                                error = str(e)
+                                error = f"{type(e).__name__}: {e}"
                             )
                     steps_attempted += 1
                     
@@ -297,7 +297,7 @@ class ArtifactRunner:
             
             except Exception as e:
                 message = "Unexpected Exception"
-                error = str(e)
+                error = f"{type(e).__name__}: {e}"
                 etx.logger.error(
                     "ABORT [%s] %s: %s",
                     stage.value,
