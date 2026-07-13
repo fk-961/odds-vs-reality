@@ -1,3 +1,4 @@
+--- Execute this once
 CREATE SCHEMA IF NOT EXISTS metadata;
 
 

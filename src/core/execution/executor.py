@@ -4,13 +4,15 @@ from src.core.framework.orchestrator import (
     MaestroRunner, Maestro
 )
 from src.core.execution.writer import ExecutionWriter
+from src.db.engine import engine
 
 class MaestroExecutor:
     
     def __init__(self):
         
         self._etx = ExecutionContext(
-            logger = PipelineLogger()
+            logger = PipelineLogger(),
+            metadata_engine = engine
         )
         self._runner = MaestroRunner()
         self._writer = ExecutionWriter()
@@ -21,4 +23,4 @@ class MaestroExecutor:
     ) -> None:
         
         results = self._runner.run(maestro, self._etx)
-        self._writer.run(results)
+        self._writer.run(results, self._etx.metadata_engine)
