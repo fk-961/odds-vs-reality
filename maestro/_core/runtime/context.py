@@ -1,6 +1,5 @@
 from abc import ABC
 from dataclasses import dataclass, field
-from sqlalchemy.engine import Engine
 from typing import Any
 from datetime import datetime
 from uuid import UUID, uuid4
@@ -10,7 +9,7 @@ from .logger import PipelineLogger
 @dataclass
 class PipelineContext(ABC):
     # configuration
-    engine : Engine
+    engine : Any
     
     # runtime
     artifacts : dict[str, Any] = field(
@@ -26,7 +25,6 @@ class PipelineContext(ABC):
 @dataclass
 class ExecutionContext:
     logger : PipelineLogger
-    metadata_engine : Engine
     persisted_artifacts : list[str] = field(
         default_factory = list, init = False
     )

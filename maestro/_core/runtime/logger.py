@@ -10,11 +10,13 @@ class PipelineLogger:
     
     def __init__(
         self,
+        name : str,
         logs_path : Path,
         logger : logging.Logger | None = None,
         layer : dict | None = None,
     ):
         
+        self.name = name
         self.logs_path = logs_path
         self.layer = layer or {}
         
@@ -24,7 +26,7 @@ class PipelineLogger:
             
         logs_path.mkdir(exist_ok = True)
         
-        self._logger = logging.getLogger("analytics_pipeline")
+        self._logger = logging.getLogger(name)
         self._logger.setLevel(logging.INFO)
         
         formatter = logging.Formatter(
@@ -49,6 +51,8 @@ class PipelineLogger:
         """Creates a logger that is a child of the caller.
         """
         return PipelineLogger(
+            name = self.name,
+            logs_path = self.logs_path,
             logger = self._logger,
             layer = {
                 **self.layer,

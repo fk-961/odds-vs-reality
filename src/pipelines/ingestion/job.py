@@ -1,20 +1,16 @@
-from src.ingestion.core.context import IngestionContext
-from maestro import Artifact
+from maestro import blueprints as bp
 
-from src.core.framework.pipeline import Pipeline
-from src.core.framework.orchestrator import PipelineExecution
-
-from src.ingestion.steps.create_schema import CreateSchema
-from src.ingestion.steps.extract_data import ExtractData
-from src.ingestion.steps.fix_columns import FixColumns
-from src.ingestion.steps.concat_tables import ConcatTables
-from src.core.common_steps.persist_table import PersistTable
-
+from src.pipelines.ingestion.core.context import IngestionContext
+from src.pipelines.ingestion.steps.create_schema import CreateSchema
+from src.pipelines.ingestion.steps.extract_data import ExtractData
+from src.pipelines.ingestion.steps.fix_columns import FixColumns
+from src.pipelines.ingestion.steps.concat_tables import ConcatTables
+from src.db.common.persist_table import PersistTable
 from src.db.engine import engine
 from src.config import DB_SCHEMA, RAW_LIGUE1_DIR
 from src.mappings import col_mapping, required_cols
 
-matches = Artifact(
+matches = bp.Artifact(
     name = "matches",
     builders = [
         CreateSchema(),
@@ -29,7 +25,7 @@ matches = Artifact(
     dependencies = []
 )
 
-ingestion_pipeline = Pipeline(
+ingestion_pipeline = bp.Pipeline(
     name = "ingestion",
     artifacts = [matches]
 )
@@ -42,7 +38,7 @@ ingestion_context = IngestionContext(
     required_cols = required_cols
 )
 
-ingestion_job = PipelineExecution(
+ingestion_job = bp.PipelineExecution(
     pipeline = ingestion_pipeline,
     context = ingestion_context
 )

@@ -1,15 +1,15 @@
 import json
 from dataclasses import asdict
 from pathlib import Path
+from maestro import blueprints as bp
 
-from ..blueprints.orchestrator import MaestroExecutionResult
-from src.db.metadata.writer import write_execution
+from src.db.metadata.write_execution import write_execution
 
 class ExecutionWriter:
     
     def run(
         self,
-        exec_result : MaestroExecutionResult,
+        exec_result : bp.MaestroExecutionResult,
         metadata_engine,
         logs_path : Path
     ):
@@ -18,7 +18,7 @@ class ExecutionWriter:
     
     def _json_writer(
         self,
-        exec_result : MaestroExecutionResult,
+        exec_result : bp.MaestroExecutionResult,
         logs_path : Path
     ):
         
@@ -33,7 +33,7 @@ class ExecutionWriter:
             
     def _metadata_writer(
         self,
-        exec_result : MaestroExecutionResult,
+        exec_result : bp.MaestroExecutionResult,
         metadata_engine
     ):
         write_execution(exec_result, metadata_engine)

@@ -1,16 +1,15 @@
-from src.core.framework.artifact import Artifact
-from src.core.framework.pipeline import Pipeline
-from src.core.framework.orchestrator import PipelineExecution
+from maestro import blueprints as bp
 
-from src.analytics.core.context import AnalyticsContext
-from src.analytics.steps.build_match_metrics import BuildMatchMetrics
-from src.analytics.steps.build_bookmaker_metrics import BuildBookmakerMetrics
-from src.core.common_steps.load_table import LoadTable
-from src.core.common_steps.persist_table import PersistTable
+from src.pipelines.analytics.core.context import AnalyticsContext
+from src.pipelines.analytics.steps.build_match_metrics import BuildMatchMetrics
+from src.pipelines.analytics.steps.build_bookmaker_metrics import BuildBookmakerMetrics
+
+from src.db.common.load_table import LoadTable
+from src.db.common.persist_table import PersistTable
 from src.db.engine import engine
 
 # Artifacts
-match_metrics = Artifact(
+match_metrics = bp.Artifact(
     name = "match_metrics",
     builders = [
         LoadTable("match_probs"), BuildMatchMetrics()
@@ -19,7 +18,7 @@ match_metrics = Artifact(
     persisters = [PersistTable("match_metrics", "match_metrics")],
     dependencies = ["match_probs"]
 )
-bookmaker_metrics = Artifact(
+bookmaker_metrics = bp.Artifact(
     name = "bookmaker_metrics",
     builders = [BuildBookmakerMetrics()],
     validators = [],
@@ -28,11 +27,11 @@ bookmaker_metrics = Artifact(
 )
 
 # Job
-pipeline = Pipeline(
+pipeline = bp.Pipeline(
     name = "analytics",
     artifacts = [match_metrics, bookmaker_metrics]
 )
 context = AnalyticsContext(engine)
-analytics_job = PipelineExecution(
+analytics_job = bp.PipelineExecution(
     pipeline = pipeline, context = context
 )

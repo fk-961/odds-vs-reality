@@ -1,27 +1,24 @@
-from src.core.framework.step import (
-    PipelineStep, StepResult
-)
-from src.core.execution.context import (
-    PipelineContext, ExecutionContext
-)
-from src.core.framework.types import Status
+from maestro import blueprints as bp
+from maestro import runtime as rt
+from maestro.common.types import Status
+
 from src.processing.transformation.build_expected_standings import (
     build_expected_standings
 )
 
-class BuildExpectedStandings(PipelineStep):
+class BuildExpectedStandings(bp.PipelineStep):
     name = "Build expected_standings table"
     
     def run(
         self,
-        ctx : PipelineContext,
-        etx : ExecutionContext
-    ) -> StepResult:
+        ctx : rt.PipelineContext,
+        etx : rt.ExecutionContext
+    ) -> bp.StepResult:
         
         expected_points = ctx.get_artifact("expected_points")
         if expected_points.empty:
             etx.logger.error("expected_points table empty")
-            return StepResult(
+            return bp.StepResult(
                 status = Status.FAIL,
                 message = "expected_points table empty"
             )
@@ -29,7 +26,7 @@ class BuildExpectedStandings(PipelineStep):
         expected_standings = build_expected_standings(expected_points)
         ctx.artifacts["expected_standings"] = expected_standings
         
-        return StepResult(
+        return bp.StepResult(
             status = Status.PASS,
             step_results = {
                 "table_name" : "expected_points",

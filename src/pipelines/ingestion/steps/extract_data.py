@@ -1,19 +1,18 @@
 import pandas as pd
+from maestro import blueprints as bp
+from maestro import runtime as rt
+from maestro.common.types import Status
 
-from src.core.framework.types import Status
-from src.core.framework.step import PipelineStep, StepResult
-from src.ingestion.core.context import IngestionContext
-from src.core.execution.context import ExecutionContext
 from src.config import ROOT_DIR
 
-class ExtractData(PipelineStep):
+class ExtractData(bp.PipelineStep):
     name = "Extract Data"
     
     def run(
         self,
-        ctx : IngestionContext,
-        etx : ExecutionContext
-    ) -> StepResult:
+        ctx : rt.PipelineContext,
+        etx : rt.ExecutionContext
+    ) -> bp.StepResult:
         data = {}
         
         files = {}
@@ -25,7 +24,7 @@ class ExtractData(PipelineStep):
         if not ctx.source_data.exists():
             reason = f"{source_path} does not exist"
             etx.logger.error(reason)
-            return StepResult(
+            return bp.StepResult(
                 status = Status.FAIL,
                 message = reason
             )
@@ -36,7 +35,7 @@ class ExtractData(PipelineStep):
         if not csv_files:
             reason = f"No files found in {source_path}"
             etx.logger.error(reason)
-            return StepResult(
+            return bp.StepResult(
                 status = Status.FAIL,
                 message = reason
             )
@@ -49,7 +48,7 @@ class ExtractData(PipelineStep):
             except Exception as e :
                 reason = f"failed to read {file.stem}"
                 etx.logger.error(reason)
-                return StepResult(
+                return bp.StepResult(
                     status = Status.FAIL,
                     message = reason,
                     error = f"{type(e).__name__}: {e}"
@@ -66,7 +65,7 @@ class ExtractData(PipelineStep):
             
         etx.logger.info("%s files found, total_rows = %s", nb_files, total_rows)
         ctx.artifacts['raw_matches'] = data
-        return StepResult(
+        return bp.StepResult(
             status = Status.PASS,
             step_results = {
                 "files_processed" : nb_files,

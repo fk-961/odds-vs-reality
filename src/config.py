@@ -24,4 +24,4 @@ DB_NAME = os.getenv("DB_NAME")
 DB_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # DB schema
-DB_SCHEMA = ROOT_DIR/"src"/"db"/"raw_matches.sql"
+DB_SCHEMA = ROOT_DIR/"src"/"db"/"schemas"/"raw_matches.sql"

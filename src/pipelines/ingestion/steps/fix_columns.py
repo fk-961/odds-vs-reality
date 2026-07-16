@@ -1,18 +1,16 @@
 import pandas as pd
+from maestro import blueprints as bp
+from maestro import runtime as rt
+from maestro.common.types import Status
 
-from src.core.framework.types import Status
-from src.core.framework.step import PipelineStep, StepResult
-from src.ingestion.core.context import IngestionContext
-from src.core.execution.context import ExecutionContext
-
-class FixColumns(PipelineStep):
+class FixColumns(bp.PipelineStep):
     name = "Fix Columns"
     
     def run(
         self,
-        ctx : IngestionContext,
-        etx : ExecutionContext
-    ) -> StepResult:
+        ctx : rt.PipelineContext,
+        etx : rt.ExecutionContext
+    ) -> bp.StepResult:
         
         # 2 kinda redundant checks
         raw_matches = ctx.get_artifact("raw_matches")
@@ -20,7 +18,7 @@ class FixColumns(PipelineStep):
         if not raw_matches:
             reason = "raw table is empty in context's artifacts"
             etx.logger.error(reason)
-            return StepResult(
+            return bp.StepResult(
                 status = Status.FAIL,
                 message = reason
             )
@@ -36,7 +34,7 @@ class FixColumns(PipelineStep):
                     missing_cols = ctx.required_cols.difference(set(df.columns))
                     reason = "Missing required columns"
                     etx.logger.error("%s: %s", reason, missing_cols)
-                    return StepResult(
+                    return bp.StepResult(
                         status = Status.FAIL,
                         message = reason,
                         error = f"missing_cols = {missing_cols}"
@@ -60,7 +58,7 @@ class FixColumns(PipelineStep):
             except Exception as e:
                 reason = f"Could not fix columns for {name}"
                 etx.logger.error("%s: %s", reason, e)
-                return StepResult(
+                return bp.StepResult(
                     status = Status.FAIL,
                     message = reason,
                     error = f"{type(e).__name__}: {e}"
@@ -68,7 +66,7 @@ class FixColumns(PipelineStep):
         
         ctx.artifacts['normalized_matches'] = normalized
             
-        return StepResult(
+        return bp.StepResult(
             status = Status.PASS,
             step_results = {
                 "tables_processed" : len(normalized),

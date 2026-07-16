@@ -1,10 +1,10 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
-from maestro import PipelineContext
+from maestro import runtime as rt
 
 @dataclass
-class IngestionContext(PipelineContext):
+class IngestionContext(rt.PipelineContext):
     
     raw_schema : Path
     source_data : Path

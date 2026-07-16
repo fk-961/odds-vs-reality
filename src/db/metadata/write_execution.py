@@ -1,12 +1,12 @@
 from sqlalchemy import text
 from sqlalchemy.engine import Engine
 import json
+from maestro import blueprints as bp
 
 from src.db.engine import engine
-from src.core.framework.orchestrator import MaestroExecutionResult
 
 def write_execution(
-    result: MaestroExecutionResult,
+    result: bp.MaestroExecutionResult,
     engine : Engine
 ):
     with engine.begin() as conn:

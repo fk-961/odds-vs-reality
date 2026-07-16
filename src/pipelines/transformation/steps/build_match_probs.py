@@ -1,28 +1,25 @@
-from src.core.framework.step import (
-    PipelineStep, StepResult
-)
-from src.core.execution.context import (
-    PipelineContext, ExecutionContext
-)
-from src.core.framework.types import Status
+from maestro import blueprints as bp
+from maestro import runtime as rt
+from maestro.common.types import Status
+
 from src.processing.transformation.build_match_probs import (
     build_match_probs
 )
 
-class BuildMatchProbs(PipelineStep):
+class BuildMatchProbs(bp.PipelineStep):
     name = "Build Table match_probs"
     
     def run(
         self,
-        ctx : PipelineContext,
-        etx : ExecutionContext
-    ) -> StepResult:
+        ctx : rt.PipelineContext,
+        etx : rt.ExecutionContext
+    ) -> bp.StepResult:
         
         matches = ctx.get_artifact("matches")
         
         if matches.empty:
             etx.logger.error("Matches table empty")
-            return StepResult(
+            return bp.StepResult(
                 status = Status.FAIL,
                 message = "matches table empty"
             )
@@ -30,7 +27,7 @@ class BuildMatchProbs(PipelineStep):
         match_probs = build_match_probs(matches)
         ctx.artifacts["match_probs"] = match_probs
         
-        return StepResult(
+        return bp.StepResult(
             status = Status.PASS,
             step_results = {
                 "table_name" : "match_probs",

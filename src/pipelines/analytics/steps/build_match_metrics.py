@@ -1,33 +1,30 @@
-from src.core.framework.step import (
-    PipelineStep, StepResult
-)
-from src.core.execution.context import (
-    PipelineContext, ExecutionContext
-)
-from src.core.framework.types import Status
+from maestro import blueprints as bp
+from maestro import runtime as rt
+from maestro.common.types import Status
+
 from src.processing.analytics.build_match_metrics import build_match_metrics
 
-class BuildMatchMetrics(PipelineStep):
+class BuildMatchMetrics(bp.PipelineStep):
     name = "Build match_metrics table"
     
     def run(
         self,
-        ctx : PipelineContext,
-        etx : ExecutionContext
-    ) -> StepResult:
+        ctx : rt.PipelineContext,
+        etx : rt.ExecutionContext
+    ) -> bp.StepResult:
         match_probs = ctx.get_artifact("match_probs")
         
         if match_probs.empty:
             message = "match_probs table empty"
             etx.logger.error(message)
-            return StepResult(
+            return bp.StepResult(
                 status = Status.FAIL,
                 message = message
             )
             
         match_metrics = build_match_metrics(match_probs)
         ctx.artifacts["match_metrics"] = match_metrics
-        return StepResult(
+        return bp.StepResult(
             status = Status.PASS,
             step_results = {
                 "table_name" : "match_metrics",

@@ -1,20 +1,18 @@
-from src.core.framework.artifact import Artifact
-from src.core.framework.pipeline import Pipeline
-from src.transformation.core.context import TransformationContext
-from src.core.framework.orchestrator import PipelineExecution
+from maestro import blueprints as bp
 
-from src.transformation.steps.build_standings import BuildStandings
-from src.transformation.steps.build_teams import BuildTeams
-from src.transformation.steps.build_match_probs import BuildMatchProbs
-from src.transformation.steps.build_expected_points import BuildExpectedPoints
-from src.transformation.steps.build_expected_standings import BuildExpectedStandings
+from src.pipelines.transformation.core.context import TransformationContext
+from src.pipelines.transformation.steps.build_standings import BuildStandings
+from src.pipelines.transformation.steps.build_teams import BuildTeams
+from src.pipelines.transformation.steps.build_match_probs import BuildMatchProbs
+from src.pipelines.transformation.steps.build_expected_points import BuildExpectedPoints
+from src.pipelines.transformation.steps.build_expected_standings import BuildExpectedStandings
 
-from src.core.common_steps.load_table import LoadTable
-from src.core.common_steps.persist_table import PersistTable
+from src.db.common.load_table import LoadTable
+from src.db.common.persist_table import PersistTable
 
 from src.db.engine import engine
 
-standings = Artifact(
+standings = bp.Artifact(
     name = "standings",
     builders = [LoadTable("matches"), BuildStandings()],
     validators = [],
@@ -22,7 +20,7 @@ standings = Artifact(
     dependencies = ["matches"]
 )
 
-teams = Artifact(
+teams = bp.Artifact(
     name = "teams",
     builders = [BuildTeams()],
     validators = [],
@@ -30,7 +28,7 @@ teams = Artifact(
     dependencies = ["standings"]
 )
 
-match_probs = Artifact(
+match_probs = bp.Artifact(
     name = "match_probs",
     builders = [BuildMatchProbs()],
     validators = [],
@@ -38,7 +36,7 @@ match_probs = Artifact(
     dependencies = ["matches"]
 )
 
-expected_points = Artifact(
+expected_points = bp.Artifact(
     name = "expected_points",
     builders = [BuildExpectedPoints()],
     validators = [],
@@ -46,7 +44,7 @@ expected_points = Artifact(
     dependencies = ["match_probs"]
 )
 
-expected_standings = Artifact(
+expected_standings = bp.Artifact(
     name = "expected_standings",
     builders = [BuildExpectedStandings()],
     validators = [],
@@ -54,7 +52,7 @@ expected_standings = Artifact(
     dependencies = ["expected_points"]
 )
 
-pipeline = Pipeline(
+pipeline = bp.Pipeline(
     name = "transformation",
     artifacts = [
         standings, teams, match_probs, expected_points, expected_standings
@@ -65,7 +63,7 @@ context = TransformationContext(
     engine = engine
 )
 
-transformation_job = PipelineExecution(
+transformation_job = bp.PipelineExecution(
     pipeline = pipeline,
     context = context
 )

@@ -1,4 +1,4 @@
-from src.core.execution.context import PipelineContext
+from maestro.runtime import PipelineContext
 
 class AnalyticsContext(PipelineContext):
     pass

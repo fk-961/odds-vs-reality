@@ -1,28 +1,25 @@
-from src.core.framework.step import (
-    PipelineStep, StepResult
-)
-from src.core.execution.context import (
-    PipelineContext, ExecutionContext
-)
-from src.core.framework.types import Status
+from maestro import blueprints as bp
+from maestro import runtime as rt
+from maestro.common.types import Status
+
 from src.processing.transformation.build_standings import (
     build_standings
 )
 
-class BuildStandings(PipelineStep):
+class BuildStandings(bp.PipelineStep):
     name = "Build table standings"
     
     def run(
         self,
-        ctx : PipelineContext,
-        etx : ExecutionContext
-    ) -> StepResult:
+        ctx : rt.PipelineContext,
+        etx : rt.ExecutionContext
+    ) -> bp.StepResult:
         
         matches = ctx.get_artifact("matches")
         
         if matches.empty:
             etx.logger.error("Matches Table empty")
-            return StepResult(
+            return bp.StepResult(
                 status = Status.FAIL,
                 message = "Table empty"
             )
@@ -30,7 +27,7 @@ class BuildStandings(PipelineStep):
         standings = build_standings(matches)
         ctx.artifacts["standings"] = standings
             
-        return StepResult(
+        return bp.StepResult(
             status = Status.PASS,
             step_results = {
                 "table_name" : "standings",

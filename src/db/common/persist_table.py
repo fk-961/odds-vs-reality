@@ -1,13 +1,11 @@
 from sqlalchemy import text
+from maestro import blueprints as bp
+from maestro import runtime as rt
+from maestro.common.types import Status
 
-from .._core.blueprints.step import PipelineStep, StepResult
-from .._core.execution.context import (
-    PipelineContext, ExecutionContext
-)
-from .._core.blueprints.types import Status
-from src.db.utils import create_table
+from src.db.common.utils import create_table
 
-class PersistTable(PipelineStep):
+class PersistTable(bp.PipelineStep):
     
     def __init__(self, artifact : str, table_name : str):
         self.artifact = artifact
@@ -16,9 +14,9 @@ class PersistTable(PipelineStep):
     
     def run(
         self,
-        ctx : PipelineContext,
-        etx : ExecutionContext
-    ) -> StepResult:
+        ctx : rt.PipelineContext,
+        etx : rt.ExecutionContext
+    ) -> bp.StepResult:
         etx.logger.info(
             "Persisting table %s", self.table_name
         )
@@ -36,6 +34,6 @@ class PersistTable(PipelineStep):
             self.table_name,
             ctx.engine
         )
-        return StepResult(
+        return bp.StepResult(
             status = Status.PASS,
         )

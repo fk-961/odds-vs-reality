@@ -1,21 +1,22 @@
 from ..runtime.context import ExecutionContext
 from ..runtime.logger import PipelineLogger
-from ..blueprints.orchestrator import Maestro
+from ..blueprints.orchestrator import (
+    Maestro, MaestroExecutionResult
+)
 from .runners.orchestrator import MaestroRunner
 
 class MaestroExecutor:
     
-    def __init__(self, engine):
+    def __init__(self, logger : PipelineLogger):
         
         self._etx = ExecutionContext(
-            logger = PipelineLogger(),
-            metadata_engine = engine
+            logger = logger,
         )
         self._runner = MaestroRunner()
         
     def execute(
         self,
         maestro : Maestro
-    ) -> None:
+    ) -> MaestroExecutionResult:
         
-        results = self._runner.run(maestro, self._etx)
+        return self._runner.run(maestro, self._etx)

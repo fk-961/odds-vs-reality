@@ -1,19 +1,16 @@
 import pandas as pd
+from maestro import blueprints as bp
+from maestro import runtime as rt
+from maestro.common.types import Status
 
-from src.core.framework.step import PipelineStep, StepResult
-from src.core.execution.context import (
-    PipelineContext, ExecutionContext
-)
-from src.core.framework.types import Status
-
-class ConcatTables(PipelineStep):
+class ConcatTables(bp.PipelineStep):
     name = "Concatenate tables"
     
     def run(
         self,
-        ctx : PipelineContext,
-        etx : ExecutionContext
-    ) -> StepResult:
+        ctx : rt.PipelineContext,
+        etx : rt.ExecutionContext
+    ) -> bp.StepResult:
         
         normalized_matches = ctx.get_artifact("normalized_matches")
         
@@ -26,7 +23,7 @@ class ConcatTables(PipelineStep):
         except Exception as e:
             message = "Could not concatenate tables"
             error = f"{type(e).__name__}: {e}"
-            return StepResult(
+            return bp.StepResult(
                 status = Status.FAIL,
                 message = message,
                 error = error
@@ -34,7 +31,7 @@ class ConcatTables(PipelineStep):
             
         ctx.artifacts['matches'] = data
             
-        return StepResult(
+        return bp.StepResult(
             status = Status.PASS,
             step_results = {
                 "tables_concatenated" : len(normalized_matches),

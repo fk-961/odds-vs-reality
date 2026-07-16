@@ -2,8 +2,6 @@
 Common fonctions used accross src scripts.
 """
 
-import json
-from pathlib import Path
 import pandas as pd
 from sqlalchemy.engine import Engine
 

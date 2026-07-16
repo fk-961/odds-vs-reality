@@ -1,4 +1,4 @@
-from src.core.execution.context import PipelineContext
+from maestro import runtime as rt
 
-class TransformationContext(PipelineContext):
+class TransformationContext(rt.PipelineContext):
     pass
