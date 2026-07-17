@@ -160,10 +160,17 @@ class ArtifactRunner:
                         try:
                             step_result = step.run(ctx, etx)
                         except Exception as e:
+                            message = "Unexpected Exception",
+                            error = f"{type(e).__name__}: {e}"
+                            etx.logger.error(
+                                "%s: %s",
+                                message,
+                                error
+                            )
                             step_result = StepResult(
                                 status = Status.FAIL,
-                                message = "Unexpected Exception",
-                                error = f"{type(e).__name__}: {e}"
+                                message = message,
+                                error = error
                             )
                     steps_attempted += 1
                     

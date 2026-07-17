@@ -1,48 +1,48 @@
 {
-    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-    "status": "PASS",
-    "timestamp": "2026-07-16T06:22:44.718370",
-    "duration_seconds": 7.31541,
+    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+    "status": "FAIL",
+    "timestamp": "2026-07-17T03:14:06.415973",
+    "duration_seconds": 0.22816,
     "pipelines_scheduled": 3,
     "artifacts_count": 8,
-    "artifacts_passed": 8,
-    "artifacts_skipped": 0,
-    "artifacts_failed": 0,
+    "artifacts_passed": 0,
+    "artifacts_skipped": 7,
+    "artifacts_failed": 1,
     "maestro_results": [
         {
-            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
             "name": "ingestion",
-            "timestamp": "2026-07-16T06:22:44.718801",
-            "duration_seconds": 1.40615,
-            "status": "PASS",
+            "timestamp": "2026-07-17T03:14:06.416483",
+            "duration_seconds": 0.22218,
+            "status": "FAIL",
             "artifacts_scheduled": 1,
-            "artifacts_passed": 1,
-            "artifacts_failed": 0,
+            "artifacts_passed": 0,
+            "artifacts_failed": 1,
             "artifacts_skipped": 0,
             "pipeline_results": [
                 {
-                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                     "name": "matches",
-                    "timestamp": "2026-07-16T06:22:44.719357",
-                    "duration_seconds": 1.40538,
-                    "status": "PASS",
+                    "timestamp": "2026-07-17T03:14:06.417120",
+                    "duration_seconds": 0.22129,
+                    "status": "FAIL",
                     "artifact_results": [
                         {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                             "stage": "BUILD",
                             "artifact_name": "matches",
                             "scheduled_steps": 4,
-                            "timestamp": "2026-07-16T06:22:44.719750",
-                            "duration_seconds": 0.30814,
+                            "timestamp": "2026-07-17T03:14:06.417505",
+                            "duration_seconds": 0.17749,
                             "status": "PASS",
                             "steps_attempted": 4,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                                     "name": "Create Schema",
-                                    "timestamp": "2026-07-16T06:22:44.719955",
-                                    "duration_seconds": 0.16454,
+                                    "timestamp": "2026-07-17T03:14:06.417698",
+                                    "duration_seconds": 0.05574,
                                     "status": "PASS",
                                     "step_results": {
                                         "schema_file": "odds-vs-reality\\src\\db\\schemas\\raw_matches.sql"
@@ -51,10 +51,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                                     "name": "Extract Data",
-                                    "timestamp": "2026-07-16T06:22:44.884963",
-                                    "duration_seconds": 0.08985,
+                                    "timestamp": "2026-07-17T03:14:06.473853",
+                                    "duration_seconds": 0.07036,
                                     "status": "PASS",
                                     "step_results": {
                                         "files_processed": 7,
@@ -94,10 +94,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                                     "name": "Fix Columns",
-                                    "timestamp": "2026-07-16T06:22:44.975330",
-                                    "duration_seconds": 0.04903,
+                                    "timestamp": "2026-07-17T03:14:06.544547",
+                                    "duration_seconds": 0.04834,
                                     "status": "PASS",
                                     "step_results": {
                                         "tables_processed": 7,
@@ -107,10 +107,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                                     "name": "Concatenate tables",
-                                    "timestamp": "2026-07-16T06:22:45.024982",
-                                    "duration_seconds": 0.00248,
+                                    "timestamp": "2026-07-17T03:14:06.593450",
+                                    "duration_seconds": 0.00127,
                                     "status": "PASS",
                                     "step_results": {
                                         "tables_concatenated": 7,
@@ -125,43 +125,385 @@
                             "error": null
                         },
                         {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                             "stage": "VALIDATE",
                             "artifact_name": "matches",
-                            "scheduled_steps": 0,
-                            "timestamp": "2026-07-16T06:22:45.028758",
-                            "duration_seconds": 0.0,
-                            "status": "PASS",
-                            "steps_attempted": 0,
-                            "steps_warnings_count": 0,
-                            "stage_results": [],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "PERSIST",
-                            "artifact_name": "matches",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:45.029501",
-                            "duration_seconds": 1.09493,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
+                            "scheduled_steps": 4,
+                            "timestamp": "2026-07-17T03:14:06.595753",
+                            "duration_seconds": 0.04205,
+                            "status": "FAIL",
+                            "steps_attempted": 4,
+                            "steps_warnings_count": 1,
                             "stage_results": [
                                 {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Persist table [matches]",
-                                    "timestamp": "2026-07-16T06:22:45.029690",
-                                    "duration_seconds": 1.09443,
+                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "name": "Duplicates",
+                                    "timestamp": "2026-07-17T03:14:06.596011",
+                                    "duration_seconds": 0.00863,
                                     "status": "PASS",
-                                    "step_results": null,
+                                    "step_results": {
+                                        "duplicates_found": 0,
+                                        "duplicates_records": []
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "name": "Match Count",
+                                    "timestamp": "2026-07-17T03:14:06.605160",
+                                    "duration_seconds": 0.02395,
+                                    "status": "FAIL",
+                                    "step_results": {
+                                        "seasons": [
+                                            {
+                                                "league_division": "L1",
+                                                "season": "19/20",
+                                                "expected_nb_matches": 38,
+                                                "affected_teams": 20,
+                                                "max_deviation": 11,
+                                                "issues": {
+                                                    "Amiens": 28,
+                                                    "Angers": 28,
+                                                    "Bordeaux": 28,
+                                                    "Brest": 28,
+                                                    "Dijon": 28,
+                                                    "Lille": 28,
+                                                    "Lyon": 28,
+                                                    "Marseille": 28,
+                                                    "Metz": 28,
+                                                    "Monaco": 28,
+                                                    "Montpellier": 28,
+                                                    "Nantes": 28,
+                                                    "Nice": 28,
+                                                    "Nimes": 28,
+                                                    "Paris SG": 27,
+                                                    "Reims": 28,
+                                                    "Rennes": 28,
+                                                    "St Etienne": 28,
+                                                    "Strasbourg": 27,
+                                                    "Toulouse": 28
+                                                },
+                                                "status": "FAIL"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "20/21",
+                                                "expected_nb_matches": 38,
+                                                "affected_teams": 0,
+                                                "max_deviation": 0,
+                                                "issues": {},
+                                                "status": "PASS"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "21/22",
+                                                "expected_nb_matches": 38,
+                                                "affected_teams": 0,
+                                                "max_deviation": 0,
+                                                "issues": {},
+                                                "status": "PASS"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "22/23",
+                                                "expected_nb_matches": 38,
+                                                "affected_teams": 0,
+                                                "max_deviation": 0,
+                                                "issues": {},
+                                                "status": "PASS"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "23/24",
+                                                "expected_nb_matches": 34,
+                                                "affected_teams": 0,
+                                                "max_deviation": 0,
+                                                "issues": {},
+                                                "status": "PASS"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "24/25",
+                                                "expected_nb_matches": 34,
+                                                "affected_teams": 0,
+                                                "max_deviation": 0,
+                                                "issues": {},
+                                                "status": "PASS"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "25/26",
+                                                "expected_nb_matches": 34,
+                                                "affected_teams": 2,
+                                                "max_deviation": 1,
+                                                "issues": {
+                                                    "Nantes": 33,
+                                                    "Toulouse": 33
+                                                },
+                                                "status": "WARNING"
+                                            }
+                                        ]
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "name": "Match Results",
+                                    "timestamp": "2026-07-17T03:14:06.629576",
+                                    "duration_seconds": 0.00429,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "issues_found": 0,
+                                        "inconsistent_matches": []
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "name": "Missing Values",
+                                    "timestamp": "2026-07-17T03:14:06.634348",
+                                    "duration_seconds": 0.00321,
+                                    "status": "WARNING",
+                                    "step_results": {
+                                        "total_rows": 2336,
+                                        "columns": {
+                                            "league_division": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "match_date": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "kick_off": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_team": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_team": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "full_time_home_goals": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "full_time_away_goals": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "full_time_match_result": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "half_time_home_goals": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "half_time_away_goals": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "half_time_match_result": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_shots": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_shots": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_shots_on_target": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_shots_on_target": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_corners": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_corners": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_fouls": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_fouls": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_yellow_cards": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_yellow_cards": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_red_cards": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_red_cards": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_average_closing_away_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "bet365_away_odds": {
+                                                "nulls": 2,
+                                                "null_percentage": 0.09
+                                            },
+                                            "market_average_draw_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "bet365_closing_away_odds": {
+                                                "nulls": 1,
+                                                "null_percentage": 0.04
+                                            },
+                                            "betwin_away_odds": {
+                                                "nulls": 128,
+                                                "null_percentage": 5.48
+                                            },
+                                            "bet365_closing_draw_odds": {
+                                                "nulls": 1,
+                                                "null_percentage": 0.04
+                                            },
+                                            "market_maximum_draw_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "pinnacle_closing_away_odds": {
+                                                "nulls": 152,
+                                                "null_percentage": 6.51
+                                            },
+                                            "bet365_draw_odds": {
+                                                "nulls": 2,
+                                                "null_percentage": 0.09
+                                            },
+                                            "betwin_closing_draw_odds": {
+                                                "nulls": 126,
+                                                "null_percentage": 5.39
+                                            },
+                                            "bet365_closing_home_odds": {
+                                                "nulls": 1,
+                                                "null_percentage": 0.04
+                                            },
+                                            "betwin_closing_home_odds": {
+                                                "nulls": 126,
+                                                "null_percentage": 5.39
+                                            },
+                                            "market_maximum_closing_draw_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "betwin_home_odds": {
+                                                "nulls": 128,
+                                                "null_percentage": 5.48
+                                            },
+                                            "betwin_closing_away_odds": {
+                                                "nulls": 126,
+                                                "null_percentage": 5.39
+                                            },
+                                            "market_average_away_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_average_home_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_average_closing_draw_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_maximum_away_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_average_closing_home_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "bet365_home_odds": {
+                                                "nulls": 2,
+                                                "null_percentage": 0.09
+                                            },
+                                            "betwin_draw_odds": {
+                                                "nulls": 128,
+                                                "null_percentage": 5.48
+                                            },
+                                            "market_maximum_closing_home_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_maximum_home_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "pinnacle_away_odds": {
+                                                "nulls": 154,
+                                                "null_percentage": 6.59
+                                            },
+                                            "market_maximum_closing_away_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "pinnacle_closing_draw_odds": {
+                                                "nulls": 152,
+                                                "null_percentage": 6.51
+                                            },
+                                            "pinnacle_draw_odds": {
+                                                "nulls": 154,
+                                                "null_percentage": 6.59
+                                            },
+                                            "pinnacle_closing_home_odds": {
+                                                "nulls": 152,
+                                                "null_percentage": 6.51
+                                            },
+                                            "pinnacle_home_odds": {
+                                                "nulls": 154,
+                                                "null_percentage": 6.59
+                                            }
+                                        }
+                                    },
                                     "message": null,
                                     "error": null
                                 }
                             ],
                             "message": null,
                             "error": null
+                        },
+                        {
+                            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                            "stage": "PERSIST",
+                            "artifact_name": "matches",
+                            "scheduled_steps": 0,
+                            "timestamp": "2026-07-17T03:14:06.417120",
+                            "duration_seconds": 0,
+                            "status": "SKIPPED",
+                            "steps_attempted": 0,
+                            "steps_warnings_count": 0,
+                            "stage_results": null,
+                            "message": "Skipped",
+                            "error": "Previous stage [VALIDATE] failed"
                         }
                     ],
                     "message": null,
@@ -172,608 +514,100 @@
             "error": null
         },
         {
-            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
             "name": "transformation",
-            "timestamp": "2026-07-16T06:22:46.125696",
-            "duration_seconds": 4.04023,
-            "status": "PASS",
+            "timestamp": "2026-07-17T03:14:06.639589",
+            "duration_seconds": 0.00224,
+            "status": "SKIPPED",
             "artifacts_scheduled": 5,
-            "artifacts_passed": 5,
+            "artifacts_passed": 0,
             "artifacts_failed": 0,
-            "artifacts_skipped": 0,
+            "artifacts_skipped": 5,
             "pipeline_results": [
                 {
-                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                     "name": "standings",
-                    "timestamp": "2026-07-16T06:22:46.126303",
-                    "duration_seconds": 0.79802,
-                    "status": "PASS",
-                    "artifact_results": [
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "BUILD",
-                            "artifact_name": "standings",
-                            "scheduled_steps": 2,
-                            "timestamp": "2026-07-16T06:22:46.126655",
-                            "duration_seconds": 0.69472,
-                            "status": "PASS",
-                            "steps_attempted": 2,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Load table [matches]",
-                                    "timestamp": "2026-07-16T06:22:46.126832",
-                                    "duration_seconds": 0.08334,
-                                    "status": "PASS",
-                                    "step_results": {
-                                        "nb_rows": 2336,
-                                        "nb_columns": 55
-                                    },
-                                    "message": null,
-                                    "error": null
-                                },
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Build table standings",
-                                    "timestamp": "2026-07-16T06:22:46.210775",
-                                    "duration_seconds": 0.61017,
-                                    "status": "PASS",
-                                    "step_results": {
-                                        "table_name": "standings",
-                                        "rows_created": 134,
-                                        "cols_created": 12
-                                    },
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "VALIDATE",
-                            "artifact_name": "standings",
-                            "scheduled_steps": 0,
-                            "timestamp": "2026-07-16T06:22:46.822407",
-                            "duration_seconds": 0.0,
-                            "status": "PASS",
-                            "steps_attempted": 0,
-                            "steps_warnings_count": 0,
-                            "stage_results": [],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "PERSIST",
-                            "artifact_name": "standings",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:46.823083",
-                            "duration_seconds": 0.10095,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Persist table [standings]",
-                                    "timestamp": "2026-07-16T06:22:46.823282",
-                                    "duration_seconds": 0.10048,
-                                    "status": "PASS",
-                                    "step_results": null,
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        }
-                    ],
-                    "message": null,
-                    "error": null
+                    "timestamp": "2026-07-17T03:14:06.639589",
+                    "duration_seconds": 0.00044,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
                 },
                 {
-                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                     "name": "teams",
-                    "timestamp": "2026-07-16T06:22:46.925163",
-                    "duration_seconds": 0.14641,
-                    "status": "PASS",
-                    "artifact_results": [
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "BUILD",
-                            "artifact_name": "teams",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:46.925537",
-                            "duration_seconds": 0.10888,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Build table teams",
-                                    "timestamp": "2026-07-16T06:22:46.925710",
-                                    "duration_seconds": 0.10834,
-                                    "status": "PASS",
-                                    "step_results": {
-                                        "table_name": "teams",
-                                        "teams_found": 28
-                                    },
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "VALIDATE",
-                            "artifact_name": "teams",
-                            "scheduled_steps": 0,
-                            "timestamp": "2026-07-16T06:22:47.034881",
-                            "duration_seconds": 0.0,
-                            "status": "PASS",
-                            "steps_attempted": 0,
-                            "steps_warnings_count": 0,
-                            "stage_results": [],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "PERSIST",
-                            "artifact_name": "teams",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:47.035381",
-                            "duration_seconds": 0.03597,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Persist table [teams]",
-                                    "timestamp": "2026-07-16T06:22:47.035607",
-                                    "duration_seconds": 0.03544,
-                                    "status": "PASS",
-                                    "step_results": null,
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        }
-                    ],
-                    "message": null,
-                    "error": null
+                    "timestamp": "2026-07-17T03:14:06.639589",
+                    "duration_seconds": 0.00098,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
                 },
                 {
-                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                     "name": "match_probs",
-                    "timestamp": "2026-07-16T06:22:47.072256",
-                    "duration_seconds": 2.09377,
-                    "status": "PASS",
-                    "artifact_results": [
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "BUILD",
-                            "artifact_name": "match_probs",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:47.072621",
-                            "duration_seconds": 0.06334,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Build Table match_probs",
-                                    "timestamp": "2026-07-16T06:22:47.072790",
-                                    "duration_seconds": 0.06282,
-                                    "status": "PASS",
-                                    "step_results": {
-                                        "table_name": "match_probs",
-                                        "rows_created": 11680,
-                                        "cols_created": 27
-                                    },
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "VALIDATE",
-                            "artifact_name": "match_probs",
-                            "scheduled_steps": 0,
-                            "timestamp": "2026-07-16T06:22:47.136594",
-                            "duration_seconds": 0.0,
-                            "status": "PASS",
-                            "steps_attempted": 0,
-                            "steps_warnings_count": 0,
-                            "stage_results": [],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "PERSIST",
-                            "artifact_name": "match_probs",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:47.137237",
-                            "duration_seconds": 2.0285,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Persist table [match_probs]",
-                                    "timestamp": "2026-07-16T06:22:47.137460",
-                                    "duration_seconds": 2.02782,
-                                    "status": "PASS",
-                                    "step_results": null,
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        }
-                    ],
-                    "message": null,
-                    "error": null
+                    "timestamp": "2026-07-17T03:14:06.639589",
+                    "duration_seconds": 0.00139,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
                 },
                 {
-                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                     "name": "expected_points",
-                    "timestamp": "2026-07-16T06:22:49.166951",
-                    "duration_seconds": 0.70997,
-                    "status": "PASS",
-                    "artifact_results": [
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "BUILD",
-                            "artifact_name": "expected_points",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:49.167354",
-                            "duration_seconds": 0.00632,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Build expected_points table",
-                                    "timestamp": "2026-07-16T06:22:49.167514",
-                                    "duration_seconds": 0.0059,
-                                    "status": "PASS",
-                                    "step_results": {
-                                        "table_name": "expected_points",
-                                        "rows_created": 11680,
-                                        "cols_created": 10
-                                    },
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "VALIDATE",
-                            "artifact_name": "expected_points",
-                            "scheduled_steps": 0,
-                            "timestamp": "2026-07-16T06:22:49.174448",
-                            "duration_seconds": 0.0,
-                            "status": "PASS",
-                            "steps_attempted": 0,
-                            "steps_warnings_count": 0,
-                            "stage_results": [],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "PERSIST",
-                            "artifact_name": "expected_points",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:49.175008",
-                            "duration_seconds": 0.70163,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Persist table [expected_points]",
-                                    "timestamp": "2026-07-16T06:22:49.175219",
-                                    "duration_seconds": 0.70108,
-                                    "status": "PASS",
-                                    "step_results": null,
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        }
-                    ],
-                    "message": null,
-                    "error": null
+                    "timestamp": "2026-07-17T03:14:06.639589",
+                    "duration_seconds": 0.00184,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
                 },
                 {
-                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                     "name": "expected_standings",
-                    "timestamp": "2026-07-16T06:22:49.877661",
-                    "duration_seconds": 0.28814,
-                    "status": "PASS",
-                    "artifact_results": [
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "BUILD",
-                            "artifact_name": "expected_standings",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:49.877956",
-                            "duration_seconds": 0.07222,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Build expected_standings table",
-                                    "timestamp": "2026-07-16T06:22:49.878086",
-                                    "duration_seconds": 0.07162,
-                                    "status": "PASS",
-                                    "step_results": {
-                                        "table_name": "expected_points",
-                                        "rows_created": 670,
-                                        "cols_created": 10
-                                    },
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "VALIDATE",
-                            "artifact_name": "expected_standings",
-                            "scheduled_steps": 0,
-                            "timestamp": "2026-07-16T06:22:49.951154",
-                            "duration_seconds": 0.0,
-                            "status": "PASS",
-                            "steps_attempted": 0,
-                            "steps_warnings_count": 0,
-                            "stage_results": [],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "PERSIST",
-                            "artifact_name": "expected_standings",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:49.952141",
-                            "duration_seconds": 0.21334,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Persist table [expected_standings]",
-                                    "timestamp": "2026-07-16T06:22:49.952482",
-                                    "duration_seconds": 0.21267,
-                                    "status": "PASS",
-                                    "step_results": null,
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        }
-                    ],
-                    "message": null,
-                    "error": null
+                    "timestamp": "2026-07-17T03:14:06.639589",
+                    "duration_seconds": 0.00222,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
                 }
             ],
             "message": null,
             "error": null
         },
         {
-            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
             "name": "analytics",
-            "timestamp": "2026-07-16T06:22:50.166983",
-            "duration_seconds": 1.86623,
-            "status": "PASS",
+            "timestamp": "2026-07-17T03:14:06.642356",
+            "duration_seconds": 0.00127,
+            "status": "SKIPPED",
             "artifacts_scheduled": 2,
-            "artifacts_passed": 2,
+            "artifacts_passed": 0,
             "artifacts_failed": 0,
-            "artifacts_skipped": 0,
+            "artifacts_skipped": 2,
             "pipeline_results": [
                 {
-                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                     "name": "match_metrics",
-                    "timestamp": "2026-07-16T06:22:50.167644",
-                    "duration_seconds": 1.7989,
-                    "status": "PASS",
-                    "artifact_results": [
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "BUILD",
-                            "artifact_name": "match_metrics",
-                            "scheduled_steps": 2,
-                            "timestamp": "2026-07-16T06:22:50.168071",
-                            "duration_seconds": 0.22035,
-                            "status": "PASS",
-                            "steps_attempted": 2,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Load table [match_probs]",
-                                    "timestamp": "2026-07-16T06:22:50.168281",
-                                    "duration_seconds": 0.20437,
-                                    "status": "PASS",
-                                    "step_results": {
-                                        "nb_rows": 11680,
-                                        "nb_columns": 27
-                                    },
-                                    "message": null,
-                                    "error": null
-                                },
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Build match_metrics table",
-                                    "timestamp": "2026-07-16T06:22:50.373223",
-                                    "duration_seconds": 0.0149,
-                                    "status": "PASS",
-                                    "step_results": {
-                                        "table_name": "match_metrics",
-                                        "rows_created": 11680,
-                                        "cols_created": 20
-                                    },
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "VALIDATE",
-                            "artifact_name": "match_metrics",
-                            "scheduled_steps": 0,
-                            "timestamp": "2026-07-16T06:22:50.389054",
-                            "duration_seconds": 0.0,
-                            "status": "PASS",
-                            "steps_attempted": 0,
-                            "steps_warnings_count": 0,
-                            "stage_results": [],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "PERSIST",
-                            "artifact_name": "match_metrics",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:50.389638",
-                            "duration_seconds": 1.57663,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Persist table [match_metrics]",
-                                    "timestamp": "2026-07-16T06:22:50.389825",
-                                    "duration_seconds": 1.57602,
-                                    "status": "PASS",
-                                    "step_results": null,
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        }
-                    ],
-                    "message": null,
-                    "error": null
+                    "timestamp": "2026-07-17T03:14:06.642356",
+                    "duration_seconds": 0.00092,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
                 },
                 {
-                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
+                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
                     "name": "bookmaker_metrics",
-                    "timestamp": "2026-07-16T06:22:51.967897",
-                    "duration_seconds": 0.0651,
-                    "status": "PASS",
-                    "artifact_results": [
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "BUILD",
-                            "artifact_name": "bookmaker_metrics",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:51.968587",
-                            "duration_seconds": 0.02438,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Build bookmaker_metrics table",
-                                    "timestamp": "2026-07-16T06:22:51.968919",
-                                    "duration_seconds": 0.02372,
-                                    "status": "PASS",
-                                    "step_results": {
-                                        "table_name": "bookmaker_metrics",
-                                        "rows_created": 35,
-                                        "cols_created": 12
-                                    },
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "VALIDATE",
-                            "artifact_name": "bookmaker_metrics",
-                            "scheduled_steps": 0,
-                            "timestamp": "2026-07-16T06:22:51.993672",
-                            "duration_seconds": 0.0,
-                            "status": "PASS",
-                            "steps_attempted": 0,
-                            "steps_warnings_count": 0,
-                            "stage_results": [],
-                            "message": null,
-                            "error": null
-                        },
-                        {
-                            "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                            "stage": "PERSIST",
-                            "artifact_name": "bookmaker_metrics",
-                            "scheduled_steps": 1,
-                            "timestamp": "2026-07-16T06:22:51.994347",
-                            "duration_seconds": 0.03842,
-                            "status": "PASS",
-                            "steps_attempted": 1,
-                            "steps_warnings_count": 0,
-                            "stage_results": [
-                                {
-                                    "run_id": "5d628641-a6cb-4752-8ae6-3c523a23a766",
-                                    "name": "Persist table [bookmaker_metrics]",
-                                    "timestamp": "2026-07-16T06:22:51.994579",
-                                    "duration_seconds": 0.03788,
-                                    "status": "PASS",
-                                    "step_results": null,
-                                    "message": null,
-                                    "error": null
-                                }
-                            ],
-                            "message": null,
-                            "error": null
-                        }
-                    ],
-                    "message": null,
-                    "error": null
+                    "timestamp": "2026-07-17T03:14:06.642356",
+                    "duration_seconds": 0.00126,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
                 }
             ],
             "message": null,

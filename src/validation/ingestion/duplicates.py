@@ -1,0 +1,63 @@
+"""
+Checks data for duplicates which means same instance of a match
+appearing multiple times.
+"""
+
+import pandas as pd
+from maestro import blueprints as bp
+from maestro import runtime as rt
+from maestro.common.types import Status
+
+from src.validation.core.registry import register_check
+
+@register_check("ingestion")
+class Duplicates(bp.PipelineStep):
+    name = "Duplicates"
+    
+    def run(
+        self,
+        ctx : rt.PipelineContext,
+        etx : rt.ExecutionContext
+    ) -> bp.StepResult:
+        
+        matches = ctx.get_artifact("matches")
+        if matches.empty:
+            message = "matches table empty"
+            etx.logger.error(message)
+            return bp.StepResult(
+                status = Status.FAIL,
+                message = message
+            )
+            
+        duplicates = (
+            matches
+            .groupby(
+                [
+                    "league_division",
+                    "season",
+                    "match_date",
+                    "home_team",
+                    "away_team"
+                ]
+            )
+            .size()
+            .reset_index(name = "duplicate_count")
+        )
+        
+        duplicates = duplicates[
+            duplicates["duplicate_count"] > 1
+        ]
+        
+        return bp.StepResult(
+            status = (
+                Status.FAIL
+                if not duplicates.empty
+                else Status.PASS
+            ),
+            step_results = {
+                "duplicates_found" : len(duplicates),
+                "duplicates_records" : duplicates.to_dict(
+                    orient = "records"
+                )
+            }
+        )
