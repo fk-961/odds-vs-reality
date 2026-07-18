@@ -61,6 +61,7 @@ class MissingValues(bp.PipelineStep):
 
         return bp.StepResult(
             status=status,
+            message = message,
             step_results={
                 "total_rows": len(matches),
                 "columns": results

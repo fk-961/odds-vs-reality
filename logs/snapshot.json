@@ -1,8 +1,8 @@
 {
-    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
     "status": "FAIL",
-    "timestamp": "2026-07-17T03:14:06.415973",
-    "duration_seconds": 0.22816,
+    "timestamp": "2026-07-18T03:04:37.576780",
+    "duration_seconds": 0.23791,
     "pipelines_scheduled": 3,
     "artifacts_count": 8,
     "artifacts_passed": 0,
@@ -10,10 +10,10 @@
     "artifacts_failed": 1,
     "maestro_results": [
         {
-            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+            "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
             "name": "ingestion",
-            "timestamp": "2026-07-17T03:14:06.416483",
-            "duration_seconds": 0.22218,
+            "timestamp": "2026-07-18T03:04:37.577249",
+            "duration_seconds": 0.23376,
             "status": "FAIL",
             "artifacts_scheduled": 1,
             "artifacts_passed": 0,
@@ -21,28 +21,28 @@
             "artifacts_skipped": 0,
             "pipeline_results": [
                 {
-                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                     "name": "matches",
-                    "timestamp": "2026-07-17T03:14:06.417120",
-                    "duration_seconds": 0.22129,
+                    "timestamp": "2026-07-18T03:04:37.577706",
+                    "duration_seconds": 0.23317,
                     "status": "FAIL",
                     "artifact_results": [
                         {
-                            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                            "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                             "stage": "BUILD",
                             "artifact_name": "matches",
                             "scheduled_steps": 4,
-                            "timestamp": "2026-07-17T03:14:06.417505",
-                            "duration_seconds": 0.17749,
+                            "timestamp": "2026-07-18T03:04:37.577946",
+                            "duration_seconds": 0.1839,
                             "status": "PASS",
                             "steps_attempted": 4,
                             "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                                     "name": "Create Schema",
-                                    "timestamp": "2026-07-17T03:14:06.417698",
-                                    "duration_seconds": 0.05574,
+                                    "timestamp": "2026-07-18T03:04:37.578074",
+                                    "duration_seconds": 0.05548,
                                     "status": "PASS",
                                     "step_results": {
                                         "schema_file": "odds-vs-reality\\src\\db\\schemas\\raw_matches.sql"
@@ -51,10 +51,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                                     "name": "Extract Data",
-                                    "timestamp": "2026-07-17T03:14:06.473853",
-                                    "duration_seconds": 0.07036,
+                                    "timestamp": "2026-07-18T03:04:37.633898",
+                                    "duration_seconds": 0.06998,
                                     "status": "PASS",
                                     "step_results": {
                                         "files_processed": 7,
@@ -94,10 +94,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                                     "name": "Fix Columns",
-                                    "timestamp": "2026-07-17T03:14:06.544547",
-                                    "duration_seconds": 0.04834,
+                                    "timestamp": "2026-07-18T03:04:37.704292",
+                                    "duration_seconds": 0.05492,
                                     "status": "PASS",
                                     "step_results": {
                                         "tables_processed": 7,
@@ -107,10 +107,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                                     "name": "Concatenate tables",
-                                    "timestamp": "2026-07-17T03:14:06.593450",
-                                    "duration_seconds": 0.00127,
+                                    "timestamp": "2026-07-18T03:04:37.759638",
+                                    "duration_seconds": 0.00193,
                                     "status": "PASS",
                                     "step_results": {
                                         "tables_concatenated": 7,
@@ -125,21 +125,21 @@
                             "error": null
                         },
                         {
-                            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                            "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                             "stage": "VALIDATE",
                             "artifact_name": "matches",
                             "scheduled_steps": 4,
-                            "timestamp": "2026-07-17T03:14:06.595753",
-                            "duration_seconds": 0.04205,
+                            "timestamp": "2026-07-18T03:04:37.762506",
+                            "duration_seconds": 0.0478,
                             "status": "FAIL",
                             "steps_attempted": 4,
-                            "steps_warnings_count": 1,
+                            "steps_warnings_count": 0,
                             "stage_results": [
                                 {
-                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                                     "name": "Duplicates",
-                                    "timestamp": "2026-07-17T03:14:06.596011",
-                                    "duration_seconds": 0.00863,
+                                    "timestamp": "2026-07-18T03:04:37.762915",
+                                    "duration_seconds": 0.01226,
                                     "status": "PASS",
                                     "step_results": {
                                         "duplicates_found": 0,
@@ -149,10 +149,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                                     "name": "Match Count",
-                                    "timestamp": "2026-07-17T03:14:06.605160",
-                                    "duration_seconds": 0.02395,
+                                    "timestamp": "2026-07-18T03:04:37.775600",
+                                    "duration_seconds": 0.02471,
                                     "status": "FAIL",
                                     "step_results": {
                                         "seasons": [
@@ -249,10 +249,10 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                                     "name": "Match Results",
-                                    "timestamp": "2026-07-17T03:14:06.629576",
-                                    "duration_seconds": 0.00429,
+                                    "timestamp": "2026-07-18T03:04:37.800617",
+                                    "duration_seconds": 0.00466,
                                     "status": "PASS",
                                     "step_results": {
                                         "issues_found": 0,
@@ -262,241 +262,25 @@
                                     "error": null
                                 },
                                 {
-                                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                                     "name": "Missing Values",
-                                    "timestamp": "2026-07-17T03:14:06.634348",
-                                    "duration_seconds": 0.00321,
-                                    "status": "WARNING",
-                                    "step_results": {
-                                        "total_rows": 2336,
-                                        "columns": {
-                                            "league_division": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "match_date": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "kick_off": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "home_team": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "away_team": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "full_time_home_goals": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "full_time_away_goals": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "full_time_match_result": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "half_time_home_goals": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "half_time_away_goals": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "half_time_match_result": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "home_shots": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "away_shots": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "home_shots_on_target": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "away_shots_on_target": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "home_corners": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "away_corners": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "home_fouls": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "away_fouls": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "home_yellow_cards": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "away_yellow_cards": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "home_red_cards": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "away_red_cards": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "market_average_closing_away_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "bet365_away_odds": {
-                                                "nulls": 2,
-                                                "null_percentage": 0.09
-                                            },
-                                            "market_average_draw_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "bet365_closing_away_odds": {
-                                                "nulls": 1,
-                                                "null_percentage": 0.04
-                                            },
-                                            "betwin_away_odds": {
-                                                "nulls": 128,
-                                                "null_percentage": 5.48
-                                            },
-                                            "bet365_closing_draw_odds": {
-                                                "nulls": 1,
-                                                "null_percentage": 0.04
-                                            },
-                                            "market_maximum_draw_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "pinnacle_closing_away_odds": {
-                                                "nulls": 152,
-                                                "null_percentage": 6.51
-                                            },
-                                            "bet365_draw_odds": {
-                                                "nulls": 2,
-                                                "null_percentage": 0.09
-                                            },
-                                            "betwin_closing_draw_odds": {
-                                                "nulls": 126,
-                                                "null_percentage": 5.39
-                                            },
-                                            "bet365_closing_home_odds": {
-                                                "nulls": 1,
-                                                "null_percentage": 0.04
-                                            },
-                                            "betwin_closing_home_odds": {
-                                                "nulls": 126,
-                                                "null_percentage": 5.39
-                                            },
-                                            "market_maximum_closing_draw_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "betwin_home_odds": {
-                                                "nulls": 128,
-                                                "null_percentage": 5.48
-                                            },
-                                            "betwin_closing_away_odds": {
-                                                "nulls": 126,
-                                                "null_percentage": 5.39
-                                            },
-                                            "market_average_away_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "market_average_home_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "market_average_closing_draw_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "market_maximum_away_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "market_average_closing_home_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "bet365_home_odds": {
-                                                "nulls": 2,
-                                                "null_percentage": 0.09
-                                            },
-                                            "betwin_draw_odds": {
-                                                "nulls": 128,
-                                                "null_percentage": 5.48
-                                            },
-                                            "market_maximum_closing_home_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "market_maximum_home_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "pinnacle_away_odds": {
-                                                "nulls": 154,
-                                                "null_percentage": 6.59
-                                            },
-                                            "market_maximum_closing_away_odds": {
-                                                "nulls": 0,
-                                                "null_percentage": 0.0
-                                            },
-                                            "pinnacle_closing_draw_odds": {
-                                                "nulls": 152,
-                                                "null_percentage": 6.51
-                                            },
-                                            "pinnacle_draw_odds": {
-                                                "nulls": 154,
-                                                "null_percentage": 6.59
-                                            },
-                                            "pinnacle_closing_home_odds": {
-                                                "nulls": 152,
-                                                "null_percentage": 6.51
-                                            },
-                                            "pinnacle_home_odds": {
-                                                "nulls": 154,
-                                                "null_percentage": 6.59
-                                            }
-                                        }
-                                    },
-                                    "message": null,
-                                    "error": null
+                                    "timestamp": "2026-07-18T03:04:37.806219",
+                                    "duration_seconds": 0.00384,
+                                    "status": "FAIL",
+                                    "step_results": null,
+                                    "message": "Unhandled Exception",
+                                    "error": "UnboundLocalError: cannot access local variable 'message' where it is not associated with a value"
                                 }
                             ],
                             "message": null,
                             "error": null
                         },
                         {
-                            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                            "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                             "stage": "PERSIST",
                             "artifact_name": "matches",
                             "scheduled_steps": 0,
-                            "timestamp": "2026-07-17T03:14:06.417120",
+                            "timestamp": "2026-07-18T03:04:37.577706",
                             "duration_seconds": 0,
                             "status": "SKIPPED",
                             "steps_attempted": 0,
@@ -514,10 +298,10 @@
             "error": null
         },
         {
-            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+            "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
             "name": "transformation",
-            "timestamp": "2026-07-17T03:14:06.639589",
-            "duration_seconds": 0.00224,
+            "timestamp": "2026-07-18T03:04:37.811644",
+            "duration_seconds": 0.00168,
             "status": "SKIPPED",
             "artifacts_scheduled": 5,
             "artifacts_passed": 0,
@@ -525,29 +309,39 @@
             "artifacts_skipped": 5,
             "pipeline_results": [
                 {
-                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                     "name": "standings",
-                    "timestamp": "2026-07-17T03:14:06.639589",
-                    "duration_seconds": 0.00044,
+                    "timestamp": "2026-07-18T03:04:37.811644",
+                    "duration_seconds": 0.0004,
                     "status": "SKIPPED",
                     "artifact_results": null,
                     "message": "Skipping execution",
                     "error": "Missing dependencies"
                 },
                 {
-                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                     "name": "teams",
-                    "timestamp": "2026-07-17T03:14:06.639589",
-                    "duration_seconds": 0.00098,
+                    "timestamp": "2026-07-18T03:04:37.811644",
+                    "duration_seconds": 0.0008,
                     "status": "SKIPPED",
                     "artifact_results": null,
                     "message": "Skipping execution",
                     "error": "Missing dependencies"
                 },
                 {
-                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                     "name": "match_probs",
-                    "timestamp": "2026-07-17T03:14:06.639589",
+                    "timestamp": "2026-07-18T03:04:37.811644",
+                    "duration_seconds": 0.00111,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
+                },
+                {
+                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
+                    "name": "expected_points",
+                    "timestamp": "2026-07-18T03:04:37.811644",
                     "duration_seconds": 0.00139,
                     "status": "SKIPPED",
                     "artifact_results": null,
@@ -555,20 +349,10 @@
                     "error": "Missing dependencies"
                 },
                 {
-                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
-                    "name": "expected_points",
-                    "timestamp": "2026-07-17T03:14:06.639589",
-                    "duration_seconds": 0.00184,
-                    "status": "SKIPPED",
-                    "artifact_results": null,
-                    "message": "Skipping execution",
-                    "error": "Missing dependencies"
-                },
-                {
-                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                     "name": "expected_standings",
-                    "timestamp": "2026-07-17T03:14:06.639589",
-                    "duration_seconds": 0.00222,
+                    "timestamp": "2026-07-18T03:04:37.811644",
+                    "duration_seconds": 0.00167,
                     "status": "SKIPPED",
                     "artifact_results": null,
                     "message": "Skipping execution",
@@ -579,10 +363,10 @@
             "error": null
         },
         {
-            "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+            "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
             "name": "analytics",
-            "timestamp": "2026-07-17T03:14:06.642356",
-            "duration_seconds": 0.00127,
+            "timestamp": "2026-07-18T03:04:37.813734",
+            "duration_seconds": 0.00054,
             "status": "SKIPPED",
             "artifacts_scheduled": 2,
             "artifacts_passed": 0,
@@ -590,20 +374,20 @@
             "artifacts_skipped": 2,
             "pipeline_results": [
                 {
-                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                     "name": "match_metrics",
-                    "timestamp": "2026-07-17T03:14:06.642356",
-                    "duration_seconds": 0.00092,
+                    "timestamp": "2026-07-18T03:04:37.813734",
+                    "duration_seconds": 0.00026,
                     "status": "SKIPPED",
                     "artifact_results": null,
                     "message": "Skipping execution",
                     "error": "Missing dependencies"
                 },
                 {
-                    "run_id": "8e1f3a62-74b0-4df9-a4c9-9bf17e19a300",
+                    "run_id": "c90212c7-011b-4740-8f25-2ca339a644bb",
                     "name": "bookmaker_metrics",
-                    "timestamp": "2026-07-17T03:14:06.642356",
-                    "duration_seconds": 0.00126,
+                    "timestamp": "2026-07-18T03:04:37.813734",
+                    "duration_seconds": 0.00053,
                     "status": "SKIPPED",
                     "artifact_results": null,
                     "message": "Skipping execution",

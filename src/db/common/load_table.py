@@ -21,17 +21,18 @@ class LoadTable(bp.PipelineStep):
         table = load_table(self.table_name, ctx.engine)
         
         if table.empty:
-            etx.logger.error("Table empty")
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = "Table empty"
+            message = f"{self.table_name} table empty"
+            etx.logger.error(message)
+            return self.fail(
+                msg = message
             )
             
         ctx.artifacts[self.table_name] = table
-        return bp.StepResult(
-            status = Status.PASS,
-            step_results = {
-                "nb_rows" : table.shape[0],
-                "nb_columns" : table.shape[1]
+        return self.success(
+            output = {
+                "table_name" : self.table_name,
+                "nb_rows" : int(table.shape[0]),
+                "nb_columns" : int(table.shape[1])
             }
         )
+    

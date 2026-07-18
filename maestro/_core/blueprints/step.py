@@ -12,6 +12,38 @@ from maestro.common.types import Status
 class PipelineStep(ABC):
     name : str
     
+    def success(
+        self,
+        output : dict[str, Any] | None = None
+    ) -> StepResult:
+        return StepResult(
+            status = Status.PASS,
+            step_results = output
+        )
+        
+    def warning(
+        self,
+        msg : str,
+        output : dict[str, Any] | None = None
+    ) -> StepResult:
+        return StepResult(
+            status = Status.WARNING,
+            step_results = output,
+            message = msg,
+        )
+        
+    def fail(
+        self,
+        msg : str,
+        output : dict[str,Any] | None = None
+    ) -> StepResult:
+        return StepResult(
+            status = Status.FAIL,
+            step_results = output,
+            message = msg,
+        )
+        
+    
     @abstractmethod
     def run(
         self,
