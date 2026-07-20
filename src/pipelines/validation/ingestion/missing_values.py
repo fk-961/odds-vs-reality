@@ -2,7 +2,6 @@
 Checks NULL values in our database's matches table.
 """
 
-import pandas as pd
 from maestro import blueprints as bp
 from maestro import runtime as rt
 from maestro.common.types import Status

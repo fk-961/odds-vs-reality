@@ -3,7 +3,6 @@ Checks data for duplicates which means same instance of a match
 appearing multiple times.
 """
 
-import pandas as pd
 from maestro import blueprints as bp
 from maestro import runtime as rt
 

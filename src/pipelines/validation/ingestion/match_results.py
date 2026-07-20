@@ -4,7 +4,6 @@ translates to having home goals greater than away goals if
 the match result is home win for example.
 """
 
-import pandas as pd
 from maestro import blueprints as bp
 from maestro import runtime as rt
 from maestro.common.types import Status
