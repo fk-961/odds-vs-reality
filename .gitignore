@@ -1,5 +1,5 @@
 *.code-workspace
 data
 .env
-__pycache__
-logs
+__pycache__/
+.vscode

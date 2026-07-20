@@ -14,14 +14,6 @@ RAW_LIGUE1_DIR = ROOT_DIR/"data"/"raw"/"ligue1"
 
 # Logs
 LOGS_DIR = ROOT_DIR/"logs"
-INGESTION_SNAPSHOT = LOGS_DIR/"ingestion"/"snapshot.json"
-INGESTION_LOGS = LOGS_DIR/"ingestion"/"logs.jsonl"
-VALIDATION_SNAPSHOT = LOGS_DIR/"validation"/"snapshot.json"
-VALIDATION_LOGS = LOGS_DIR/"validation"/"logs.jsonl"
-TRANSFORMATION_SNAPSHOT = LOGS_DIR/"transformation"/"snapshot.json"
-TRANSFORMATION_LOGS = LOGS_DIR/"transformation"/"logs.jsonl"
-ANALYTICS_SNAPSHOT = LOGS_DIR/"analytics"/"snapshot.json"
-ANALYTICS_LOGS = LOGS_DIR/"analytics"/"logs.jsonl"
 
 # DB credentials
 DB_USER = os.getenv("DB_USER")
@@ -32,4 +24,4 @@ DB_NAME = os.getenv("DB_NAME")
 DB_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # DB schema
-DB_SCHEMA = ROOT_DIR/"src"/"db"/"schema.sql"
+DB_SCHEMA = ROOT_DIR/"src"/"db"/"schemas"/"raw_matches.sql"

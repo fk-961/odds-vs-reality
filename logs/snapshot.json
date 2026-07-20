@@ -1,0 +1,752 @@
+{
+    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+    "status": "FAIL",
+    "timestamp": "2026-07-20T23:32:41.197857",
+    "duration_seconds": 1.79819,
+    "pipelines_scheduled": 3,
+    "artifacts_count": 8,
+    "artifacts_passed": 0,
+    "artifacts_skipped": 7,
+    "artifacts_failed": 1,
+    "maestro_results": [
+        {
+            "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+            "name": "ingestion",
+            "timestamp": "2026-07-20T23:32:41.198795",
+            "duration_seconds": 1.79286,
+            "status": "FAIL",
+            "artifacts_scheduled": 1,
+            "artifacts_passed": 0,
+            "artifacts_failed": 1,
+            "artifacts_skipped": 0,
+            "pipeline_results": [
+                {
+                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                    "name": "matches",
+                    "timestamp": "2026-07-20T23:32:41.199799",
+                    "duration_seconds": 1.79161,
+                    "status": "FAIL",
+                    "artifact_results": [
+                        {
+                            "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                            "stage": "BUILD",
+                            "artifact_name": "matches",
+                            "scheduled_steps": 4,
+                            "timestamp": "2026-07-20T23:32:41.200446",
+                            "duration_seconds": 1.29877,
+                            "status": "PASS",
+                            "steps_attempted": 4,
+                            "steps_warnings_count": 0,
+                            "stage_results": [
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Create Schema",
+                                    "timestamp": "2026-07-20T23:32:41.200772",
+                                    "duration_seconds": 0.84519,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "schema_file": "odds-vs-reality\\src\\db\\schemas\\raw_matches.sql"
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Extract Data",
+                                    "timestamp": "2026-07-20T23:32:42.046684",
+                                    "duration_seconds": 0.08102,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "files_processed": 7,
+                                        "total_rows": 2336,
+                                        "files": {
+                                            "F1_1920": {
+                                                "nb_rows": 279,
+                                                "nb_columns": 105
+                                            },
+                                            "F1_2021": {
+                                                "nb_rows": 380,
+                                                "nb_columns": 105
+                                            },
+                                            "F1_2122": {
+                                                "nb_rows": 380,
+                                                "nb_columns": 105
+                                            },
+                                            "F1_2223": {
+                                                "nb_rows": 380,
+                                                "nb_columns": 105
+                                            },
+                                            "F1_2324": {
+                                                "nb_rows": 306,
+                                                "nb_columns": 105
+                                            },
+                                            "F1_2425": {
+                                                "nb_rows": 306,
+                                                "nb_columns": 119
+                                            },
+                                            "F1_2526": {
+                                                "nb_rows": 305,
+                                                "nb_columns": 131
+                                            }
+                                        }
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Fix Columns",
+                                    "timestamp": "2026-07-20T23:32:42.128164",
+                                    "duration_seconds": 0.36863,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "tables_processed": 7,
+                                        "rows_processed": 2336
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Concatenate tables",
+                                    "timestamp": "2026-07-20T23:32:42.497326",
+                                    "duration_seconds": 0.00159,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "tables_concatenated": 7,
+                                        "total_rows": 2336,
+                                        "total_columns": 54
+                                    },
+                                    "message": null,
+                                    "error": null
+                                }
+                            ],
+                            "message": null,
+                            "error": null
+                        },
+                        {
+                            "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                            "stage": "VALIDATE",
+                            "artifact_name": "matches",
+                            "scheduled_steps": 7,
+                            "timestamp": "2026-07-20T23:32:42.499997",
+                            "duration_seconds": 0.49066,
+                            "status": "FAIL",
+                            "steps_attempted": 7,
+                            "steps_warnings_count": 2,
+                            "stage_results": [
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Duplicates",
+                                    "timestamp": "2026-07-20T23:32:42.500239",
+                                    "duration_seconds": 0.1802,
+                                    "status": "PASS",
+                                    "step_results": null,
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Match Count",
+                                    "timestamp": "2026-07-20T23:32:42.681004",
+                                    "duration_seconds": 0.17458,
+                                    "status": "FAIL",
+                                    "step_results": {
+                                        "seasons": [
+                                            {
+                                                "league_division": "L1",
+                                                "season": "19/20",
+                                                "expected_nb_matches": 38,
+                                                "affected_teams": 20,
+                                                "max_deviation": 11,
+                                                "issues": {
+                                                    "Amiens": 28,
+                                                    "Angers": 28,
+                                                    "Bordeaux": 28,
+                                                    "Brest": 28,
+                                                    "Dijon": 28,
+                                                    "Lille": 28,
+                                                    "Lyon": 28,
+                                                    "Marseille": 28,
+                                                    "Metz": 28,
+                                                    "Monaco": 28,
+                                                    "Montpellier": 28,
+                                                    "Nantes": 28,
+                                                    "Nice": 28,
+                                                    "Nimes": 28,
+                                                    "Paris SG": 27,
+                                                    "Reims": 28,
+                                                    "Rennes": 28,
+                                                    "St Etienne": 28,
+                                                    "Strasbourg": 27,
+                                                    "Toulouse": 28
+                                                },
+                                                "status": "FAIL"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "20/21",
+                                                "expected_nb_matches": 38,
+                                                "affected_teams": 0,
+                                                "max_deviation": 0,
+                                                "issues": {},
+                                                "status": "PASS"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "21/22",
+                                                "expected_nb_matches": 38,
+                                                "affected_teams": 0,
+                                                "max_deviation": 0,
+                                                "issues": {},
+                                                "status": "PASS"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "22/23",
+                                                "expected_nb_matches": 38,
+                                                "affected_teams": 0,
+                                                "max_deviation": 0,
+                                                "issues": {},
+                                                "status": "PASS"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "23/24",
+                                                "expected_nb_matches": 34,
+                                                "affected_teams": 0,
+                                                "max_deviation": 0,
+                                                "issues": {},
+                                                "status": "PASS"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "24/25",
+                                                "expected_nb_matches": 34,
+                                                "affected_teams": 0,
+                                                "max_deviation": 0,
+                                                "issues": {},
+                                                "status": "PASS"
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "25/26",
+                                                "expected_nb_matches": 34,
+                                                "affected_teams": 2,
+                                                "max_deviation": 1,
+                                                "issues": {
+                                                    "Nantes": 33,
+                                                    "Toulouse": 33
+                                                },
+                                                "status": "WARNING"
+                                            }
+                                        ]
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Match Results",
+                                    "timestamp": "2026-07-20T23:32:42.856113",
+                                    "duration_seconds": 0.113,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "issues_found": 0,
+                                        "inconsistent_matches": []
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Missing Values",
+                                    "timestamp": "2026-07-20T23:32:42.969685",
+                                    "duration_seconds": 0.00326,
+                                    "status": "WARNING",
+                                    "step_results": {
+                                        "total_rows": 2336,
+                                        "columns": {
+                                            "league_division": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "match_date": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "kick_off": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_team": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_team": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "full_time_home_goals": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "full_time_away_goals": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "full_time_match_result": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "half_time_home_goals": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "half_time_away_goals": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "half_time_match_result": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_shots": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_shots": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_shots_on_target": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_shots_on_target": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_corners": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_corners": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_fouls": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_fouls": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_yellow_cards": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_yellow_cards": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "home_red_cards": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "away_red_cards": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "bet365_away_odds": {
+                                                "nulls": 2,
+                                                "null_percentage": 0.09
+                                            },
+                                            "bet365_draw_odds": {
+                                                "nulls": 2,
+                                                "null_percentage": 0.09
+                                            },
+                                            "betwin_closing_draw_odds": {
+                                                "nulls": 126,
+                                                "null_percentage": 5.39
+                                            },
+                                            "market_maximum_away_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_maximum_draw_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "betwin_home_odds": {
+                                                "nulls": 128,
+                                                "null_percentage": 5.48
+                                            },
+                                            "bet365_closing_away_odds": {
+                                                "nulls": 1,
+                                                "null_percentage": 0.04
+                                            },
+                                            "betwin_closing_home_odds": {
+                                                "nulls": 126,
+                                                "null_percentage": 5.39
+                                            },
+                                            "market_maximum_closing_home_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "pinnacle_draw_odds": {
+                                                "nulls": 154,
+                                                "null_percentage": 6.59
+                                            },
+                                            "market_average_closing_home_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_average_home_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "pinnacle_home_odds": {
+                                                "nulls": 154,
+                                                "null_percentage": 6.59
+                                            },
+                                            "pinnacle_away_odds": {
+                                                "nulls": 154,
+                                                "null_percentage": 6.59
+                                            },
+                                            "market_maximum_home_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "pinnacle_closing_home_odds": {
+                                                "nulls": 152,
+                                                "null_percentage": 6.51
+                                            },
+                                            "bet365_closing_home_odds": {
+                                                "nulls": 1,
+                                                "null_percentage": 0.04
+                                            },
+                                            "bet365_home_odds": {
+                                                "nulls": 2,
+                                                "null_percentage": 0.09
+                                            },
+                                            "market_maximum_closing_draw_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_maximum_closing_away_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "betwin_draw_odds": {
+                                                "nulls": 128,
+                                                "null_percentage": 5.48
+                                            },
+                                            "pinnacle_closing_draw_odds": {
+                                                "nulls": 152,
+                                                "null_percentage": 6.51
+                                            },
+                                            "market_average_closing_draw_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_average_draw_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "pinnacle_closing_away_odds": {
+                                                "nulls": 152,
+                                                "null_percentage": 6.51
+                                            },
+                                            "bet365_closing_draw_odds": {
+                                                "nulls": 1,
+                                                "null_percentage": 0.04
+                                            },
+                                            "market_average_closing_away_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "market_average_away_odds": {
+                                                "nulls": 0,
+                                                "null_percentage": 0.0
+                                            },
+                                            "betwin_away_odds": {
+                                                "nulls": 128,
+                                                "null_percentage": 5.48
+                                            },
+                                            "betwin_closing_away_odds": {
+                                                "nulls": 126,
+                                                "null_percentage": 5.39
+                                            }
+                                        }
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Schema",
+                                    "timestamp": "2026-07-20T23:32:42.973429",
+                                    "duration_seconds": 0.00015,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "missing_cols": [],
+                                        "extra_cols": []
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Team Counts",
+                                    "timestamp": "2026-07-20T23:32:42.974088",
+                                    "duration_seconds": 0.00965,
+                                    "status": "WARNING",
+                                    "step_results": {
+                                        "results_per_season": [
+                                            {
+                                                "league_division": "L1",
+                                                "season": "19/20",
+                                                "nb_rows": 279,
+                                                "calculated_n": 17.210774967068403,
+                                                "nb_teams": 20
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "20/21",
+                                                "nb_rows": 380,
+                                                "calculated_n": 20.0,
+                                                "nb_teams": 20
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "21/22",
+                                                "nb_rows": 380,
+                                                "calculated_n": 20.0,
+                                                "nb_teams": 20
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "22/23",
+                                                "nb_rows": 380,
+                                                "calculated_n": 20.0,
+                                                "nb_teams": 20
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "23/24",
+                                                "nb_rows": 306,
+                                                "calculated_n": 18.0,
+                                                "nb_teams": 18
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "24/25",
+                                                "nb_rows": 306,
+                                                "calculated_n": 18.0,
+                                                "nb_teams": 18
+                                            },
+                                            {
+                                                "league_division": "L1",
+                                                "season": "25/26",
+                                                "nb_rows": 305,
+                                                "calculated_n": 17.971405209656147,
+                                                "nb_teams": 18
+                                            }
+                                        ]
+                                    },
+                                    "message": null,
+                                    "error": null
+                                },
+                                {
+                                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                                    "name": "Value Ranges",
+                                    "timestamp": "2026-07-20T23:32:42.984338",
+                                    "duration_seconds": 0.00598,
+                                    "status": "PASS",
+                                    "step_results": {
+                                        "non_bookie_violations": {
+                                            "away_shots_on_target_negative_values": 0,
+                                            "home_fouls_negative_values": 0,
+                                            "home_corners_negative_values": 0,
+                                            "away_shots_negative_values": 0,
+                                            "home_shots_on_target_negative_values": 0,
+                                            "away_fouls_negative_values": 0,
+                                            "home_yellow_cards_negative_values": 0,
+                                            "full_time_away_goals_negative_values": 0,
+                                            "away_yellow_cards_negative_values": 0,
+                                            "half_time_home_goals_negative_values": 0,
+                                            "home_red_cards_negative_values": 0,
+                                            "away_corners_negative_values": 0,
+                                            "half_time_away_goals_negative_values": 0,
+                                            "home_shots_negative_values": 0,
+                                            "full_time_home_goals_negative_values": 0,
+                                            "away_red_cards_negative_values": 0
+                                        },
+                                        "odds_violations": {
+                                            "bet365_away_odds_weird_values": 0,
+                                            "bet365_draw_odds_weird_values": 0,
+                                            "betwin_closing_draw_odds_weird_values": 0,
+                                            "market_maximum_away_odds_weird_values": 0,
+                                            "market_maximum_draw_odds_weird_values": 0,
+                                            "betwin_home_odds_weird_values": 0,
+                                            "bet365_closing_away_odds_weird_values": 0,
+                                            "betwin_closing_home_odds_weird_values": 0,
+                                            "market_maximum_closing_home_odds_weird_values": 0,
+                                            "pinnacle_draw_odds_weird_values": 0,
+                                            "market_average_closing_home_odds_weird_values": 0,
+                                            "market_average_home_odds_weird_values": 0,
+                                            "pinnacle_home_odds_weird_values": 0,
+                                            "pinnacle_away_odds_weird_values": 0,
+                                            "market_maximum_home_odds_weird_values": 0,
+                                            "pinnacle_closing_home_odds_weird_values": 0,
+                                            "bet365_closing_home_odds_weird_values": 0,
+                                            "bet365_home_odds_weird_values": 0,
+                                            "market_maximum_closing_draw_odds_weird_values": 0,
+                                            "market_maximum_closing_away_odds_weird_values": 0,
+                                            "betwin_draw_odds_weird_values": 0,
+                                            "pinnacle_closing_draw_odds_weird_values": 0,
+                                            "market_average_closing_draw_odds_weird_values": 0,
+                                            "market_average_draw_odds_weird_values": 0,
+                                            "pinnacle_closing_away_odds_weird_values": 0,
+                                            "bet365_closing_draw_odds_weird_values": 0,
+                                            "market_average_closing_away_odds_weird_values": 0,
+                                            "market_average_away_odds_weird_values": 0,
+                                            "betwin_away_odds_weird_values": 0,
+                                            "betwin_closing_away_odds_weird_values": 0
+                                        }
+                                    },
+                                    "message": null,
+                                    "error": null
+                                }
+                            ],
+                            "message": null,
+                            "error": null
+                        },
+                        {
+                            "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                            "stage": "PERSIST",
+                            "artifact_name": "matches",
+                            "scheduled_steps": 0,
+                            "timestamp": "2026-07-20T23:32:41.199799",
+                            "duration_seconds": 0,
+                            "status": "SKIPPED",
+                            "steps_attempted": 0,
+                            "steps_warnings_count": 0,
+                            "stage_results": null,
+                            "message": "Skipped",
+                            "error": "Previous stage [VALIDATE] failed"
+                        }
+                    ],
+                    "message": null,
+                    "error": null
+                }
+            ],
+            "message": null,
+            "error": null
+        },
+        {
+            "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+            "name": "transformation",
+            "timestamp": "2026-07-20T23:32:42.992372",
+            "duration_seconds": 0.0018,
+            "status": "SKIPPED",
+            "artifacts_scheduled": 5,
+            "artifacts_passed": 0,
+            "artifacts_failed": 0,
+            "artifacts_skipped": 5,
+            "pipeline_results": [
+                {
+                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                    "name": "standings",
+                    "timestamp": "2026-07-20T23:32:42.992372",
+                    "duration_seconds": 0.00035,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
+                },
+                {
+                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                    "name": "teams",
+                    "timestamp": "2026-07-20T23:32:42.992372",
+                    "duration_seconds": 0.0006,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
+                },
+                {
+                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                    "name": "match_probs",
+                    "timestamp": "2026-07-20T23:32:42.992372",
+                    "duration_seconds": 0.00093,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
+                },
+                {
+                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                    "name": "expected_points",
+                    "timestamp": "2026-07-20T23:32:42.992372",
+                    "duration_seconds": 0.00137,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
+                },
+                {
+                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                    "name": "expected_standings",
+                    "timestamp": "2026-07-20T23:32:42.992372",
+                    "duration_seconds": 0.00179,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
+                }
+            ],
+            "message": null,
+            "error": null
+        },
+        {
+            "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+            "name": "analytics",
+            "timestamp": "2026-07-20T23:32:42.994751",
+            "duration_seconds": 0.00075,
+            "status": "SKIPPED",
+            "artifacts_scheduled": 2,
+            "artifacts_passed": 0,
+            "artifacts_failed": 0,
+            "artifacts_skipped": 2,
+            "pipeline_results": [
+                {
+                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                    "name": "match_metrics",
+                    "timestamp": "2026-07-20T23:32:42.994751",
+                    "duration_seconds": 0.00041,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
+                },
+                {
+                    "run_id": "5ae03e70-d096-43bb-9d43-c64de5b90755",
+                    "name": "bookmaker_metrics",
+                    "timestamp": "2026-07-20T23:32:42.994751",
+                    "duration_seconds": 0.00074,
+                    "status": "SKIPPED",
+                    "artifact_results": null,
+                    "message": "Skipping execution",
+                    "error": "Missing dependencies"
+                }
+            ],
+            "message": null,
+            "error": null
+        }
+    ],
+    "message": null,
+    "error": null
+}

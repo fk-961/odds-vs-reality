@@ -1,9 +1,23 @@
 import streamlit as st
+import pandas as pd
 
 from src.db.engine import engine
 from src.db.utils import load_table
-from src.analytics.team_history import get_team_stats
 
+    
+def get_team_stats(
+    df : pd.DataFrame, # standings table
+    team : str,
+    stats : str
+) -> pd.DataFrame:
+    return (
+        df.loc[
+            df['team'] == team,
+            ['season', stats]
+        ]
+        .sort_values("season")
+        .reset_index(drop = True)
+    )
 
 # --------------------------------------------------
 # Styling

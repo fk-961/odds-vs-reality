@@ -1,40 +1,39 @@
-import logging
-logging.basicConfig(
-    level = logging.INFO,
-    format = "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
-)
+from maestro import blueprints as bp
+from maestro import runtime as rt
+from maestro import execution as ex
 
-from src.core.orchestrator import PipelineMaestro
-from src.core.runner import PipelineRunner
-from src.core.logger import PipelineLogger
-from src.core.report_builder import ReportBuilder
+from src.pipelines.ingestion.job import ingestion_job
+from src.pipelines.transformation.job import transformation_job
+from src.pipelines.analytics.job import analytics_job
+from src.reporting.writer import ExecutionWriter
+from src.db.engine import engine
+from src.config import LOGS_DIR
 
-from src.ingestion.pipeline import (
-    ingestion_pipeline, ingestion_context
-)
-from src.validation.pipeline import (
-    validation_pipeline, validation_context
-)
-from src.transformation.pipeline import (
-    transformation_pipeline, transformation_context
-)
-from src.analytics.pipeline import (
-    analytics_pipeline, analytics_context
-)
-
-if __name__ == "__main__":
-    pipeline_runs = [
-        (ingestion_pipeline, ingestion_context),
-        (validation_pipeline, validation_context),
-        (transformation_pipeline, transformation_context),
-        (analytics_pipeline, analytics_context)
-    ]
+def main():
     
-    executor = PipelineMaestro(
-        pipeline_runs = pipeline_runs,
-        runner = PipelineRunner(),
-        logger = PipelineLogger(logging.getLogger("maestro")),
-        report_builder = ReportBuilder()
+    jobs = bp.Maestro(
+        jobs = [
+            ingestion_job,
+            transformation_job,
+            analytics_job
+        ]
     )
     
-    executor.execute()
+    executor = ex.MaestroExecutor(
+        logger = rt.PipelineLogger(
+            name = "analytics_pipeline",
+            logs_path = LOGS_DIR
+        )
+    )
+    results = executor.execute(jobs)
+    
+    writer = ExecutionWriter()
+    writer.run(
+        exec_result = results,
+        metadata_engine = engine,
+        logs_path = LOGS_DIR
+    )
+    
+    
+if __name__ == "__main__":
+    main()
