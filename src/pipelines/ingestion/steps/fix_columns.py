@@ -1,7 +1,6 @@
 import pandas as pd
 from maestro import blueprints as bp
 from maestro import runtime as rt
-from maestro.common.types import Status
 
 class FixColumns(bp.PipelineStep):
     name = "Fix Columns"
@@ -18,59 +17,46 @@ class FixColumns(bp.PipelineStep):
         if not raw_matches:
             reason = "raw table is empty in context's artifacts"
             etx.logger.error(reason)
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = reason
-            )
+            
+            return self.fail(msg = reason)
             
         normalized = {}
         
         for name, df in raw_matches.items():
-            try:
-                etx.logger.info("Fixing columns for %s", name)
+            etx.logger.info("Fixing columns for %s", name)
                 
-                df = df.copy()
-                if not ctx.required_cols.issubset(set(df.columns)):
-                    missing_cols = ctx.required_cols.difference(set(df.columns))
-                    reason = "Missing required columns"
-                    etx.logger.error("%s: %s", reason, missing_cols)
-                    return bp.StepResult(
-                        status = Status.FAIL,
-                        message = reason,
-                        error = f"missing_cols = {missing_cols}"
-                    )
+            df = df.copy()
+            if not ctx.required_cols.issubset(set(df.columns)):
+                missing_cols = ctx.required_cols.difference(set(df.columns))
+                reason = "Missing required columns"
+                etx.logger.error("%s: %s", reason, missing_cols)
                 
-                # get schema columns
-                df = df[df.columns.intersection(ctx.col_mapping.keys())]
-                df = df.rename(columns = ctx.col_mapping)
-                
-                # add season and league division cols
-                df['season'] = f"{name[3:5]}/{name[5:]}"
-                df['league_division'] = "L1"
-                
-                # convert match date
-                df['match_date'] = pd.to_datetime(
-                    df['match_date'], dayfirst = True
-                ).dt.date
-                
-                normalized[name] = df
-            
-            except Exception as e:
-                reason = f"Could not fix columns for {name}"
-                etx.logger.error("%s: %s", reason, e)
-                return bp.StepResult(
-                    status = Status.FAIL,
-                    message = reason,
-                    error = f"{type(e).__name__}: {e}"
+                return self.fail(
+                    msg = f"Missing columns: {missing_cols}"
                 )
-        
+                
+            # get schema columns
+            df = df[df.columns.intersection(ctx.col_mapping.keys())]
+            df = df.rename(columns = ctx.col_mapping)
+                
+            # add season and league division cols
+            df['season'] = f"{name[3:5]}/{name[5:]}"
+            df['league_division'] = "L1"
+                
+            # convert match date
+            df['match_date'] = pd.to_datetime(
+                df['match_date'], dayfirst = True
+            ).dt.date
+                
+            normalized[name] = df
+            
         ctx.artifacts['normalized_matches'] = normalized
             
-        return bp.StepResult(
-            status = Status.PASS,
-            step_results = {
+        return self.success(
+            output = {
                 "tables_processed" : len(normalized),
                 "rows_processed" : sum(len(df) for df in normalized.values())
             }
         )
+
             

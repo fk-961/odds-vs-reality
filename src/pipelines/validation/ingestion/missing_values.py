@@ -7,7 +7,7 @@ from maestro import blueprints as bp
 from maestro import runtime as rt
 from maestro.common.types import Status
 
-from src.validation.core.registry import register_check
+from src.pipelines.validation.core.registry import register_check
 from src.mappings import col_mapping, non_bookies_cols
 
 @register_check("ingestion")
@@ -61,7 +61,6 @@ class MissingValues(bp.PipelineStep):
 
         return bp.StepResult(
             status=status,
-            message = message,
             step_results={
                 "total_rows": len(matches),
                 "columns": results

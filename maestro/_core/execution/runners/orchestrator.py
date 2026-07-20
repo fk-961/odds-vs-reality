@@ -123,6 +123,10 @@ Duration : %s s
                     timestamp = tracker.timestamp,
                     duration_seconds = tracker.duration,
                     pipelines_scheduled = len(maestro.jobs),
+                    artifacts_count = artifacts_count,
+                    artifacts_passed = artifacts_passed,
+                    artifacts_skipped = artifacts_skipped,
+                    artifacts_failed = artifacts_failed,
                     maestro_results = maestro_results,
                     message = message,
                     error = error

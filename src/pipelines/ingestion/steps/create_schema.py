@@ -4,7 +4,6 @@ Creates our raw table in the database with defined schema.
 from sqlalchemy import text
 from maestro import blueprints as bp
 from maestro import runtime as rt
-from maestro.common.types import Status
 
 from src.config import ROOT_DIR
 
@@ -21,40 +20,20 @@ class CreateSchema(bp.PipelineStep):
         if not ctx.raw_schema.exists():
             reason = f"{source_schema} does not exist"
             etx.logger.error(reason)
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = reason
+            return self.fail(
+                msg = reason
             )
             
-        try:
-            with open(ctx.raw_schema, "r") as f:
-                schema_sql = f.read()
-        except Exception as e:
-            reason = f"Could not read {source_schema}"
-            etx.logger.error(reason)
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = reason,
-                error = f"{type(e).__name__}: {e}"
-            )
+        with open(ctx.raw_schema, "r") as f:
+            schema_sql = f.read()
             
             
-        try:
-            with ctx.engine.begin() as conn:
-                conn.execute(text(schema_sql))
-        except Exception as e:
-            reason = f"Could not create schema"
-            etx.logger.error(reason)
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = reason,
-                error = f"{type(e).__name__}: {e}"
-            )
-        
+        with ctx.engine.begin() as conn:
+            conn.execute(text(schema_sql))
+            
         etx.logger.info("Schema successfully created")
-        return bp.StepResult(
-            status = Status.PASS,
-            step_results = {
+        return self.success(
+            output = {
                 "schema_file" : str(source_schema)
             }
         )

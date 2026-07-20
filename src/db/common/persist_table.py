@@ -1,7 +1,6 @@
 from sqlalchemy import text
 from maestro import blueprints as bp
 from maestro import runtime as rt
-from maestro.common.types import Status
 
 from src.db.common.utils import create_table
 
@@ -34,6 +33,4 @@ class PersistTable(bp.PipelineStep):
             self.table_name,
             ctx.engine
         )
-        return bp.StepResult(
-            status = Status.PASS,
-        )
+        return self.success()

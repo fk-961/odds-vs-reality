@@ -7,7 +7,7 @@ from src.pipelines.ingestion.steps.extract_data import ExtractData
 from src.pipelines.ingestion.steps.fix_columns import FixColumns
 from src.pipelines.ingestion.steps.concat_tables import ConcatTables
 # validate steps
-from src.validation.core.registry import get_checks
+from src.pipelines.validation.core.registry import get_checks
 checks = get_checks("ingestion")
 # persist steps
 from src.db.common.persist_table import PersistTable

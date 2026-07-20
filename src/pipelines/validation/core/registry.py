@@ -30,7 +30,7 @@ def get_checks(pipeline_name):
 
 def _load_checks(pipeline_name):
 
-    package_name = f"src.validation.{pipeline_name}"
+    package_name = f"src.pipelines.validation.{pipeline_name}"
 
     package = importlib.import_module(package_name)
 

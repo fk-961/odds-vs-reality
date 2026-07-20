@@ -17,16 +17,15 @@ class BuildMatchMetrics(bp.PipelineStep):
         if match_probs.empty:
             message = "match_probs table empty"
             etx.logger.error(message)
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = message
-            )
+            
+            return self.fail(msg = message)
+
             
         match_metrics = build_match_metrics(match_probs)
         ctx.artifacts["match_metrics"] = match_metrics
-        return bp.StepResult(
-            status = Status.PASS,
-            step_results = {
+        
+        return self.success(
+            output = {
                 "table_name" : "match_metrics",
                 "rows_created" : int(match_metrics.shape[0]),
                 "cols_created" : int(match_metrics.shape[1])

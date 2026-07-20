@@ -1,6 +1,5 @@
 from maestro import blueprints as bp
 from maestro import runtime as rt
-from maestro.common.types import Status
 
 from src.processing.transformation.build_standings import (
     build_standings
@@ -18,18 +17,16 @@ class BuildStandings(bp.PipelineStep):
         matches = ctx.get_artifact("matches")
         
         if matches.empty:
-            etx.logger.error("Matches Table empty")
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = "Table empty"
-            )
+            message = "matches table empty"
+            etx.logger.error(message)
+            
+            return self.fail(msg = message)
         
         standings = build_standings(matches)
         ctx.artifacts["standings"] = standings
             
-        return bp.StepResult(
-            status = Status.PASS,
-            step_results = {
+        return self.success(
+            output = {
                 "table_name" : "standings",
                 "rows_created" : int(standings.shape[0]),
                 "cols_created" : int(standings.shape[1])

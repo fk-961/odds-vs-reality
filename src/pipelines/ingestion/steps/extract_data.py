@@ -1,7 +1,6 @@
 import pandas as pd
 from maestro import blueprints as bp
 from maestro import runtime as rt
-from maestro.common.types import Status
 
 from src.config import ROOT_DIR
 
@@ -24,9 +23,8 @@ class ExtractData(bp.PipelineStep):
         if not ctx.source_data.exists():
             reason = f"{source_path} does not exist"
             etx.logger.error(reason)
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = reason
+            return self.fail(
+                msg = reason
             )
         
         etx.logger.info("Looking for data in %s", source_path)
@@ -35,24 +33,13 @@ class ExtractData(bp.PipelineStep):
         if not csv_files:
             reason = f"No files found in {source_path}"
             etx.logger.error(reason)
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = reason
-            )
+            
+            return self.fail(msg = reason)
             
         for file in csv_files:
             etx.logger.info("CSV file found: %s", file.stem)
             
-            try:
-                df = pd.read_csv(file)
-            except Exception as e :
-                reason = f"failed to read {file.stem}"
-                etx.logger.error(reason)
-                return bp.StepResult(
-                    status = Status.FAIL,
-                    message = reason,
-                    error = f"{type(e).__name__}: {e}"
-                )
+            df = pd.read_csv(file)
             
             data[file.stem] = df
             files[file.stem] = {
@@ -65,9 +52,9 @@ class ExtractData(bp.PipelineStep):
             
         etx.logger.info("%s files found, total_rows = %s", nb_files, total_rows)
         ctx.artifacts['raw_matches'] = data
-        return bp.StepResult(
-            status = Status.PASS,
-            step_results = {
+        
+        return self.success(
+            output = {
                 "files_processed" : nb_files,
                 "total_rows" : total_rows,
                 "files" : files

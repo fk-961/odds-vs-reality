@@ -60,20 +60,25 @@ class PipelineLogger:
             }
         )
         
-    def _format(self, msg : str) -> str:
-        
+    def _format(self, msg: str) -> str:
         layers = []
-        if "orchestrator" in self.layer:
-            layers.append(self.layer['orchestrator'])
-        if "pipeline" in self.layer:
+
+        if self.layer.get("orchestrator"):
+            layers.append(self.layer["orchestrator"])
+
+        if self.layer.get("pipeline"):
             layers.append(f"[{self.layer['pipeline']}]")
-        if "artifact" in self.layer:
-            layers.append(self.layer['artifact'])
-        if "stage" in self.layer:
+
+        if self.layer.get("artifact"):
+            layers.append(self.layer["artifact"])
+
+        if self.layer.get("stage"):
             layers.append(f"[{self.layer['stage']}]")
-        
-        prefix = " | ".join(layers)
-        return prefix + " | " + msg
+
+        if not layers:
+            return msg
+
+        return " | ".join(layers) + " | " + msg
     
     def info(self, msg : str, *args, **kwargs):
         self._logger.info(

@@ -8,7 +8,7 @@ from maestro import blueprints as bp
 from maestro import runtime as rt
 from maestro.common.types import Status
 
-from src.validation.core.registry import register_check
+from src.pipelines.validation.core.registry import register_check
 
 @register_check("ingestion")
 class MatchCount(bp.PipelineStep):
@@ -24,11 +24,8 @@ class MatchCount(bp.PipelineStep):
         if matches.empty:
             message = "matches table empty"
             etx.logger.error(message)
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = message
-            )
             
+            return self.fail(msg = message)
             
         results = []
         overall_status = Status.PASS

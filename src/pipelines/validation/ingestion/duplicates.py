@@ -6,9 +6,8 @@ appearing multiple times.
 import pandas as pd
 from maestro import blueprints as bp
 from maestro import runtime as rt
-from maestro.common.types import Status
 
-from src.validation.core.registry import register_check
+from src.pipelines.validation.core.registry import register_check
 
 @register_check("ingestion")
 class Duplicates(bp.PipelineStep):
@@ -24,10 +23,8 @@ class Duplicates(bp.PipelineStep):
         if matches.empty:
             message = "matches table empty"
             etx.logger.error(message)
-            return bp.StepResult(
-                status = Status.FAIL,
-                message = message
-            )
+            
+            return self.fail(msg = message)
             
         duplicates = (
             matches
@@ -48,16 +45,15 @@ class Duplicates(bp.PipelineStep):
             duplicates["duplicate_count"] > 1
         ]
         
-        return bp.StepResult(
-            status = (
-                Status.FAIL
-                if not duplicates.empty
-                else Status.PASS
-            ),
-            step_results = {
+        if duplicates.empty:
+            return self.success()
+        
+        return self.fail(
+            output = {
                 "duplicates_found" : len(duplicates),
                 "duplicates_records" : duplicates.to_dict(
                     orient = "records"
                 )
             }
         )
+        

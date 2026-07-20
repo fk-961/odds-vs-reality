@@ -59,7 +59,8 @@ class ArtifactRunner:
         
         etx.cascade_logger(
             etx.logger.child(
-                artifact = artifact.name
+                artifact = artifact.name,
+                stage = None
             )
         )
         

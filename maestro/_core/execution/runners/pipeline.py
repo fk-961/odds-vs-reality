@@ -24,7 +24,9 @@ class PipelineRunner:
         
         etx.cascade_logger(
             etx.logger.child(
-                pipeline = pipeline.name
+                pipeline = pipeline.name,
+                artifact = None,
+                stage = None
             )
         )
                             
