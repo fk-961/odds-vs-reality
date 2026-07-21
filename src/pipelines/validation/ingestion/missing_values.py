@@ -11,7 +11,9 @@ from src.mappings import col_mapping, non_bookies_cols
 
 @register_check("ingestion")
 class MissingValues(bp.PipelineStep):
-    name = "Missing Values"
+    def __init__(self, file : str):
+        self.file = file
+        self.name = f"{file} Missing Values"
     
     def run(
         self,
@@ -19,7 +21,7 @@ class MissingValues(bp.PipelineStep):
         etx : rt.ExecutionContext
     ) -> bp.StepResult:
         
-        matches = ctx.get_artifact("matches")
+        matches = ctx.get_artifact(self.file)
         if matches.empty:
             message = "matches table empty"
             etx.logger.error(message)

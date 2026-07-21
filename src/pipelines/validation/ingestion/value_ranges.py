@@ -14,7 +14,9 @@ from src.pipelines.validation.core.registry import register_check
 
 @register_check("ingestion")
 class ValueRanges(bp.PipelineStep):
-    name = "Value Ranges"
+    def __init__(self, file : str):
+        self.file = file
+        self.name = f"{file} Value Ranges"
 
     def run(
         self,
@@ -22,7 +24,7 @@ class ValueRanges(bp.PipelineStep):
         etx: rt.ExecutionContext,
     ) -> bp.StepResult:
 
-        matches = ctx.get_artifact("matches")
+        matches = ctx.get_artifact(self.file)
         if matches.empty:
             message = "matches table empty"
             etx.logger.error(message)

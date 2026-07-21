@@ -11,7 +11,9 @@ from src.mappings import col_mapping
 
 @register_check("ingestion")
 class Schema(bp.PipelineStep):
-    name = "Schema"
+    def __init__(self, file : str):
+        self.file = file
+        self.name = f"{file} Schema"
     
     def run(
         self,
@@ -19,7 +21,7 @@ class Schema(bp.PipelineStep):
         etx : rt.ExecutionContext
     ) -> bp.StepResult:
         
-        matches = ctx.get_artifact("matches")
+        matches = ctx.get_artifact(self.file)
         if matches.empty:
             message = "matches table empty"
             etx.logger.error(message)

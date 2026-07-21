@@ -21,11 +21,8 @@ def get_checks(pipeline_name):
 
     if pipeline_name not in CHECKS_REGISTRY:
         _load_checks(pipeline_name)
-
-    return [
-        check()
-        for check in CHECKS_REGISTRY.get(pipeline_name, [])
-    ]
+        
+    return CHECKS_REGISTRY.get(pipeline_name, [])
 
 
 def _load_checks(pipeline_name):

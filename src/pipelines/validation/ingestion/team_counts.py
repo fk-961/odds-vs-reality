@@ -21,7 +21,9 @@ from src.pipelines.validation.core.registry import register_check
 
 @register_check("ingestion")
 class TeamCounts(bp.PipelineStep):
-    name = "Team Counts"
+    def __init__(self, file : str):
+        self.file = file
+        self.name = f"{file} Team Counts"
     
     def run(
         self,
@@ -29,7 +31,7 @@ class TeamCounts(bp.PipelineStep):
         etx : rt.ExecutionContext
     ) -> bp.StepResult:
         
-        matches = ctx.get_artifact("matches")
+        matches = ctx.get_artifact(self.file)
         if matches.empty:
             message = "matches table empty"
             etx.logger.error(message)
